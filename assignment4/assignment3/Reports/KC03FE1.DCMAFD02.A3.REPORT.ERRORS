@@ -1,0 +1,85 @@
+Jiabao Wu, A2 Error Report
+
+ERRORS Record
+
+   2   Invoice number cannot start with 5
+   7   Invalid region code in policy number
+   7   Policy number contains non-numeric characters
+   7   Amount contains non-numeric characters
+  10   Invoice number cannot start with 5
+  13   Invoice number cannot start with 5
+  14   Invalid region code in policy number
+  14   Invalid product code
+  18   Policy number contains non-numeric characters
+  20   Policy number contains non-numeric characters
+  21   Invoice number cannot start with 5
+  21   Justification cannot be blank
+  25   Invoice number cannot start with 5
+  28   Invoice number cannot start with 5
+  33   Invoice number cannot start with 5
+  36   Invalid product code
+  37   Policy number contains non-numeric characters
+  37   Invalid claim type
+  51   Invoice number cannot start with 5
+  52   Amount contains non-numeric characters
+  56   Policy number contains non-numeric characters
+  60   Invalid product code
+  60   Amount contains non-numeric characters
+  62   Invoice number cannot start with 5
+  65   Invalid product code
+  66   Invalid product code
+  66   Invalid claim type
+  70   Invalid product code
+  70   Justification cannot be blank
+  71   Invalid product code
+  71   Amount contains non-numeric characters
+  75   Invoice number cannot start with 5
+  87   Amount contains non-numeric characters
+  88   Invalid product code
+  91   Invoice number cannot start with 5
+  96   Invalid claim type
+  96   Justification cannot be blank
+  96   Amount contains non-numeric characters
+  97   Invoice number cannot start with 5
+  98   Invalid region code in policy number
+ 104   Invoice number cannot start with 5
+ 107   Invalid product code
+ 107   Amount contains non-numeric characters
+ 108   Invoice number cannot start with 5
+ 108   Invalid product code
+ 108   Amount contains non-numeric characters
+ 115   Invalid claim type
+ 115   Justification cannot be blank
+ 115   Amount contains non-numeric characters
+ 117   Invoice number cannot start with 5
+ 118   Invoice number cannot start with 5
+ 122   Invalid claim type
+ 123   Invoice number cannot start with 5
+ 123   Invalid claim type
+ 130   Invoice number cannot start with 5
+ 130   Justification cannot be blank
+ 139   Invoice number cannot start with 5
+ 144   Policy format invalid - missing hyphen
+ 144   Invalid region code in policy number
+ 144   Invalid claim type
+ 146   Invalid region code in policy number
+ 151   Invoice number cannot start with 5
+ 152   Policy number contains non-numeric characters
+ 155   Justification cannot be blank
+ 155   Amount contains non-numeric characters
+ 156   Policy number contains non-numeric characters
+ 156   Amount contains non-numeric characters
+ 157   Invoice number cannot start with 5
+ 161   Justification cannot be blank
+ 165   Policy format invalid - missing hyphen
+ 165   Invalid claim type
+ 178   Invoice number cannot start with 5
+ 180   Invalid claim type
+ 181   Invoice number cannot start with 5
+ 184   Amount contains non-numeric characters
+ 185   Invoice number cannot start with 5
+ 185   Amount contains non-numeric characters
+
+Records Read: 196
+Valid Records: 143
+Invalid Records:  53

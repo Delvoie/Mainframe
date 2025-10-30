@@ -1,0 +1,169 @@
+================================================================================
+              ASSIGNMENT 4 - CICS COMMANDS QUICK REFERENCE
+                              KC03FE1
+================================================================================
+
+COPY THESE COMMANDS EXACTLY - JUST REPLACE FE1 WITH YOUR LAST 3 DIGITS
+
+===============================================================================
+STEP 1: CONNECT TO CICS
+===============================================================================
+CICS
+(Press ENTER)
+
+===============================================================================
+STEP 2: DEFINE MAPSET
+===============================================================================
+CEDA DEFINE MAPSET(MNUSFE1) GROUP(DCMAFD02)
+(Press ENTER, then PF5 to save)
+
+===============================================================================
+STEP 3: DEFINE PROGRAM
+===============================================================================
+CEDA DEFINE PROGRAM(99MNUFE1) GROUP(DCMAFD02) TRANSID(9FE1)
+(Press ENTER, then PF5 to save)
+
+===============================================================================
+STEP 4: DEFINE TRANSACTION
+===============================================================================
+CEDA DEFINE TRANSACTION(9FE1) GROUP(DCMAFD02) PROGRAM(99MNUFE1)
+(Press ENTER, then PF5 to save)
+
+===============================================================================
+STEP 5: DISPLAY YOUR RESOURCES
+===============================================================================
+CEDA DISPLAY GROUP(DCMAFD02) ALL(*FE1*)
+(Press ENTER)
+
+===============================================================================
+STEP 6: INSTALL MAPSET
+===============================================================================
+CEDA INSTALL MAPSET(MNUSFE1) GROUP(DCMAFD02)
+(Press ENTER)
+
+===============================================================================
+STEP 7: INSTALL PROGRAM
+===============================================================================
+CEDA INSTALL PROGRAM(99MNUFE1) GROUP(DCMAFD02)
+(Press ENTER)
+
+===============================================================================
+STEP 8: INSTALL TRANSACTION
+===============================================================================
+CEDA INSTALL TRANSACTION(9FE1) GROUP(DCMAFD02)
+(Press ENTER)
+
+===============================================================================
+STEP 9: TEST MAP DISPLAY
+===============================================================================
+CECI SEND MAP(MNUMFE1) MAPSET(MNUSFE1)
+(Press ENTER - you should see your menu!)
+
+===============================================================================
+STEP 10: SET NEWCOPY (Load latest version of program)
+===============================================================================
+CEMT SET PROG(99MNUFE1) NEWCOPY
+(Press ENTER)
+
+===============================================================================
+STEP 11: TEST YOUR TRANSACTION
+===============================================================================
+Clear screen, then type:
+9FE1
+(Press ENTER - menu should appear)
+
+===============================================================================
+TESTING EACH CHOICE (for screenshots)
+===============================================================================
+
+Test 1: Choice 1
+----------------
+9FE1 (ENTER)
+Type: 1 (ENTER)
+Expected: "Choice 1 is not available"
+Screenshot: KC03FE1.DCMAFD02.A4.SCREENSHOT1.jpg
+
+Test 2: Choice 2
+----------------
+Clear screen
+9FE1 (ENTER)
+Type: 2 (ENTER)
+Expected: "Choice 2 is not ready"
+Screenshot: KC03FE1.DCMAFD02.A4.SCREENSHOT2.jpg
+
+Test 3: Choice 3
+----------------
+Clear screen
+9FE1 (ENTER)
+Type: 3 (ENTER)
+Expected: "Choice 3 is being tested"
+Screenshot: KC03FE1.DCMAFD02.A4.SCREENSHOT3.jpg
+
+Test 4: Choice 4
+----------------
+Clear screen
+9FE1 (ENTER)
+Type: 4 (ENTER)
+Expected: "Choice 4 is not working"
+Screenshot: KC03FE1.DCMAFD02.A4.SCREENSHOT4.jpg
+
+Test 5: Invalid Input
+---------------------
+Clear screen
+9FE1 (ENTER)
+Type: 5 (or any invalid character) (ENTER)
+Expected: "Invalid input - KC03FE1"
+Screenshot: KC03FE1.DCMAFD02.A4.SCREENSHOT5.jpg
+
+Test 6: Exit (no screenshot needed)
+------------------------------------
+Clear screen
+9FE1 (ENTER)
+Type: 9 (ENTER)
+Expected: "APPLICATION ENDING" then transaction ends
+
+===============================================================================
+IF YOU NEED TO UPDATE THE PROGRAM AFTER MAKING CHANGES
+===============================================================================
+
+After recompiling, run:
+CEMT SET PROG(99MNUFE1) NEWCOPY
+(Press ENTER)
+
+Then test again with: 9FE1
+
+===============================================================================
+USEFUL TROUBLESHOOTING COMMANDS
+===============================================================================
+
+Check if program is installed:
+CEMT INQUIRE PROGRAM(99MNUFE1)
+
+Check if transaction is installed:
+CEMT INQUIRE TRANSACTION(9FE1)
+
+Check if mapset is installed:
+CEMT INQUIRE MAPSET(MNUSFE1)
+
+Display all your resources:
+CEDA DISPLAY GROUP(DCMAFD02)
+
+===============================================================================
+COMMON ERRORS AND SOLUTIONS
+===============================================================================
+
+Error: "MAPFAIL"
+Solution: CEDA INSTALL MAPSET(MNUSFE1) GROUP(DCMAFD02)
+
+Error: "PGMIDERR" (Program ID Error)
+Solution: CEDA INSTALL PROGRAM(99MNUFE1) GROUP(DCMAFD02)
+
+Error: "TRANSIDERR" (Transaction ID Error)
+Solution: CEDA INSTALL TRANSACTION(9FE1) GROUP(DCMAFD02)
+
+Error: Old version of program running
+Solution: CEMT SET PROG(99MNUFE1) NEWCOPY
+
+===============================================================================
+                            END OF QUICK REFERENCE
+===============================================================================
