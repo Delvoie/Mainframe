@@ -15,7 +15,11 @@ Then make the required changes to the error messages and processing for the new 
 INSTRUCTIONS
 
 1. Copy these datasets and the EMPTY member in these datasets 
-from userid KC02597 to your userid KC03YYY using ISPF
+from userid KC02597 to your userid KC03FE1 using ISPF
+
+author is lucas delvoie
+id is KC03FE1
+date is oct 25 2025
 
 a. KC03YYY.DCMAFD02.A4.MNU.JCL 
 i. EMPTY
