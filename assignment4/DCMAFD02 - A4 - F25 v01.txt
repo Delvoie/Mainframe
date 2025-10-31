@@ -11,63 +11,40 @@ In this assignment, you will implement and deploy the BMS map shown below along 
 
 Then make the required changes to the error messages and processing for the new transactions.
 
-
+
 INSTRUCTIONS
 
-1. Copy these datasets and the EMPTY member in these datasets 
-from userid KC02597 to your userid KC03FE1 using ISPF
+Copy these datasets and the EMPTY member in these datasets 
+from userid KC02597 to your userid KC03YYY using ISPF
 
-author is lucas delvoie
-id is KC03FE1
-date is oct 25 2025
+KC02597.DCMAFD02.A4.MNU.JCL 
+MNUSBYYY
+UUMNUYYY
 
-a. KC03YYY.DCMAFD02.A4.MNU.JCL 
-i. EMPTY
+KC02597.DCMAFD02.A4.MNU.COBOL
+UUMNUYYY
 
-b. KC03YYY.DCMAFD02.A4.MNU.COBOL
-i. EMPTY
+KC02597.DCMAFD02.A4.MNU.BMS 
+MNUSYYY
 
-c. KC03YYY.DCMAFD02.A4.MNU.BMS 
-i. EMPTY
-
-d. KC03YYY.DCMAFD02.A4.MNU.PROCLIB
-i. EMPTY
-
-e. KC03YYY.DCMAFD02.COPYBOOK.PR.COBOL
-i. EMPTY
-
-f. KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL
-i. EMPTY
+KC02597.DCMAFD02.A4.MNU.PROCLIB
+DFHZITCL
 
 
-2. Copy this dataset KC03YYY.DCMAFD02.COBOL.LOADLIB
+
+If it doesn’t already exist, copy this dataset KC03YYY.DCMAFD02.COBOL.LOADLIB
 on userid KC02597 to your userid KC03YYY using ISPF
-a. Choose the EMPTY member or any member present
+Choose the EMPTY member or any member present
 (this member will not be used 
 and is required for the copy process)
-b. Only copy this if it is not present on your userid KC03YYY
+Only copy this if it is not present on your userid KC03YYY
+
+
+
+Edit the files to replace the YYY to match your userid KC03YYY
 
 
-3. Copy EMPTY members as the following names 
-and copy/paste contents from each of the appropriate files provided into the corresponding file
-
-a. In KC03YYY.DCMAFD02.A4.MNU.JCL 
-i. MNUSBYYY
-ii. 99MNUYYY
-
-b. In KC03YYY.DCMAFD02.A4.MNU.COBOL
-i. 99MNUYYY
-
-c. In KC03YYY.DCMAFD02.A4.MNU.BMS 
-i. MNUSYYY
-
-d. In KC03YYY.DCMAFD02.A4.MNU.PROCLIB
-i. DFHZITCL
- 
-4. Edit the files to replace the YYY to match your userid KC03YYY
-
-
-5. Submit the MNUSBYYY.JCL to generate the BMS screens 
+Submit the MNUSBYYY.JCL to generate the BMS screens 
 and correct any errors until Return code = 0
 
 In ISPF use XDC, or 
@@ -75,60 +52,60 @@ in Developer use Print to PDF to save entire job summary as
 KC03YYY.DCMAFD02.A4.JOB.SUMMARY.BMS
 
 
-6. Submit the 99MNUYYY.JCL to compile/LKED the COBOL program
+Submit the UUMNUYYY.JCL to compile/LKED the COBOL program
 and correct any errors until Return code = 0
 
 In ISPF use XDC, or 
 in Developer use Print to PDF to save entire job summary as 
 KC03YYY.DCMAFD02.A4.JOB.SUMMARY.MNU
 
+
+On VISTA TN3270 emulator, 
 
-7. On VISTA TN3270 emulator, 
+Enter CICS command to connect to CICS
 
-a. Enter CICS command to connect to CICS
-
-b. Enter CICS commands 
+Enter CICS commands 
 to setup your new mapset, program, and transaction
 
-i. CEDA DEFINE MAPSET(MNUSYYY) GROUP(DCMAFD02)
+CEDA DEFINE MAPSET(MNUSYYY) GROUP(DCMAFD02)
 
-ii. CEDA DEFINE PROGRAM(99MNUYYY) GROUP(DCMAFD02) TRANSID(9YYY)
+CEDA DEFINE PROGRAM(UUMNUYYY) GROUP(DCMAFD02) TRANSID(9YYY)
 
-iii. CEDA DEFINE TRANSACTION(9YYY) 
-GROUP(DCMAFD02) PROGRAM(99MNUYYY)
+CEDA DEFINE TRANSACTION(9YYY) 
+GROUP(DCMAFD02) PROGRAM(UUMNUYYY)
 
-iv. CEDA DISPLAY
-1. GROUP		DCMAFD02
-2. ALL			*YYY*
-a. INSTALL of PROG, MAPSET, TRANS 
+CEDA DISPLAY
+GROUP		DCMAFD02
+ALL			*YYY*
+INSTALL of PROG, MAPSET, TRANS 
 
-v. CECI SEND MAP(MNUMYYY) MAPSET(MNUSYYY)
+CECI SEND MAP(MNUMYYY) MAPSET(MNUSYYY)
 
-vi. CEMT SET PROG(99MNUYYY) NEWCOPY
+CEMT SET PROG(UUMNUYYY) NEWCOPY
 
-c. Test 9YYY with CICS to ensure MNU is displayed 
+Test 9YYY with CICS to ensure MNU is displayed 
 and message for Choice 1 is ‘CHOICE 1 IS NOT AVAILABLE’
 and message for Choice 9 is ‘APPLICATION ENDING’
 
+
+On Developer, or ISPF
 
-8. On Developer, or ISPF
+Edit UUMNUYYY.cbl 
 
-a. Edit 99MNUYYY.cbl 
-
-i. to add messages for each choice 1, 2, 3, 4
+to add messages for each choice 1, 2, 3, 4
 for 1 use ‘Choice 1 is not available’
 for 2 use ‘Choice 2 is not ready    ’
 for 3 use ‘Choice 3 is being tested ’
 for 4 use ‘Choice 4 is not working  ’
 
-ii. to add error message when input is not 1, 2, 3, 4, 9 
+to add error message when input is not 1, 2, 3, 4, 9 
 use ‘Invalid input – KC03YYY’ 
 where KC03YYY is your userid and 
 continue the application instead of ending the application
 
-b. Enter required CICS commands to update your transaction 9YYY
+Enter required CICS commands to update your transaction 9YYY
 
-c. Test 9YYY with CICS to ensure MNU is displayed, 
+Test 9YYY with CICS to ensure MNU is displayed, 
 and correct errors display at correct times
 
 Note: The MNU screen should look something like the sample below:
@@ -150,7 +127,7 @@ Note: The MNU screen should look something like the sample below:
 
      MESSAGES YOUR PROGRAM SENDS WILL APPEAR HERE
 
-
+
 Reminders: 
 
 1) The mainframe uses the EBCDIC character set, and Windows uses the ASCII character set.  All files being submitted for marking must be in the ASCII character set.  
@@ -160,35 +137,35 @@ You are required to check the files you are submitting to ensure they are in the
 The character set should be converted when a file is copied from the mainframe to Windows for an assignment submission.  If you are having trouble getting files to convert properly then ask your professor for assistance to correct the settings for this conversion in your software. 
 
 EBCDIC files in submissions will not be marked, and this could impact a large portion of the marks for the assignment.
-
+
 SUBMISSION REQUIREMENTS
 
 For this assignment:
-- Files created with XDC, or print to PDF: 
+Files created with XDC, or print to PDF: 
 KC03YYY.DCMAFD02.A4.JOB.SUMMARY.BMS
 KC03YYY.DCMAFD02.A4.JOB.SUMMARY.MNU
 
-- JCL, COBOL, PROCLIB files:
+JCL, COBOL, PROCLIB files:
 KC03YYY.DCMAFD02.A4.MNU.JCL  	  	Member MNUSBYYY
-KC03YYY.DCMAFD02.A4.MNU.JCL  	  	Member 99MNUYYY
-KC03YYY.DCMAFD02.A4.MNU.COBOL   	Member 99MNUYYY
+KC03YYY.DCMAFD02.A4.MNU.JCL  	  	Member UUMNUYYY
+KC03YYY.DCMAFD02.A4.MNU.COBOL   	Member UUMNUYYY
 KC03YYY.DCMAFD02.A4.MNU.BMS  		Member MNUSYYY
 KC03YYY.DCMAFD02.A4.MNU.PROCLIB	Member DFHZITCL
 
-- Screenshots showing the four messages and one error message that were added:
+Screenshots showing the four messages and one error message that were added:
 KC03YYY.DCMAFD02.A4.SCREENSHOT1.jpg
 KC03YYY.DCMAFD02.A4.SCREENSHOT2.jpg
 KC03YYY.DCMAFD02.A4.SCREENSHOT3.jpg
 KC03YYY.DCMAFD02.A4.SCREENSHOT4.jpg
 KC03YYY.DCMAFD02.A4.SCREENSHOT5.jpg
 
-- Transfer the XDC dataset of these two job summaries into a folder on your PC, 
+Transfer the XDC dataset of these two job summaries into a folder on your PC, 
 or open each of these two job summaries in Developer
 and use print to PDF to create files on your PC
 
-- Zip these 12 files 
+Zip these 12 files 
 and upload the zip file to DCConnect assignment folder 
-MARKING
+Marking
 
-- 5 marks for each of the 12 files in the submission
+5 marks for each of the 12 files in the submission
 Total 60/60 marks
