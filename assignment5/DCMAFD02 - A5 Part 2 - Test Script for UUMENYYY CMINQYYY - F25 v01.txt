@@ -1,0 +1,38 @@
+﻿Assignment 05 Part 2
+Test Script for UUMENYYY and CMINQYYY programs
+
+These 16 steps outline the testing steps, and they can be done in any order.  Any sequence within each step must be done in order.   
+
+1On CICS screen, type Tranid UYYY for Menu program, and press enter, 
+and get blank menu screen. 
+2On Menu screen, enter nothing, and press enter, 
+and get error message 'You must enter 1, 2, or 3.'
+3On Menu screen, enter 2 in Action field, and press enter, 
+and get error message 'That program is not available.'
+4On Menu screen, enter 4 in Action field, and press enter, 
+and get error message 'You must enter 1, 2, or 3.'
+5On Menu screen, enter 3 in Action field, and press enter, 
+and get error message 'That program is not available.'
+6On Menu screen, enter 1 in Action field, and press enter, 
+and get blank inquiry screen. 7On Inquiry screen, enter nothing, and press enter, 
+and get error message 'You must enter a customer number.'
+8On Inquiry screen, enter 1 in Customer number field, and press enter, 
+and get error message 'That customer does not exist.'
+
+
+9On Inquiry screen, enter 123456 in Customer number field, and press enter, 
+and get display of information for Customer number 123456.10On Inquiry screen, enter 777777 in Customer number field, and press enter, 
+and get error message 'That customer does not exist.'
+11On Inquiry screen, press F3, 
+and return to Menu screen. 
+12On Menu screen, enter 1 in Action field, and press enter, 
+and get blank inquiry screen.
+13On Inquiry screen, press F12, 
+and return to Menu screen.
+14On Menu screen, press F3, 
+and get message 'Session ended'. 
+15On CICS screen, type Tranid UYYY for Menu program, and press enter, 
+and get blank menu screen. 
+16On Menu screen, press F12, 
+and get message 'Session ended'. 
+

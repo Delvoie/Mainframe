@@ -1,0 +1,615 @@
+﻿Assignment 05 Part 3
+
+For this assignment, you will be setting up a Maint program in CICS.  The generic name of the program is CUSTMNT2, and implement it with the name CMMNTYYY, which is customized for your userid KC03YYY.  
+This program requires a BMS mapset and map to be setup.   
+
+There will be small modifications to the cobol and BMS map to allow you to have individual copies of the program running at the same time, and use individual customer files for the program to use.
+
+CUSTMNT2 	= CMMNTYYY
+MNT2 		= VYYY
+CUSTMAS		= CMFYYY
+MNTSET1		= MNTSYYY
+MNTMAP1		= MNT1YYY
+MNTMAP2		= MNT2YYY
+
+
+
+
+
+
+Original Program Description:
+
+
+Note: 
+- Action code 2 will need to be enabled in the Menu program to allow it to work with the CMMNTYYY program from this assignment
+
+- Action code 3 in the Menu program should return error message indicating program is not available 
+
+- Your copy of the program will use a transaction id VYYY 
+based on your userid KC03YYY. 
+
+- Program names, Mapset names, Map names, File names, 
+Transaction IDs must be modified as required to make them unique for your program.
+
+
+Additional Program Information: 
+
+- Event Chart
+
+
+
+- Structure Chart
+
+
+
+
+
+- BMS screen designs (24 lines x 80 columns)
+
+
+
+
+
+
+
+
+Understanding Naming Conventions
+(YYY is last three characters of your userid KC03YYY)
+
+BMS source members
+- MNTSYYY is mapset name for Menu program
+
+CBL source members - programs
+- CMMNTYYY for Menu Program
+
+CBL source members - cobol COPY libraries
+- ATTR is copy file for screen attribute definitions used on CICS screens
+- DFAID is system copy file that is provided from system libraries 
+(THIS FILE YOU DO NOT NEED COPIED TO YOUR USERID)
+- ERRORSWS is copy file for variables used to handle ABENDs and other errors
+- MNTSYYY is copy file from generate of BMS mapset using JCL MNTSBYYY
+- CMFWSREC is copy file for record layout of CMFYYY VSAM file
+- CMFWSSTS is copy file for status variables related to CMFYYY VSAM file
+- CMFOPEN is copy file containing open paragraph for CMFYYY VSAM file
+- CMFCLOSE is copy file containing close paragraph for CMFYYY VSAM file
+- RESPTEXT is copy file containing paragraph to translate errors into text
+- TERMMSG is copy file containing paragraph to send termination message
+- HDLABEND is copy file containing abend handling paragraph
+
+JCL source members 
+- CMMNTYYY is JCL to compile/LKED Menu Program
+- MNTSBYYY is JCL to generate BMS mapset for Menu Program
+- DFHZITCL is JCL subroutine used by CMMNTYYY JCL 
+during compile/LKED of Menu Program
+
+Datasets and Members to create on userid KC03YYY.
+
+The datasets are available under userid KC02597 on the Mainframe for you to copy to your userid, and rename.
+
+o In KC03YYY.DCMAFD02.A5P3.BMS  
+MNTSYYY.BMS
+
+o In KC03YYY.DCMAFD02.A5P3.COBOL  
+CMMNTYYY.CBL
+MNTSYYY.CBL
+
+- In KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL  
+ATTR.CBL
+ERRORSWS.CBL
+CMFWSREC.CBL
+CMFWSSTS.CBL
+
+- In KC03YYY.DCMAFD02.COPYBOOK.PR.COBOL  
+CMFOPEN.CBL
+CMFCLOSE.CBL
+RESPTEXT.CBL 
+TERMMSG.CBL 
+HDLABEND.CBL
+
+o In KC03YYY.DCMAFD02.A5P3.JCL  
+EMPTY
+
+o In KC02597.DCMAFD02.PROCLIB  
+DFHZITCL.JCL
+
+o In KC02597.DCMAFD02.COBOL.LOADLIB  
+
+
+
+Naming Conventions:
+o Your user id on the mainframe is KC03YYY
+o Setup an A5P3 filter group in Developer with filter criteria KC03YYY.DCMAFD02.A5P3.* and 
+KC03YYY.DCMAFD02.COBOL.* and KC03YYY.DCMAFD02.COPYBOOK.* and KC03YYY.DCMAFD02.PROCLIB
+o While working through the instructions below 
+you will create these partitioned datasets with these members
+
+o KC03YYY.DCMAFD02.A5P3.BMS * MNTSYYYBMS Source for Mapset MNTSYYY
+includes Map MNT1YYY
+and Map MNT2YYYo KC03YYY.DCMAFD02.A5P3.COBOL* CMMNTYYYCOBOL source for MAINT program* MNTSYYYBMS source map created from BMS generate used as COBOL COPY fileo KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL* ATTRATTR COBOL copy file* ERRORSWSCOBOL COPY file for error handling* CMFWSRECCOBOL COPY file 
+for CMF VSAM file Record* CMFWSSTSCOBOL COPY file 
+for CMF VSAM file StatusKC03YYY.DCMAFD02.COPYBOOK.PR.COBOL* CMFOPENCOBOL COPY file
+with CMF OPEN paragraph* CMFCLOSECOBOL COPY file
+with CMF CLOSE paragraph* RESPTEXTCOBOL COPY file 
+with error to text paragraph* TERMMSGCOBOL COPY file with Send Termination message paragraph* HDLABENDCOBOL COPY file 
+with ABEND handling paragrapho KC03YYY.DCMAFD02.A5P3.JCL* CMMNTYYYCompile/LKED of CMMNTYYY* MNTSBYYY     BMS generate for MNTSYYYo KC03YYY.DCMAFD02.PROCLIB* DFHZITCLCompile.LKED sub-procedureTransid and File Notes:
+
+o Transaction ID is VYYY
+(V for Maint and YYY from your user id KC03YYY)
+
+
+Instructions:
+
+Note: Refer to Assignment 5 Part 1 or Part 2 instructions for more details about the modifications required to the data sets and members in the following steps.
+
+1) Copy starter data sets and empty members 
+from KC02597 to your userid KC03YYY.
+
+a. KC02597.DCMAFD02.A5P3.BMS
+
+i. Copy MNTSYYY member
+(BMS mapset source for CMMNT program)
+
+1. Change YYY in member name 
+for your userid KC03YYY 
+when copying member from KC02597,  
+or rename member after copying member
+
+2. Change Mapset MNTSYYY for your userid KC03YYY
+(two DFHMSD in BMS source file)
+
+3. Change Map name MNT1YYY  and MNT2YYY
+for your userid KC03YYY (DFHMDI in BMS source file)
+
+4. Change INITIAL='MNT1YYY' 
+or INITIAL='MNT2YYY'  for your userid KC03YYY
+
+5. Change INITIAL='VYYY' for your userid KC03YYY
+
+
+
+a. 
+b. KC02597.DCMAFD02.COPYBOOK.WS.COBOL 
+
+i. Copy each of the members listed below if they are not present
+
+1. ATTR
+2. ERRORSWS
+3. CMFWSREC
+4. CMFWSSTS
+
+c. KC02597.DCMAFD02.COPYBOOK.PR.COBOL 
+
+i. Copy each of the members listed below if they are not present
+
+1. CMFCLOSE
+2. CMFOPEN
+3. RESPTEXT
+4. TERMMSG
+5. HDLABEND
+
+
+
+
+
+d. KC02597.DCMAFD02.A5P3.COBOL
+
+i. Copy CMMNTYYY member
+
+1. Change YYY in member name 
+for your userid KC03YYY 
+when copying member from KC02597 
+or rename member after copying member
+
+2. Changes in the cobol source 
+and fix YYY for your userid KC03YYY
+a. CMMNTYYY
+b. CMFYYY
+c. MNTSYYY 
+d. MNT1YYY
+e. MNT2YYY  
+f. MNT1YYYI
+g. MNT2YYYI
+h. MNT1YYYO
+i. MNT2YYYO  
+j. VYYY
+
+3. Update IDENTIFICATION DIVISION 
+with PROGRAM, YOUR NAME, 
+DATE-WRITTEN, and PROGRAM DESCRIPTION
+
+e. KC02597.DCMAFD02.PROCLIB
+
+1) EMPTY member as DFHZITCL member
+if it is not present
+(JCL procedure called from JCLs that are used to 
+compile/LKED the CICS programs)
+
+1. Use DFHZITCL file provided to copy/paste 
+the source content into your DFHZITCL on mainframe
+
+
+
+e. 
+f. KC02597.DCMAFD02.A5P3.JCL 
+(Update JCLs for the all the various file names to ensure they exist under your userid, and the names match between the file system and respective JCL)
+
+i. Copy EMPTY member 
+for each of the JCL members listed below
+
+ii. Change YYY in each member name listed below 
+for your userid KC03YYY 
+when copying member from KC02597,  
+or rename member after copying member
+
+iii. Use appropriate JCL file from A5P1 to copy/paste the source content into your JCL on mainframe for each JCL below 
+and make appropriate changes for the respective 
+Program or BMS
+
+1. MNTSBYYY - MNTSB is BMS generate for Maint program
+
+2. CMMNTYYY - CMMNT is Compile/LKED for Maint program
+
+
+
+2) Generate BMS for Maint program
+
+a. Submit MNTSBYYY.JCL 
+
+b. Note: 
+MNTMAP1 should change to MNT1YYY and 
+MNTMAP2 should change to MNT2YYY
+
+b. 
+c. This will generate BMS mapset and store it in 
+TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS
+
+d. This will generate COBOL COPY library MNTSYYY that matches the BMS mapset, and is included in COBOL program CMMNTYYY using COPY MNTSYYY statement when program is compiled
+
+e. Review job summary to ensure BMS generate worked
+
+ii. Ensure return code = 0 or 4
+NOTE: RETURN CODE=0004 may be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+f. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+
+
+3) Maint Program changes for VSAM Open, 
+and PF3/PF12 handling for VSAM Close 
+with sending of the Termination message
+
+a. VSAM Open and Close
+
+Review the program and based on samples below add any missing source lines in the program in working-storage and procedure division to check VSAM file status, and open the file before a Read/Write/Rewrite/Delete is executed.  
+
+i. In Working-storage of Maint Program, 
+add COPY for variables used with VSAM file
+
+      *
+      * ADD VSAM WORKING_STORAGE VARIABLES
+      *
+       COPY CMFWSREC.
+      *
+       COPY CMFWSSTS.
+      *
+
+
+i. 
+ii. At end of Procedure Division of Maint Program, 
+add COPY for Open and Close paragraphs
+
+      *
+      * ADD VSAM OPEN AND CLOSE PARAGRAPHS
+      *
+       COPY CMFOPEN.
+      *
+       COPY CMFCLOSE.
+      *
+
+
+
+iii. In Procedure Division of Maint Program, 
+add only perform statement 
+to open VSAM before READ
+
+      *
+      * ADD PERFORM TO OPEN VSAM FILE
+      *
+           PERFORM 8100-CMF-OPEN.
+      *
+           EXEC CICS
+               READ FILE  (WS-CMF-FILE-NAME-CNST)
+                    INTO  (WS-CUSTOMER-MASTER-RECORD)
+                    RIDFLD(CUSTNOI)
+                    RESP  (WS-RESPONSE-CODE)
+                    RESP2 (WS-RESPONSE-CODE2)
+           END-EXEC.
+      *       
+
+iv. In Procedure Division of Maint Program, 
+add only perform statement 
+to open VSAM before WRITE 
+
+      *
+      * ADD PERFORM TO OPEN VSAM FILE
+      *
+           PERFORM 8100-CMF-OPEN.
+      *
+           EXEC CICS
+               WRITE FILE  (WS-CMF-FILE-NAME-CNST)
+                     FROM  (WS-CUSTOMER-MASTER-RECORD)
+                     RIDFLD(WS-CM-CUSTOMER-NUMBER)
+                     RESP  (WS-RESPONSE-CODE)
+                     RESP2 (WS-RESPONSE-CODE2)
+           END-EXEC.
+      *
+
+
+
+v. In Procedure Division of Maint Program, 
+add only perform statement 
+to open VSAM before READ UPDATE 
+
+      *
+      * ADD PERFORM TO OPEN VSAM FILE
+      *
+           PERFORM 8100-CMF-OPEN.
+      *
+           EXEC CICS
+               READ FILE  (WS-CMF-FILE-NAME-CNST)
+                    INTO  (WS-CUSTOMER-MASTER-RECORD)
+                    RIDFLD(WS-CM-CUSTOMER-NUMBER)
+                    UPDATE
+                    RESP  (WS-RESPONSE-CODE)
+                    RESP2 (WS-RESPONSE-CODE2)
+           END-EXEC.
+      *
+
+vi. In Procedure Division of Maint Program, 
+add only perform statement 
+to open VSAM before REWRITE 
+
+      *
+      * ADD PERFORM TO OPEN VSAM FILE
+      *
+           PERFORM 8100-CMF-OPEN.
+       *
+           EXEC CICS
+               REWRITE FILE (WS-CMF-FILE-NAME-CNST)
+                       FROM (WS-CUSTOMER-MASTER-RECORD)
+                       RESP (WS-RESPONSE-CODE)
+                       RESP2(WS-RESPONSE-CODE2)
+           END-EXEC.
+      *
+
+
+vii. In Procedure Division of Maint Program, 
+add only perform statement 
+to open VSAM before DELETE
+
+      *
+      * ADD PERFORM TO OPEN VSAM FILE
+      *
+           PERFORM 8100-CMF-OPEN.
+      *
+           EXEC CICS
+               DELETE FILE (WS-CMF-FILE-NAME-CNST)
+                      RESP (WS-RESPONSE-CODE)
+                      RESP2(WS-RESPONSE-CODE2)
+           END-EXEC.
+      *
+
+ii. 
+iii. 
+iv. 
+v. 
+vi. 
+vii. 
+viii. In Procedure Division of Maint program
+where the PF3 function key is handled, 
+add only perform statement 
+to close VSAM before program exit
+
+               WHEN EIBAID = DFHPF3 
+      *
+                   PERFORM 8200-CMF-CLOSE
+      *
+
+
+ix. In Procedure Division of Maint program
+where the PF3 function key is handled, 
+add only perform statement 
+to close VSAM before program exit
+
+               WHEN EIBAID = DFHPF12
+                   IF WS-CA-PROCESS-KEY-MAP-88
+      *
+                       PERFORM 8200-CMF-CLOSE
+      *
+
+
+
+
+
+4) Compile Maint Program
+
+a. Submit CMMNTYYY.JCL
+
+b. Resolve any syntax errors to get program to compile.  
+Syntax errors may be related to incorrect variable names, issues with COPY libraries, variables not declared, and any other issues.
+
+c. This will create executable for CMMNTYYY program and store it in TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS
+
+d. Ensure return code = 0 or 4
+NOTE: RETURN CODE=0004 May be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+e. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+f. COPY statements highlighted in Developer view of Cobol source are warnings only due to Developer not being able to determine what partitioned dataset the copy library is in.  
+
+- If compile succeeds then these warnings can be ignored.
+
+
+
+5) Setup objects in CICS for Maint program
+(refer to A5P1 instructions or class powerpoint material 
+for details about CICS commands that are required)
+
+a. Define Mapset
+
+i. MNTSYYY
+
+b. Define Program
+
+i. CMMNTYYY
+
+c. Define Transaction
+
+i. VYYY
+
+d. Install new MAPSET, PROGRAM, and TRANSACTION objects 
+(remember to install any new objects you have defined)
+(remember to repeat install for any objects you have modified)
+
+
+
+
+
+
+
+
+
+5) Menu Program
+
+a. Check Menu program to confirm it will properly transfer control to Maint program based on selection 2
+
+b. If needed, 
+
+i. Update program to handle CMMNTYYY for selection 2
+(This program should remain in 
+KC03YYY.DCMAFD02.A2 datasets 
+versus moving it to KC03YYY.DCMAFD02.A5P3 datasets 
+for this change)
+
+ii. Re-compile Menu program
+
+iii. INSTALL new program in CICS
+
+
+6) Test Maint program
+
+a. Use Transaction ID 'VYYY' to start Maint program
+
+b. Enter nothing and choose Add, Change, Delete to test error messages for requirement that user enter choice 1,2,3 and entering a customer number
+
+c. Enter 1 to test Add new customer 777777
+
+d. Enter 2 to test Change customer 777777
+
+e. Enter 3 to test Delete customer 777777
+
+f. Press PF3 to test return to Menu program
+
+g. Choose Maint program on Menu to return to Maint program
+
+h. Press PF12 to test return to Menu program
+
+i. Test Add, Change, Delete 
+with another customer number of your choice
+
+
+
+
+7) Re-test Inquiry and Menu programs with Maint program 
+to ensure changes are working properly
+
+
+
+Reminders: 
+
+1) The mainframe uses the EBCDIC character set, and Windows uses the ASCII character set.  All files being submitted for marking must be in the ASCII character set.  
+
+You are required to check the files you are submitting to ensure they are in the ASCII character set on Windows.  
+
+The character set should be converted when a file is copied from the mainframe to Windows for an assignment submission.  If you are having trouble getting files to convert properly then ask your professor for assistance to correct the settings for this conversion in your software. 
+
+EBCDIC files in submissions will not be marked, and this could impact a large portion of the marks for the assignment.
+
+
+Submission and Marking:
+
+Maint BMS
+
+BMS Source file that includes mapset and map name changes 
+and BMS changes made to rename mapset and map for your userid - 4 marks
+BMS copy file generated by BMS JCL that is used in Maint program COBOL compile - 2 marks
+BMS JCL file that includes changes for your userid - 2 marks
+BMS entire job summary including compile listing with return code 0 or 4 - 2 marks 
+
+Maint BMS - 10 marks
+
+
+Maint Program
+
+COBOL Source file that includes provided program improvements for VSAM Inquire/Open/Close 
+and for PF3 and PF12, and any changes for your userid to TransID, Program, Mapset, Map, File objects used with CICS - 20 marks
+COBOL Compile/LKED JCL that includes changes for your userid - 2.5 marks
+COBOL Translate JCL from PROCLIB dataset that includes changes for your userid - 2.5 marks
+COBOL entire job summary including the compile listing with return code 0 or 4 - 5 marks
+
+Maint Program - 30 marks
+
+
+Setup on CICS
+
+One screenshot of CEDA DISPLAY - GROUP DCMAFD02 - ALL *YYY 
+showing File, three Mapsets, three Programs, three Transactions - 5 marks each
+
+Setup on CICS - 50 marks
+
+
+Screenshots of a successful manual open and close 
+of each VSAM file using 
+CEMT SET FILE(FFFYYY) OPEN and 
+CEMT SET FILE(FFFYYY) CLOSE CICS commands
+(5 marks each for open/close screenshot)
+
+1) Customer Master file (two screenshots - one for each of open and close)
+(also called CUSTMAS, and known in your implementation as CMFYYY)
+
+VSAM Open/Close screenshots - 10 marks
+
+Screenshots of Maint program working for these cases (5 marks each)
+
+1) Screen for Add with error indicating user must enter customer number
+2) Screen for Change with error indicating customer number must exist for change
+3) Screen for Delete with error indicating customer number must exist for delete
+4) Screen for Add with message confirming customer added successfully
+5) Screen for Delete with message confirming customer deleted successfully 
+
+Maint Program working on CICS - 25 marks
+
+
+Testing of Menu, Inquiry, and Maint programs during marking
+ 
+- 5 test cases for Menu will be tranid starts program, selection 1 starts Inquiry, selection 2 starts Maint, selection 3 gives error message, selection 4 gives different error message
+
+- 5 test cases for Inquiry will be test cases from Assignment 1, 
+and F3 and F12 should return to MENU program
+
+- 7 test cases for Maint will be Menu selection 2 starts program, enter blank gives message that you must enter a customer, enter 1 gives message action must be 1, 2, or 3, enter 1 and 1 to add customer 1, enter 1 and 2 to change customer 1, enter 1 and 3 to delete customer 1
+
+Testing of Menu, Inquiry, and Maint programs during marking 
+- 75 marks (5 marks for each test case)
+
+Total 200 marks 

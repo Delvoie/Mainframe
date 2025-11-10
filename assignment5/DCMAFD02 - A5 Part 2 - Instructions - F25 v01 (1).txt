@@ -1,0 +1,482 @@
+﻿Assignment 05 Part 2
+
+For this assignment, you will be setting up a Menu program in CICS.  The generic name of the program is INVMENU, and implement it with the name UUMENYYY, which is customized for your userid KC03YYY.  
+This program requires a BMS mapset and map to be setup. 
+
+There will be small modifications to the cobol and BMS map to allow you to have your individual copies of the program running at the same time on the mainframe as the others in the class. 
+
+INVMENU 		= UUMENYYY
+MENU 		= UYYY
+MENSET1		= MENSYYY
+MENMAP1		= MENMYYY
+INVMENU		= UUMENYYY
+
+Original Program Description:
+
+
+Note: 
+- Action code 1 will work with the CMINQYYY program from Assignment #1, 
+and action codes 2 and 3 should return error message indicating program is not available 
+- Your copy of the program will use a transaction id UYYY 
+based on your userid KC03YYY. 
+- Program names, Mapset names, Map names, File names, 
+Transaction IDs must be modified as required to make them unique for your program.
+
+Additional Program Information: 
+
+- Event Chart
+
+
+- Structure Chart
+
+
+
+
+
+- BMS screen design (24 lines x 80 columns)
+
+
+
+
+
+
+Understanding Naming Conventions
+(YYY is last three characters of your userid KC03YYY)
+
+BMS source members
+- MENSYYY is mapset name for Menu program
+
+CBL source members - programs
+- UUMENYYY for Menu Program
+
+CBL source members - cobol COPY libraries
+- ATTR is copy file for screen attribute definitions used on CICS screens
+- DFAID is system copy file that is provided from system libraries 
+(THIS FILE YOU DO NOT NEED COPIED TO YOUR USERID)
+- ERRORSWS is copy file for variables used to handle ABENDs and other errors
+- MENSYYY is copy file from generate of BMS mapset using JCL MENSBYYY
+- RESPTEXT is copy file containing paragraph to translate errors into text
+- TERMMSG is copy file containing paragraph to send termination message
+- HDLABEND is copy file containing abend handling paragraph
+
+JCL source members 
+- UUMENYYY is JCL to compile/LKED Menu Program
+- MENSBYYY is JCL to generate BMS mapset for Menu Program
+- DFHZITCL is JCL subroutine used by UUMENYYY JCL 
+during compile/LKED of Menu Program
+
+
+
+Datasets and Members to create on userid KC03YYY.
+
+The datasets are available under userid KC02597 on the Mainframe for you to copy to your userid, and rename.
+
+o In KC03YYY.DCMAFD02.A5P2.BMS  
+MENSYYY.BMS
+
+o In KC03YYY.DCMAFD02.A5P2.COBOL  
+UUMENYYY.CBL
+MENSYYY.CBL
+
+o In KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL  
+ATTR.CBL
+ERRORSWS.CBL
+
+o In KC03YYY.DCMAFD02.COPYBOOK.PR.COBOL  
+RESPTEXT.CBL 
+TERMMSG.CBL 
+HDLABEND.CBL
+
+o In KC03YYY.DCMAFD02.A5P2.JCL  
+EMPTY
+
+o In KC02597.DCMAFD02.PROCLIB  
+DFHZITCL.JCL
+
+o In KC02597.DCMAFD02.COBOL.LOADLIB  
+
+
+Naming Conventions:
+- Your user id on the mainframe is KC03YYY
+- Setup an A5P2 filter group in Developer with filter criteria KC03YYY.DCMAFD02.A5P2.* and KC03YYY.DCMAFD02.COBOL.* and 
+KC03YYY.DCMAFD02.COPYBOOK.* and KC03YYY.DCMAFD02.PROCLIB
+- While working through the instructions below 
+you will create these partitioned datasets with these members
+
+o KC03YYY.DCMAFD02.A5P2.BMS * MENSYYYBMS Source for Mapset MENSYYY includes Map MENMYYYo KC03YYY.DCMAFD02.A5P2.COBOL* UUMENYYYCOBOL source file for MENU program* MENSYYYBMS source map created from BMS generate used as COBOL COPY fileo KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL* ATTRCOBOL COPY file for MENU program containing Attribute constants for CICS* ERRORSWSCOBOL COPY file for error handlingo KC03YYY.DCMAFD02.COPYBOOK.PR.COBOL* RESPTEXTCOBOL COPY file 
+with error to text paragraph* TERMMSGCOBOL COPY file with Send Termination message paragraph* HDLABENDCOBOL COPY file 
+with ABEND handling paragrapho KC03YYY.DCMAFD02.A5P2.JCL* UUMENYYY     Compile/LKED for UUMENYYY* MENSBYYY     CICS BMS generate for MENSYYYo KC03YYY.DCMAFD02.PROCLIB* DFHZITCLCompile.LKED sub-procedure
+Transid Notes:
+- Trans ID is UYYY (U for Menu and YYY from your user id KC03YYY)
+
+Instructions:
+
+Note: Refer to Assignment 5 Part 1 instructions for more details about the modifications required to the data sets and members in the following steps. 
+
+1) Copy starter data sets and empty members 
+from KC02597 to your userid KC03YYY
+
+a. KC02597.DCMAFD02.A5P2.BMS 
+
+i. Copy EMPTY member as MENSYYY member
+(BMS mapset source for UUMEN program)
+
+1. Change YYY in member name 
+for your userid KC03YYY  
+when copying member from KC02597 
+or rename member after copying member
+
+2. Use MENSYYY.BMS file provided to copy/paste 
+the source content into your MENSYYY on mainframe
+
+3. Change Mapset MENSYYY for your userid KC03YYY
+(two DFHMSD in BMS source file)
+
+4. Change Map name MENMYYY 
+for your userid KC03YYY (DFHMDI in BMS source file)
+
+5. Change INITIAL='MENMYYY' for your userid KC03YYY
+
+6. Change INITIAL='UYYY' for your userid KC03YYY
+
+
+
+a. KC02597.DCMAFD02.COPYBOOK.WS.COBOL 
+
+i. Copy EMPTY member for each of the members listed below if they are not present, 
+and use file provided for each to copy/paste 
+the source content into your member on mainframe
+
+1. ATTR
+2. ERRORSWS
+3. CMFWSREC
+4. CMFWSSTS
+
+b. KC02597.DCMAFD02.COPYBOOK.PR.COBOL 
+
+i. Copy EMPTY member for each of the members listed below if they are not present, 
+and use file provided for each to copy/paste 
+the source content into your member on mainframe
+
+1. CMFOPEN
+2. CMFCLOSE
+3. RESPTEXT
+4. TERMMSG
+5. HDLABEND
+
+
+
+c. KC02597.DCMAFD02.A5P2.COBOL
+
+i. Copy EMPTY member as UUMENYYY member
+(Cobol source for Menu program)
+
+1. Change YYY in member name 
+for your userid KC03YYY 
+when copying member from KC02597 
+or rename member after copying member
+
+2. Use UUMENYYY.CBL file provided to copy/paste 
+the source content into your UUMENYYY on mainframe
+
+3. Changes in the cobol source 
+and fix YYY for your userid KC03YYY
+a. UUMENYYY
+b. MENSYYY 
+c. MENMYYY  
+d. MENMYYYI  
+e. MENMYYYO  
+f. UYYY 
+
+4. Update IDENTIFICATION DIVISION 
+with PROGRAM, YOUR NAME, 
+DATE-WRITTEN, and PROGRAM DESCRIPTION
+
+
+
+
+
+d. KC02597.DCMAFD02.PROCLIB
+
+i. Copy EMPTY member as DFHZITCL member 
+if it is not present
+(JCL procedure called from JCLs that are used to
+compile/LKED of CICS programs)
+
+1. Use DFHZITCL file provided to copy/paste 
+the source content into your DFHZITCL on mainframe
+
+
+e. KC02597.DCMAFD02.A5P2.JCL
+(Update JCLs for the all the various file names to ensure they exist under your userid, and the names match between the file system and respective JCL)
+
+i. Copy EMPTY member for each of the JCL members listed below
+
+ii. Change YYY in each member name listed below 
+for your userid KC03YYY 
+when copying member from KC02597,  
+or rename member after copying member
+
+iii. Use appropriate JCL file from A5P1 to create each JCL below and make appropriate changes for the respective Program or BMS
+
+1. UUMENYYY is Compile/LKED for Menu program
+
+2. MENSBYYY is BMS generate for Menu program 
+
+
+
+
+2) Generate BMS for Menu program
+
+a. Submit MENSBYYY.JCL
+
+b. This will generate BMS mapset and store it in 
+TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS
+
+c. This will generate COBOL COPY library MENSYYY that matches the BMS mapset, and is included in COBOL program UUMENYYY using COPY MENSYYY statement when program is compiled
+
+d. Review job summary to ensure BMS generate worked 
+
+i. Ensure return code = 0 or 4
+NOTE: RETURN CODE=0004 May be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+e. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+
+
+3) Compile Menu Program
+
+a. Submit UUMENYYY.JCL
+
+b. Resolve any syntax errors to get program to compile.  
+Syntax errors may be related to incorrect variable names, issues with COPY libraries, variables not declared, and any other issues.
+
+c. This will create executable for UUMENYYY program and store it in TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS
+
+d. Ensure return code = 0 or 4
+NOTE: RETURN CODE=0004 May be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+e. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+f. COPY statements highlighted in Developer view of Cobol source are warnings only due to Developer not being able to determine what partitioned dataset the copy library is in.  
+
+- If compile succeeds then these warnings can be ignored.
+
+
+
+4) Inquiry Program changes
+
+a. PF3 and PF12 handling that includes 
+VSAM Close and XCTL to UUMENYYY program 
+versus VSAM Close and Termination message.  
+(This program should remain in KC03YYY.A5P1 datasets 
+versus moving it to KC03YYY.DCMAFD02.A5P2 datasets for these changes)
+(Remember to change YYY in these new source lines)
+    Old:
+              WHEN EIBAID = DFHPF3 OR DFHPF12
+                  PERFORM 8200-CMF-CLOSE
+                  PERFORM 9800-SEND-TERMINATION-MSG
+
+	New:
+               WHEN EIBAID = DFHPF3 OR DFHPF12
+                   PERFORM 8200-CMF-CLOSE
+      *            PERFORM 9800-SEND-TERMINATION-MESSAGE
+      *
+                   MOVE SPACES              TO WS-HA-EXEC-TEXT
+                   MOVE ALL '='             TO WS-HA-EXEC-TEXT-T1
+                   MOVE 'ABEND'             TO WS-HA-EXEC-TEXT-T2
+                   MOVE 'EXEC CICS'         TO WS-HA-EXEC-TEXT-T3
+                   MOVE 'XCTL PROGRAM'      TO WS-HA-EXEC-TEXT-T4
+                   MOVE WS-MEN-PROGRAM-CNST TO WS-HA-EXEC-TEXT-T5
+                   MOVE SPACES              TO WS-HA-EXEC-TEXT-T6
+                   MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-PGMIDERR)
+                     TO WS-HA-EXEC-TEXT-T7
+                   MOVE ALL '='             TO WS-HA-EXEC-TEXT-T8
+                   EXEC CICS
+                       XCTL PROGRAM(WS-MEN-PROGRAM-CNST)
+                            RESP   (WS-RESPONSE-CODE)
+                            RESP2  (WS-RESPONSE-CODE2)
+                   END-EXEC
+                   IF WS-RESPONSE-CODE = DFHRESP(NORMAL)
+                       EXEC CICS
+                           RETURN
+                       END-EXEC
+                   ELSE
+                       MOVE 'XCTL PROGRAM'  TO WS-RT-MSG-HEADER
+                       MOVE 'ERROR       '  TO WS-RT-MSG-NORMAL
+                       MOVE WS-MEN-PROGRAM-CNST 
+                         TO WS-RT-MSG-OTHER
+                       PERFORM 9700-RESPTEXT
+                   END-IF 
+
+5) Compile Inquiry Program
+
+a. Submit CMINQYYY.JCL
+
+b. Resolve any syntax errors to get program to compile.  
+Syntax errors may be related to incorrect variable names, issues with COPY libraries, variables not declared, and any other issues.
+
+c. This will create executable for CMINQYYY program and store it 
+in TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS 
+
+d. Ensure return code = 0 or 4
+NOTE: RETURN CODE=0004 May be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+e. Save successful version of job summary, 
+since it may be needed for assignment submission 
+
+f. COPY statements highlighted in Developer view of Cobol source are warnings only due to Developer not being able to determine what partitioned dataset the copy library is in.  
+
+- If compile succeeds then these warnings can be ignored.
+
+g. Repeat CEDA DISPLAY and Install for CMINQYYY, and 
+possibly use the NEWCOPY command to refresh the program
+
+CEMT SET PROG(CMINQYYY) NEWCOPY
+
+
+
+
+
+
+6) Setup new objects in CICS for Menu program
+(refer to A5 Part 1 instructions or class powerpoint material 
+for details about CICS commands that are required)
+
+Note: If these objects already exist then 
+you can delete them and redefine them, 
+or just use the Install step to refresh them for A5P2.
+
+a. Define Mapset 
+
+i. MENSYYY
+
+b. Define Program 
+
+i. UUMENYYY
+
+c. Define Transaction 
+
+i. UYYY
+
+d. Install MAPSET, PROGRAM, TRANSACTION objects
+(remember to install any new objects you have defined)
+(remember to repeat install for any objects you have modified)
+
+
+
+7) Test Menu program
+
+a. Use Transaction ID 'UYYY'
+
+b. Enter nothing to test error message
+
+c. Enter 1 to check access to Inquiry program
+
+d. Enter 2 and 3 to check the program unavailable message
+
+e. Enter 4 to check invalid number message
+
+
+
+8) Re-test Inquiry program to ensure F3 and F12 changes made 
+and everything is working properly
+
+
+
+
+Reminders: 
+
+1) The mainframe uses the EBCDIC character set, and Windows uses the ASCII character set.  All files being submitted for marking must be in the ASCII character set.  
+
+You are required to check the files you are submitting to ensure they are in the ASCII character set on Windows.  
+
+The character set should be converted when a file is copied from the mainframe to Windows for an assignment submission.  If you are having trouble getting files to convert properly then ask your professor for assistance to correct the settings for this conversion in your software. 
+
+EBCDIC files in submissions will not be marked, and this could impact a large portion of the marks for the assignment.
+
+
+Submission and Marking:
+
+Menu BMS
+
+BMS Source file that includes mapset and map name changes 
+and any changes made to rename mapset and map for your userid - 4 marks
+BMS copy file generated by BMS JCL used in MENU program compile - 2 marks
+BMS JCL file that includes changes for your userid - 2 marks
+BMS entire job summary including compile listing with return code 0 or 4 - 2 marks 
+
+Menu BMS - 10 marks
+
+
+Menu Program
+
+COBOL Source file that includes any provided program improvements for PF3 and PF12, and any changes for your userid to TransID, Program, Mapset, Map, File objects 
+used with CICS - 20 marks
+COBOL Compile/LKED JCL that includes changes for your userid - 2.5 marks
+COBOL Translate JCL from PROCLIB dataset - 2.5 marks
+COBOL entire job summary with the compile listing with return code 0 or 4 - 5 marks
+
+Menu Program - 30 marks
+
+
+Setup on CICS
+
+One screenshot of CEDA DISPLAY - GROUP DCMAFD02 - ALL *YYY 
+showing File, two Mapsets, two Programs, two Transactions - 5 marks each
+
+Setup on CICS - 35 marks
+
+
+
+
+Screenshots of a successful manual open and close 
+of VSAM file using 
+CEMT SET FILE(FFFYYY) OPEN 
+and 
+CEMT SET FILE(FFFYYY) CLOSE CICS commands
+(5 marks each for open and close screenshot)
+
+1) Customer Master file (two screenshots - one for each of open and close)
+(also called CUSTMAS, and known in your implementation as CMFYYY)
+
+VSAM Open/Close screenshots - 10 marks
+
+
+Screenshots of Inquiry program working for these cases 
+(5 marks each)
+
+1) Screen with error message after entering blanks in selection field
+2) Screen with '1' typed before pressing Enter to transfer to Inquiry program
+3) Inquiry Screen before pressing F3 or F12 to transfer to Menu program
+4) Screen with 'Program not available' message after entering '2' or '3'
+5) Screen with error message after entering '4' 
+
+Menu Program working on CICS - 25 marks
+
+
+Testing of Menu and Inquiry programs during marking
+
+- 5 test cases for Menu will be tranid starts program, selection 1 starts Inquiry, selection 2 gives error message, selection 3 gives error message, selection 4 gives different error message
+ 
+- 5 test cases for Inquiry will be test cases from Assignment 1, 
+and F3 and F12 should returns to MENU program
+
+Testing of Menu and Inquiry programs during marking 
+- 50 marks (5 marks for each test case)
+
+Total 160 marks

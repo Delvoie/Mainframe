@@ -1,0 +1,898 @@
+﻿Assignment 05 Part 1
+
+For this assignment, you will be setting up a customer inquiry cobol program in CICS named is CMINQYYY, which you will customize for your userid KC03YYY.  This program requires a BMS mapset and map to be setup, and a VSAM file containing the customer information to be setup.
+  
+There will be modifications to the cobol program, BMS map, and VSAM file to allow you to have your individual copies running at the same time on the mainframe as the others in the class.
+
+CUSTINQ1 	= CMINQYYY
+INQ1 		= IYYY
+CUSTMAS		= CMFYYY
+INQSET1		= INQSYYY
+INQMAP1		= INQMYYY
+INVMENU		= UUMENYYY
+
+Original Program Description:
+
+
+Note: 
+- The XCTL to return to the menu program will not be used in this assignment
+- Your copy of the program will use a transaction id IYYY 
+based on your userid KC03YYY.
+- Program names, Mapset names, Map names, File names, Transaction IDs must be modified as required to make them unique for your program 
+Additional Program Information:
+
+- Event Chart
+
+
+- Structure Chart
+
+
+
+
+
+BMS screen design (24 lines x 80 columns)
+
+
+
+
+
+Understanding Naming Conventions
+(YYY is last three characters of your userid KC03YYY)
+
+BMS source members
+- INQSYYY is mapset name for Customer Inquiry program
+
+CBL source members - programs
+- CMINQYYY for Customer Inquiry Program
+- CMFLOYYY for CMFYYY VSAM file data load program
+
+CBL source members - cobol COPY libraries
+- ATTR is copy file for screen attribute definitions used on CICS screens
+- DFAID is system copy file that is provided from system libraries 
+(THIS FILE YOU DO NOT NEED COPIED TO YOUR USERID)
+- ERRORSWS is copy file for variables used to handle ABENDs and other errors
+- INQSYYY is copy file from generate of BMS mapset using JCL INQSBYYY
+- CMFWSREC is copy file for record layout of CMFYYY VSAM file
+- CMFWSSTS is copy file for status variables related to CMFYYY VSAM file
+- CMFOPEN is copy file containing open paragraph for CMFYYY VSAM file
+- CMFCLOSE is copy file containing close paragraph for CMFYYY VSAM file
+- RESPTEXT is copy file containing paragraph to translate errors into text 
+- TERMMSG is copy file containing paragraph to send termination message
+- HDLABEND is copy file containing abend handling paragraph 
+
+JCL source members 
+- CMINQYYY is JCL to compile/LKED Customer Inquiry Program
+- INQSBYYY is JCL to generate BMS mapset for Customer Inquiry Program
+- DFHZITCL is JCL subroutine used by CMINQYYY JCL 
+during compile/LKED of Customer Inquiry Program
+
+JCL source members with HHHJJYYY names for VSAM file
+- HHH is file short name of the VSAM file
+o CMFYYY for Customer File
+
+- JJ is literal that represents the task the JCL is for
+1. CC is JCL to create clusters in VSAM file
+2. LO is JCL to compile/LKED and execute VSAM load program
+3. FF is JCL to create flat file from VSAM file
+4. FL is JCL to list catalog information about VSAM file
+
+Datasets and Members to create on userid KC03YYY.
+
+Data files, or Datasets with all necessary members are available under userid KC02597 on the Mainframe for you to copy to your userid, and rename.  
+
+- KC02597.DCMAFD02.A5P1.CMF.DATA  
+- KC02597.DCMAFD02.A5P1.BMS
+- KC02597.DCMAFD02.A5P1.COBOL
+- KC02597.DCMAFD02.A5P1.JCL
+- KC02597.DCMAFD02.COBOL.LOADLIB member HELLO
+- KC02597.DCMAFD02.COPYBOOK.PR.COBOL
+- KC02597.DCMAFD02.COPYBOOK.WS.COBOL
+
+Only copy the above data files, or Datasets if not already copied to your userid.
+You need to copy the corresponding source content provided present in the datasets above into the appropriate dataset.  
+
+- In KC03YYY.DCMAFD02.A5P1.BMS 
+INQSYYY.BMS
+
+- In KC03YYY.DCMAFD02.A5P1.COBOL  
+CMINQYYY.CBL 
+CMFLOYYY.CBL 
+INQSYYY.CBL
+
+- In KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL  
+ATTR.CBL
+ERRORSWS.CBL
+CMFWSREC.CBL
+CMFWSSTS.CBL
+
+- In KC03YYY.DCMAFD02.COPYBOOK.PR.COBOL  
+CMFOPEN.CBL
+CMFCLOSE.CBL
+RESPTEXT.CBL 
+TERMMSG.CBL
+HDLABEND.CBL
+
+- In KC03YYY.DCMAFD02.A5P1.JCL  
+CMFCCYYY.JCL
+CMFFFYYY.JCL 
+CMFLCYYY.JCL 
+CMFLOYYY.JCL
+CMINQYYY.JCL
+INQSBYYY.JCL
+
+- In KC03YYY.DCMAFD02.PROCLIB  
+DFHZITCL.JCL
+
+Naming Conventions:
+- Your user id on the mainframe is KC03YYY
+- Setup an A5P1 filter group in Developer with filter criteria KC03YYY.DCMAFD02.A5P1.* and 
+KC03YYY.DCMAFD02.COBOL.* and KC03YYY.DCMAFD02.COPYBOOK.* and KC03YYY.DCMAFD02.PROCLIB
+- While working through the instructions below 
+you will create these partitioned datasets with these members, 
+and the VSAM file, and the FLAT file:
+
+o KC03YYY.DCMAFD02.A5P1.BMS * INQSYYYBMS source for Mapset INQSYYY
+includes Map INQMYYYo KC03YYY.DCMAFD02.A5P1.COBOL* CMINQYYYCOBOL source file for CMINQ program* INQSYYYBMS source map created from BMS generate used as COBOL COPY file* CMFLOYYYVSAM data load programo KC03YYY.DCMAFD02.COPYBOOK.WS.COBOL* ATTRATTR COBOL copy file* ERRORSWSCOBOL COPY file for error handling* CMFWSRECCOBOL COPY file 
+for CMF VSAM file Record* CMFWSSTSCOBOL COPY file 
+for CMF VSAM file Statuso KC03YYY.DCMAFD02.COPYBOOK.PR.COBOL* CMFOPENCOBOL COPY file
+with CMF OPEN paragraph* CMFCLOSECOBOL COPY file
+with CMF CLOSE paragraph* RESPTEXTCOBOL COPY file 
+with error to text paragraph* TERMMSGCOBOL COPY file with Send Termination message paragraph* HDLABENDCOBOL COPY file 
+with ABEND handling paragraph
+
+
+
+o KC03YYY.DCMAFD02.A5P1.JCL* CMFCCYYYCreate Clusters for VSAM* CMFFFYYYCreate FLAT file from VSAM* CMFLCYYYList CAT Info for VSAM file* CMFLOYYYCompile/LKED and Execute VSAM data load* CMINQYYYCompile/LKED of CMINQYYY * INQSBYYY    BMS generate INQSYYYo KC03YYY.DCMAFD02.PROCLIB* DFHZITCLCompile/LKED sub-procedureo VSAM related fileso KC03YYY.DCMAFD02.A5P1.CICS.CMFYYYFiles created from initialize of VSAM fileo KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY.FLATFlat file created from VSAM fileo KC03YYY.DCMAFD02.A5P1.CMF.DATAData for load into VSAM fileNOTE: The VSAM datasets above do not need to be copied, 
+since you will create them as you work through the instructions.
+
+
+Transid and File Notes:
+
+- Transaction ID is IYYY
+(I for customer inquiry and YYY from your user id)
+
+- KC03YYY.DCMAFD02.A5P1.CMF.DATA is copied from KC02597.DCMAFD02.A5P1.CMF.DATA
+
+- VSAM Customer Master File is named CMFYYY
+and this name is used in I/O operations 
+like READ, READ for UPDATE, WRITE, REWRITE, DELETE
+
+- Customer Master File cobol record layout is named CMFWSREC
+and is included in CMINQYYY program as COPY CMFWSREC
+in working-storage.
+
+- If KC03YYY.DCMAFD02.COBOL.LOADLIB is not under your userid, 
+then you can copy another LOADLIB from your userid as this name, 
+or copy KC02597.DCMAFD02.COBOL.LOADLIB to your userid
+
+
+NOTE: CUSTMAS FILE (Customer Master File) (CMFYYY VSAM FILE) 
+
+Keys and Record size in record layout and JCL for CMFYYY VSAM File
+
+CMFWSREC.CBL - Cobol COPY file containing record layout
+- First six characters CM-CUSTOMER-NUMBER PIC X(6) is the key for the VSAM file
+- CUSTOMER-MASTER-RECORD size is 118 characters 
+
+       01 WS-CM-CUSTOMER-MASTER-RECORD.
+           05 WS-CM-KEY.
+               10 WS-CM-CUSTOMER-NUMBER  PIC X(6).
+           05 WS-CM-FIRST-NAME           PIC X(20).
+           05 WS-CM-LAST-NAME            PIC X(30).
+           05 WS-CM-ADDRESS              PIC X(30).
+           05 WS-CM-CITY                 PIC X(20).
+           05 WS-CM-STATE                PIC X(2).
+           05 WS-CM-ZIP-CODE             PIC X(10).
+
+JCL to create customer VSAM file as CMFYYY VSAM file
+
+CMFCCYYY.JCL - KEYS and RECSZ lines should match record layout
+- KEYS(6 0) means key is six characters starting in position zero
+- RECSZ(118 118) means record size is 118 characters, 
+and blocksize is 118 characters, or one record per block
+
+//CMFCCYYY  JOB
+/* FIX NAME, DATA NAME, AND INDEX NAME TO MATCH NAMING CONVENTIONS
+/* FIX KEYS, AND RECSZ TO MATCH RECORD LAYOUT REQUIRED
+/* FIX KC03YYY AND CHANGE YYY FOR YOUR USERID KC03YYY
+/* FIX CMFYYY AND CHANGE YYY FOR YOUR USERID CMFYYY
+//DEFCLST EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN DD *
+   DEFINE CLUSTER ( -
+   NAME(KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY)  -
+   INDEXED                                 -
+   KEYS(6 0)                             -
+   RECSZ(118 118)                            -
+   TRACKS(1,1)                             -
+   CISZ(4096)                              -
+   FREESPACE(3 3) )                        -
+   DATA (NAME(KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY.DATA))      -
+   INDEX (NAME(KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY.INDEX))
+/*
+
+Note: Developer will only show the primary dataset for the VSAM file, 
+but VISTA ISPF will show all the datasets for the VSAM file 
+
+Instructions:
+
+1) Copy starter data sets and members
+from KC02597 to your userid KC03YYY
+
+a. KC02597.DCMAFD02.A5P1.BMS 
+
+i. Copy member INQSYYY 
+(BMS mapset source for CMINQ program)
+
+1. Change YYY in member name 
+for your userid KC03YYY 
+when copying member from KC02597,  
+or rename member after copying member
+
+2. Change Mapset INQSYYY for your userid KC03YYY
+(two DFHMSD in BMS source file)
+
+3. Change Map name INQMYYY 
+for your userid KC03YYY (DFHMDI in BMS source file)
+
+4. Change INITIAL='INQMYYY' for your userid KC03YYY
+
+5. Change INITIAL='IYYY' for your userid KC03YYY
+
+
+
+b. KC02597.DCMAFD02.COPYBOOK.WS.COBOL 
+
+i. Copy each of the members listed below if they are not present.
+
+1. ATTR
+2. ERRORSWS
+3. CMFWSREC
+4. CMFWSSTS
+
+c. KC02597.DCMAFD02.COPYBOOK.PR.COBOL 
+
+i. Copy each of the members listed below if they are not present.
+1. CMFOPEN
+2. CMFCLOSE
+3. RESPTEXT
+4. TERMMSG
+5. HDLABEND
+
+
+
+d. KC02597.DCMAFD02.A5P1.COBOL 
+
+i. Copy CMFLOYYY member
+(Cobol source for VSAM load program)
+
+1. Change YYY in member name 
+for your userid KC03YYY 
+when copying member from KC02597 
+or rename member after copying member
+
+2. Change YYY in the cobol source 
+for your userid KC03YYY
+
+3. Update IDENTIFICATION DIVISION
+with PROGRAM, YOUR NAME, 
+DATE-WRITTEN, and PROGRAM DESCRIPTION
+
+4. This program is setup with 118 character record layout, 
+and 6 character key, and 118 character WS-CMF-REC.
+
+
+
+ii. Copy CMINQYYY member
+(Cobol source for Customer Inquiry program)
+
+1. Change YYY in member name 
+for your userid KC03YYY 
+when copying member from KC02597 
+or rename member after copying member
+
+2. Changes in the cobol source 
+and fix YYY for your userid KC03YYY
+a. CMINQYYY
+b. CMFYYY
+c. INQSYYY
+d. INQMYYY
+e. INQMYYYI
+f. INQMYYYO
+g. IYYY
+
+3. Update IDENTIFICATION DIVISION 
+with PROGRAM-ID, AUTHOR, 
+DATE-WRITTEN, and PROGRAM DESCRIPTION
+
+
+
+e. KC02597.DCMAFD02.PROCLIB 
+
+i. Copy DFHZITCL member if it is not present
+(JCL procedure called from JCLs that are used to 
+compile/LKED the CICS programs
+
+
+
+f. KC02597.DCMAFD02.A5P1.JCL 
+(Update JCLs for the all the various file names to ensure they exist under your userid, and the names match between the file system and respective JCL)
+
+i. Copy for each of the JCL members listed below
+
+ii. Change YYY in each member name listed below 
+for your userid KC03YYY 
+when copying member from KC02597,  
+or rename member after copying member
+
+iii. Change YYY in each of the JCL source members 
+for your userid KC03YYY
+
+1. CMFCCYYY - CL is for VSAM cluster create
+
+2. CMFLOYYY - LO is for Compile/LKED and Load VSAM from data file
+
+3. CMFFFYYY - FL is for create Flat file from VSAM
+
+4. CMFLCYYY - LC is for List Catalog info about VSAM (optional)
+
+5. INQSBYYY - INQSB is BMS generate for Inquiry program
+
+6. CMINQYYY - CMINQ is Compile/LKED for Inquiry program
+
+
+
+
+
+2) Create Customer Information VSAM file (CMFYYY VSAM file)
+
+a. Define VSAM by creating file clusters 
+(creates a null or empty VSAM file)
+
+i. Submit CMFCCYYY.JCL
+
+ii. Review job summary to see if it worked.
+Ensure return code = 0 or 8
+
+iii. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+iv. These files should be created
+(Note: Only #1 below might be visible in Developer. 
+To see the DATA and INDEX, check in VISTA ISPF)
+
+1. KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY
+
+2. KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY.DATA
+
+3. KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY.INDEX
+
+
+
+
+b. Load data from data file into VSAM file
+(VSAM file should be null or empty, 
+since program will try to add duplicate records 
+if you run this JCL more than once)
+
+i. Ensure provided input data file is present under your userid
+KC03YYY.DCMAFD02.A5P1.CMF.DATA.
+If not present then copy it from KC02597.DCMAFD02.A5P1.CMF.DATA to your userid.
+
+ii. Submit CMFLOYYY.JCL
+This will execute load program CMFLOYYY 
+from KC03YYY.DCMAFD02.COBOL.LOADLIB
+to load data file into VSAM file.  
+
+iii. Check displays from Load program execution in SYSOUT portion of job summary to help confirm if the load process completed properly.  
+
+Correct any problems and rerun JCL if needed. 
+
+iv. Review job summary to see if it worked.
+Ensure return code = 0 
+and no errors in displays in SYSOUT portion of job summary
+
+v. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+
+
+c. Create flat file from VSAM file to check data load was successful
+
+i. Submit CMFFFYYY.JCL
+
+ii. File KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY.FLAT 
+should be created
+
+iii. Review job summary to see if it worked.
+Ensure return code = 0
+
+iv. Open Flat file to check data was loaded correctly
+
+v. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+
+
+3) Generate BMS for Inquiry program
+
+a. Submit INQSBYYY.JCL
+
+b. This will generate BMS mapset INQSYYY and store it in 
+TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS
+
+c. This will generate COBOL COPY library INQSYYY that matches the BMS mapset, and is included in COBOL program CMINQYYY 
+using COPY INQSYYY statement when program is compiled.
+
+d. Review job summary to ensure BMS generate worked
+
+i. Ensure return code = 0 or 4
+NOTE: RETURN CODE=0004 may be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+e. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+
+
+
+
+4) Inquiry Program changes for VSAM Open, 
+and PF3/PF12 handling for VSAM Close 
+with sending of the Termination message
+
+a. VSAM Open and Close
+
+Review the program and based on samples below add any missing source lines in the program in working-storage and procedure division to check VSAM file status, and open the file before a Read is executed.  
+
+i. In Working-storage of Inquiry Program,
+add COPY for variables used with VSAM file
+
+      *
+      * ADD VSAM WORKING_STORAGE VARIABLES
+      *
+       COPY CMFWSREC.
+      *
+       COPY CMFWSSTS.
+      *
+
+
+i. 
+ii. At end of Procedure Division of Inquiry Program, 
+add COPY for Open and Close paragraphs
+
+      *
+      * ADD VSAM OPEN AND CLOSE PARAGRAPHS
+      *
+       COPY CMFOPEN.
+      *
+       COPY CMFCLOSE.
+      *
+
+
+
+
+iii. In Procedure Division of Inquiry Program, 
+add only the perform statement 
+to open VSAM before READ
+
+       1300-GET-CUSTOMER-RECORD.
+      *
+      * ADD PERFORM TO OPEN VSAM FILE
+      *
+           PERFORM 8100-CMF-OPEN.
+      *
+           EXEC CICS
+               READ FILE  (WS-CMF-FILE-NAME-CNST)
+                    INTO  (CUSTOMER-MASTER-RECORD)
+                    RIDFLD(CUSTNOI)
+                    RESP  (WS-RESPONSE-CODE)
+                    RESP2 (WS-RESPONSE-CODE2)
+           END-EXEC.
+      *       
+ 
+
+iv. In the Procedure Division of Inquiry Program, 
+add only the perform statement to close VSAM  
+when handling the PF3 and PF12 function keys.
+
+      *
+               WHEN EIBAID = DFHPF3 OR DFHPF12
+                   PERFORM 8200-CMF-CLOSE
+                   PERFORM 9800-SEND-TERMINATION-MESSAGE
+                   EXEC CICS
+                       RETURN
+                   END-EXEC
+      *
+           
+
+
+
+
+5) Compile Inquiry Program
+
+a. Submit CMINQYYY.JCL
+
+b. Resolve any syntax errors to get program to compile.  
+Syntax errors may be related to incorrect variable names, issues with COPY libraries, variables not declared, and any other issues.
+
+c. This will create executable for CMINQYYY program and store it 
+in TSOECCC.CICSTS12.STUDENT.LOADLIB for use with CICS 
+
+d. Ensure return code = 0 or 4
+
+NOTE: RETURN CODE=0004 May be due to these warnings:
+
+- IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+
+- IGYOS4020-W   The "NSYMBOL(NATIONAL)" option was discarded due to option conflict resolution.  The "NODBCS" option from compiler invocation parameter took precedence.
+
+e. Save successful version of job summary, 
+since it may be needed for assignment submission
+
+f. COPY statements highlighted in Developer view of Cobol source are warnings only due to Developer not being able to determine what partitioned dataset the copy library is in.  
+
+- If compile succeeds then these warnings can be ignored.
+
+
+
+
+
+6) Setup objects in CICS for Inquiry program
+(YYY in CICS commands is based on your userid KC03YYY)
+
+a. Define Mapset
+
+CEDA DEFINE MAPSET(INQSYYY) GROUP(DCMAFD02)
+
+
+b. Define Program
+
+CEDA DEFINE PROGRAM(CMINQYYY) GROUP(DCMAFD02) TRANSID(IYYY)
+
+
+c. Define Transaction
+
+CEDA DEFINE TRANSACTION(IYYY) GROUP(DCMAFD02) PROGRAM(CMINQYYY)
+
+
+d. On CICS, enter this command 
+and specify Group and ALL options 
+to check MAPSET, PROGRAM, TRANSACTION objects 
+have been created
+
+CEDA DISPLAY
+GROUP DCMAFD02
+ALL *YYY
+
+
+  ENTER COMMANDS                                                                
+   NAME     TYPE         GROUP         LAST CHANGE   
+   INQSYYY  MAPSET       DCMAFD02    01/19/22 15:51:25
+   CMINQYYY PROGRAM      DCMAFD02    01/19/22 15:51:46
+   IYYY     TRANSACTION  DCMAFD02    01/19/22 15:52:03
+
+(Note: MAPSET MENSYYY, PROGRAM UUMENYYY, 
+and TRANSACTION UE50 from A4 will be present, and can be ignored)
+
+e. Install MAPSET, PROGRAM, TRANSACTION objects
+
+i. Install changes using INSTALL command
+
+
+
+  ENTER COMMANDS                                                                
+   NAME     TYPE         GROUP                LAST CHANGE   
+   INQSYYY  MAPSET       DCMAFD02  install  01/19/22 15:51:25
+   CMINQYYY PROGRAM      DCMAFD02  i        01/19/22 15:51:46
+   IYYY     TRANSACTION  DCMAFD02  i        01/19/22 15:52:03
+
+
+
+Type I or i or Install or install beside 
+one, or more, objects to be installed.  
+
+Press enter to install the objects.
+
+
+
+  ENTER COMMANDS                                                                
+   NAME     TYPE         GROUP               LAST CHANGE   
+   INQSYYY  MAPSET       DCMAFD02  *nstall INSTALL SUCCESSFUL
+   CMINQYYY PROGRAM      DCMAFD02  *       INSTALL SUCCESSFUL
+   IYYY     TRANSACTION  DCMAFD02  *       INSTALL SUCCESSFUL
+
+
+
+
+NOTE: If you recompile CMINQYYY program due to a problem you needed to fix after initial testing then you might need to use this CICS command to replace the code file if the program is still running after the error condition.  Repeating the install step above may not change the running code file.
+
+CEMT SET PROG(CMINQYYY) NEWCOPY
+
+
+
+ii. Test mapset and map with CECI command.
+On CICS, enter this command 
+
+CECI SEND MAP(INQMYYY) MAPSET(INQSYYY)
+
+Response will be this:
+  SEND MAP(INQMYYY) MAPSET(INQSYYY)                                 
+  STATUS:  ABOUT TO EXECUTE COMMAND                           NAME= 
+   EXEC CICS  SENd Map( 'INQMYYY' )                                 
+    << FROm() > < LEngth() > < DAtaonly > | MAPOnly >               
+    < MAPSet( 'INQSYYY' ) >                                         
+    < FMhparm() >                                                   
+    < Reqid() >                                                     
+    < LDc() | < ACTpartn() > < Outpartn() > >                       
+    < MSr() >                                                       
+    < Cursor() >                                                    
+    < Set() < MAPPingdev() > | PAging | Terminal < Wait > < LAst > >
+    < PRint >                                                       
+    < FREekb >                                                      
+    < ALArm >                                                       
+    < L40 | L64 | L80 | Honeom >                                    
+    < NLeom >                                                       
+    < ERASE < DEfault | ALTernate > | ERASEAup >                    
+    < ACCum >                                                       
+    < FRSet >                                                       
+ +  < NOflush >                                                     
+
+Then press enter again to display map from mapset
+
+INQMYYY            Customer Inquiry                                        IYYY
+                                                                                
+ Type a customer number.  Then press Enter.                                     
+                                                                                
+ Customer number. . . . . ______                                                
+                                                                                
+ Name and address . . . :                                                                                                                                     
+                                                                                
+                                                                                
+ F3=Exit   F12=Cancel                                                           
+
+Then press enter to exit test of map, 
+and then F3 to exit, and then clear screen to continue
+
+
+f. Define VSAM in CICS
+
+i. On CICS, enter this command
+
+CEDA DEFINE FILE(CMFYYY) GROUP(DCMAFD02)
+
+ii. On CEDA DEFINE screen (page up/down as needed), 
+to update the following attributes
+1. DSNAME=KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY
+2. set LSRPOOLNum to 002
+3. RECORDSIZE=118 
+4. KEYLENGTH=6
+5. set STATUS to ENABLED
+6. set DAtabuffers to 00020
+7. set Indexbuffers to 00020
+8. READ UPDATE ADD BROWSE DELETE 
+to YES
+
+iii. Check VSAM file object you have defined was created.
+On CICS, enter this command 
+and specify Group and ALL options
+
+CEDA DISPLAY 
+GROUP DCMAFD02
+ALL *YYY
+
+See VSAM file object in list of objects 
+
+  ENTER COMMANDS
+   NAME     TYPE         GROUP           LAST CHANGE   
+   CMFYYY   FILE         DCMAFD02      01/19/22 17:19:14
+   INQSYYY  MAPSET       DCMAFD02      01/19/22 15:51:25
+   CMINQYYY PROGRAM      DCMAFD02      01/19/22 15:51:46
+   IYYY     TRANSACTION  DCMAFD02      01/19/22 15:52:03
+
+
+
+g. Install file object 
+
+i. Install changes using INSTALL command
+ 
+
+  ENTER COMMANDS                                        
+   NAME     TYPE         GROUP            LAST CHANGE   
+   CMFYYY   FILE         DCMAFD02  I    01/19/22 17:19:14
+   INQSYYY  MAPSET       DCMAFD02       01/19/22 15:51:25
+   CMINQYYY PROGRAM      DCMAFD02       01/19/22 15:51:46
+   IYYY     TRANSACTION  DCMAFD02       01/19/22 15:52:03
+
+
+Type I beside VSAM FILE object to be installed, 
+Then press enter to do the install of the object
+
+
+  ENTER COMMANDS                                         
+   NAME     TYPE         GROUP            LAST CHANGE   
+   CMFYYY   FILE         DCMAFD02  *    INSTALL SUCCESSFUL
+   INQSYYY  MAPSET       DCMAFD02       01/19/22 15:51:25
+   CMINQYYY PROGRAM      DCMAFD02       01/19/22 15:51:46
+   IYYY     TRANSACTION  DCMAFD02       01/19/22 15:52:03
+
+
+
+h. Test VSAM File in CICS to ensure file open/close is working
+
+i. OPEN
+
+1. Clear CICS screen before entering command
+
+2. Enter CICS command to open VSAM file
+
+CEMT SET FILE(CMFYYY) OPEN
+
+3. Status should show something like this with Ope Ena 
+that indicated VSAM file is open and enabled
+
+STATUS:  RESULTS - OVERTYPE TO MODIFY
+File (CMFYYY ) Vsa Ope Ena Rea Upd Add Bro Del     Sha       NORMAL
+                  Dsn( KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY   )        
+
+ii. CLOSE
+
+1. Clear CICS screen before entering command
+
+2. Enter CICS command to close VSAM file
+
+     CEMT SET FILE(CMFYYY) CLOSED
+
+3. Status should show something like this with Clo Une 
+that indicated VSAM file is closed and un-enabled
+
+STATUS:  RESULTS - OVERTYPE TO MODIFY
+File (CMFYYY ) Vsa Clo Una Rea Upd Add Bro Del     Sha       NORMAL
+                  Dsn( KC03YYY.DCMAFD02.A5P1.CICS.CMFYYY  )
+
+iii. If either command above returns an error then check the steps used to create the VSAM file, and steps used to setup the VSAM file in CICS, and try the open/close again         
+(You may have missed a step, or missed a change to a program or JCL)
+(You may need to delete the VSAM file and recreate it to correct the problem)
+
+7) Test Inquiry program
+
+a. Clear screen before entering the following commands
+
+b. Enter Transaction ID 'IYYY'
+
+c. PF3 to Exit
+
+d. PF12 to Cancel
+
+e. Enter nothing to test error message
+
+f. Enter 123456 to check a valid number
+
+g. Enter 777777 to check an invalid number
+
+
+
+
+Reminders: 
+
+1) The mainframe uses the EBCDIC character set, and Windows uses the ASCII character set.  All files being submitted for marking must be in the ASCII character set.  
+
+You are required to check the files you are submitting to ensure they are in the ASCII character set on Windows.  
+
+The character set should be converted when a file is copied from the mainframe to Windows for an assignment submission.  If you are having trouble getting files to convert properly then ask your professor for assistance to correct the settings for this conversion in your software. 
+
+EBCDIC files in submissions will not be marked, and this could impact a large portion of the marks for the assignment.
+
+
+Submission and Marking:
+
+Submission with meaningful file names 
+organized based on the groupings below - 5 marks
+
+Inquiry BMS
+
+BMS Source file that includes mapset and map name changes 
+and changes made to rename mapset and map for your userid - 4 marks
+BMS JCL file that includes changes for your userid - 2 marks
+BMS copy file generated by BMS JCL used in Inquiry program compile - 2 marks
+BMS entire job summary including the compile listing with return code 0 or 4 - 2 marks 
+
+Inquiry BMS - 10 marks
+
+
+Inquiry Program
+
+COBOL Source file that includes provided program improvements for VSAM Inquire/Open/Close, and for PF3 and PF12, and any changes for your userid to TransID, Program, Mapset, Map, File objects used with CICS - 20 marks
+COBOL entire job summary with the compile listing with return code 0 or 4 - 10 marks
+COBOL Compile/LKED JCL that includes changes for your userid - 5 marks
+COBOL Translate JCL from PROCLIB dataset - 5 marks
+
+Inquiry Program - 40 marks
+
+
+VSAM Load of data and output to FLAT file
+
+CMFCCYYY.JCL - 5 marks
+CMFCCYYY.JCL entire job summary showing successful VSAM creation - 10 marks
+CMFLOYYY.CBL - 5 marks
+CMFLOYYY.JCL - 5 marks
+CMFLOYYY.JCL entire job summary with complete compile / link edit and data load of VSAM file - 10 marks
+CMFFFYYY.JCL - 5 marks
+CMFFFYYY.JCL entire job summary with complete FLAT file creation - 10 marks
+KC03YYY.DCMAFD02.A5P1.CMFYYY.FLAT file created by CMFFLFYY.JCL - 10 marks
+
+VSAM - 60 marks
+
+
+Setup on CICS
+
+One screenshot of CEDA DISPLAY - GROUP DCMAFD02 - ALL *YYY 
+showing CICS objects File, Mapset, Program, Transaction - 5 marks for each object
+
+Setup on CICS - 20 marks
+
+Screenshots of a successful manual open and close 
+of VSAM file using 
+CEMT SET FILE(CMFYYY) OPEN 
+and 
+CEMT SET FILE(CMFYYY) CLOSE CICS commands
+(5 marks for open screenshot, and 5 marks for close screenshot)
+
+1) Customer Master file CMFYYY (2 screenshots - one for each of open and close)
+
+VSAM Open/Close screenshots - 10 marks
+
+
+Screenshots of Inquiry program working for these four cases 
+(5 marks each)
+
+1) Initial screen after entering Transaction ID IYYY
+2) Screen with error message after entering blanks in Customer Number field
+3) Screen with 'Customer does not exist' message after entering '777777' 
+4) Screen with valid data after entering '123456' 
+or any other valid customer number
+
+Inquiry Program working on CICS - 20 marks
+
+
+Testing done during marking 
+
+- 4 test cases will be for screenshots 2,3,4, and function key 3 and 12 working - 5 marks each
+
+Testing done during marking 
+- 20 marks (5 marks for each test case)
+
+Total 185 marks 
+
+
+Additional Notes:
+
+- Using VISTA TN3270, type CICS and press return
+to get to the CICS environment
+(there is no specific logon to CICS environment)
+
+- To clear the screen press 'Pause Break' on keyboard, 
+or select Window on menu, then Show Key Pad, 
+then click Clear button on Key Pad
+
+- You can choose to edit the tool bar and add the Clear button
+After opening Vista session connected to mainframe, 
+on Menu, select Options, then select Toolbar Edit, click on WORDS tab, drag Clear button to desired location on toolbar, then click OK
+ 
+
+- CEMT SET PROGRAM(CMINQYYY) DISABLED
+CEMT SET PROGRAM(CMINQYYY) ENABLED
+These will stop/start a program when function keys not working.
+
+- CECI SEND MAP(INQMYYY) MAPSET(INQSYYY)
+This tests the map in the mapset to be sure it is available.
+
+- CEMT SET FILE(CMFYYY) OPEN
+CEMT SET FILE(CMFYYY) CLOSED
+These will manually open/close a VSAM file
+to see if the VSAM file has been setup correctly in CICS, and 
+confirm CICS is connected to the actual VSAM file you created earlier.
+This does not replace the open/close logic you need to add to the program for the VSAM file.
