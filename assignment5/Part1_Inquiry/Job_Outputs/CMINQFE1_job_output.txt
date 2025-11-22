@@ -1,0 +1,2558 @@
+                   J E S 2  J O B  L O G  --  S Y S T E M  8 5 6 1  --  N O D E  S V S C J E S 2
+ 
+16.06.27 JOB04703 ---- SATURDAY,  22 NOV 2025 ----
+16.06.27 JOB04703  IRR010I  USERID KC03FE1  IS ASSIGNED TO THIS JOB.
+16.06.29 JOB04703  ICH70001I KC03FE1  LAST ACCESS AT 16:05:22 ON SATURDAY, NOVEMBER 22, 2025
+16.06.29 JOB04703  $HASP373 CMINQFE1 STARTED - INIT 1    - CLASS A        - SYS 8561
+16.06.31 JOB04703  IEF764I CMINQFE1 COMPLI COBOL DFHAPIR DFHEIMOD PARMLIB READ FAILED - MEMBER DFHAPIR NOT FOUND.
+16.06.31 JOB04703  IEF764I CMINQFE1 COMPLI COBOL DFHAPIR DFHEIMOD PARMLIB READ FAILED - MEMBER DFHAPIR NOT FOUND.
+16.06.31 JOB04703  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+16.06.31 JOB04703  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+16.06.31 JOB04703  -COMPLI   COBOL       00  19818    164       .00       .00     .0            52  BATCH        0     0     0     0
+16.06.31 JOB04703  -COMPLI   COPYLINK    00     20      1       .00       .00     .0             2  BATCH        0     0     0     0
+16.06.32 JOB04703  -COMPLI   LKED        00    295     24       .00       .00     .0            48  BATCH        0     0     0     0
+16.06.32 JOB04703  -CMINQFE1 ENDED.  NAME-                     TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+16.06.32 JOB04703  $HASP395 CMINQFE1 ENDED - RC=0000
+------ JES2 JOB STATISTICS ------
+  22 NOV 2025 JOB EXECUTION DATE
+           17 CARDS READ
+        2,566 SYSOUT PRINT RECORDS
+            0 SYSOUT PUNCH RECORDS
+          173 SYSOUT SPOOL KBYTES
+         0.06 MINUTES EXECUTION TIME
+        1 //CMINQFE1 JOB                                                          JOB04703
+          //*
+        2 //CICSPROC JCLLIB ORDER=(KC03FE1.DCMAFD02.PROCLIB)
+          //*
+          //*********************************************************************
+          //*           TRANSLATE COMPILE
+          //*           AND LINK A CICS COBOL PROGRAM
+          //*********************************************************************
+        3 //COMPLI   EXEC DFHZITCL,
+          //             PROGLIB=TSOECCC.CICSTS12.STUDENT.LOADLIB,
+          //             PROGSRC=KC03FE1.DCMAFD02.A5P1.COBOL,
+          //             PROGMBR=CMINQFE1,
+          //             CPYLIBWS=KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL,
+          //             CPYLIBPR=KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL
+        4 XXDFHZITCL PROC LNGPRFX='IGY640',    Qualifier for COBOL compiler *
+          XX       LIBPRFX='CEE',              Qualifier for LE/390
+          XX       INDEX='DFH610.CICS',        Qualifier(s) for CICS libraries *
+          XX       PROGLIB=,                   Name of appl load library *
+          XX       PROGSRC=,                   Name of appl source library *
+          XX       PROGMBR=,                   Name of member in source library *
+          XX       DSCTLIB='DFH610.CICS.SDFHCOB',  Private macro/dsect *
+          XX       OUTC=*,                     Class for print output
+          XX       REG=0M,                     Region size for all steps
+          XX       CBLPARM=('NODYNAM,RENT',    Compiler options
+          XX         'CICS(''COBOL3,SP'')'),   Translator options *
+          XX       LNKPARM='LIST,XREF,RENT,MAP', Binder options
+          XX       WORK=SYSDA                  Unit for work datasets
+          XX*********************************************************************
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*     Licensed Materials - Property of IBM                          *
+          XX*                                                                   *
+          XX*     5655-Y04                                                      *
+          XX*                                                                   *
+          XX*     (C) Copyright IBM Corp. 2001, 2014 All Rights Reserved.       *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX* STATUS = 7.2.0                                                    *
+          XX*                                                                   *
+          XX* CHANGE ACTIVITY :                                                 *
+          XX*                                                                   *
+          XX* $MOD(DFHZITCL),COMP(COMMAND),PROD(CICS TS )                       *
+          XX*                                                                   *
+          XX*  PN= REASON REL YYMMDD HDXXIII : REMARKS                          *
+          XX* $01= A84313 640 040604 HDBGNRB : Migrate PQ84313 from SPA R630    *
+          XX* $L0= Base   620 011211 HD7OPW  : Base                             *
+          XX* $P1= D04451 630 030307 HD4PALS : remove sdfhc370 reference        *
+          XX* $P2= D08934 630 030919 HD3SCWG : DFHEILID now in SDFHSAMP         *
+          XX* $P3= D12714 640 041230 HD6KRAH : Compiler level                   *
+          XX* $P4= D07074 670 091019 HD4PALT : remove PDSE reference            *
+          XX*      D85873 690 140226 HDLHJJH : Compiler level 5.1 and 4.2       *
+          XX*     R144470 720 171101 HDFVGMB : Remove LIB as a compile option   *
+          XX*********************************************************************
+          XX*                                                                   *
+          XX* 2025-August-29 local changes - ATM                                *
+          XX*                                                                   *
+          XX* - changed LNGPRFX='IGY630' to LNGPRFX='IGY640'                    *
+          XX*                                                                   *
+          XX* 2023-May-1 local changes - GCO                                    *
+          XX*                                                                   *
+          XX* - changed LNGPRFX='SYS1' to LNGPRFX='IGY630'                      *
+          XX* - changed CICSSTS5.CICS to DFH550.CICS                            *
+          XX* - changed CICSSTS5.CICS.SDFHCOB to DFH550.CICS.SDFHCOB            *
+          XX* - added parameters PROGSRC, PROGMBR                               *
+          XX* - changed REG=200M to REG=0M                                      *
+          XX* - deleted SIZE(4000K) from CBLPARM                                *
+          XX* - added SP to CBLPARM                                             *
+          XX* - added DD DSN=&PROGSRC,DISP=SHR to COBOL SYSLIB                  *
+          XX*                                                                   *
+          XX*********************************************************************
+          XX*
+          XX*   This procedure uses the Enterprise COBOL compiler and its
+          XX*   integrated CICS translator to generate a COBOL module
+          XX*   into an application load library.
+          XX*
+          XX*
+          XX*      This procedure contains 3 steps:
+          XX*      1.   Exec the COBOL compiler and integrated translator
+          XX*      2.   Reblock DFHEILID for use by the binder step
+          XX*      3.   Bind the output into dataset &PROGLIB
+          XX*
+          XX*      The following JCL should be used
+          XX*      to execute this procedure
+          XX*
+          XX*      //APPLPROG EXEC DFHZITCL,
+          XX*             PROGLIB=dsnname-of-loadlib,
+          XX*             PROGSRC=dsnname-of-source-pds,
+          XX*             PROGMBR=member-name-of-program,
+          XX*             CPYLIBWS=dsname-of-ws-copy-lib,
+          XX*             CPYLIBPR=dsname-of-source-copy-libs
+          XX*      //COBOL.SYSIN  DD *
+          XX*         .
+          XX*         . Application program
+          XX*         .
+          XX*      /*
+          XX*      //LKED.SYSIN DD *
+          XX*         NAME anyname(R)
+          XX*      /*
+          XX* OR
+          XX*      //APPLPROG EXEC DFHZITCL,
+          XX*             PROGLIB=dsnname-of-loadlib,
+          XX*             PROGSRC=dsnname-of-source-pds,
+          XX*             PROGMBR=member-name-of-program,
+          XX*             CPYLIBWS=dsname-of-ws-copy-lib,
+          XX*             CPYLIBPR=dsname-of-source-copy-libs
+          XX*      //* NAME OF PROGRAM AND MEMBER TO TRANSLATE/COMPILE/LKED
+          XX*      //COBOL.SYSIN DD DSN=&PROGSRC(&PROGMBR),DISP=SHR
+          XX*      /*
+          XX*
+          XX*      Where   anyname   is the name of your application program.
+          XX*      (Refer to the application programming guide for full details,
+          XX*      including what to do if your program contains calls to
+          XX*      the common programming interface.)
+          XX*
+          XX*      Note:
+          XX*      The compiler LIB option is no longer required when using
+          XX*      COBOL 5 and later and has been removed from the CBLPARM.
+          XX*      For earlier versions of COBOL this option must be manually
+          XX*      reinstated.
+          XX*
+        5 XXCOBOL  EXEC PGM=IGYCRCTL,REGION=&REG,
+          XX       PARM=&CBLPARM
+          IEFC653I SUBSTITUTION JCL - PGM=IGYCRCTL,REGION=0M,PARM=('NODYNAM,RENT','CICS(''COBOL3,SP'')')
+        6 XXSTEPLIB  DD DSN=&LNGPRFX..SIGYCOMP,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=IGY640.SIGYCOMP,DISP=SHR
+        7 XX         DD DSN=&INDEX..SDFHLOAD,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHLOAD,DISP=SHR
+        8 XXSYSLIB   DD DSN=&DSCTLIB,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHCOB,DISP=SHR
+        9 XX         DD DSN=&PROGSRC,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.A5P1.COBOL,DISP=SHR
+       10 XX         DD DSN=&CPYLIBWS,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL,DISP=SHR
+       11 XX         DD DSN=&CPYLIBPR,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL,DISP=SHR
+       12 XX         DD DSN=&INDEX..SDFHCOB,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHCOB,DISP=SHR
+       13 XX         DD DSN=&INDEX..SDFHMAC,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHMAC,DISP=SHR
+       14 XX         DD DSN=&INDEX..SDFHSAMP,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHSAMP,DISP=SHR
+       15 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+       16 XXSYSLIN   DD DSN=&&LOADSET,DISP=(MOD,PASS),
+          XX            UNIT=&WORK,SPACE=(TRK,(3,3))
+          IEFC653I SUBSTITUTION JCL - DSN=&&LOADSET,DISP=(MOD,PASS),UNIT=SYSDA,SPACE=(TRK,(3,3))
+       17 XXSYSUT1   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       18 XXSYSUT2   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       19 XXSYSUT3   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       20 XXSYSUT4   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       21 XXSYSUT5   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       22 XXSYSUT6   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       23 XXSYSUT7   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          XX** Additional datasets needed for 5.1 compiler **
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       24 XXSYSUT8   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       25 XXSYSUT9   DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       26 XXSYSUT10  DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       27 XXSYSUT11  DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       28 XXSYSUT12  DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       29 XXSYSUT13  DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       30 XXSYSUT14  DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       31 XXSYSUT15  DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       32 XXSYSMDECK DD UNIT=&WORK,SPACE=(CYL,(1,1))
+          XX** End of additional dataset needed for 5.1 compiler **
+          XX*
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(1,1))
+       33 //COBOL.SYSIN DD DSN=&PROGSRC(&PROGMBR),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.A5P1.COBOL(CMINQFE1),DISP=SHR
+       34 XXCOPYLINK EXEC PGM=IEBGENER,COND=(7,LT,COBOL)
+       35 XXSYSUT1   DD DSN=&INDEX..SDFHSAMP(DFHEILID),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHSAMP(DFHEILID),DISP=SHR
+       36 XXSYSUT2   DD DSN=&&COPYLINK,DISP=(NEW,PASS),
+          XX            DCB=(LRECL=80,BLKSIZE=400,RECFM=FB),
+          XX            UNIT=&WORK,SPACE=(400,(20,20))
+          IEFC653I SUBSTITUTION JCL - DSN=&&COPYLINK,DISP=(NEW,PASS),DCB=(LRECL=80,BLKSIZE=400,RECFM=FB),UNIT=SYSDA,
+          SPACE=(400,(20,20))
+       37 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+       38 XXSYSIN    DD DUMMY
+          XX*
+       39 XXEX1  EXPORT SYMLIST=*
+       40 XX SET PGM=&PROGMBR
+          IEFC653I SUBSTITUTION JCL - PGM=CMINQFE1
+       41 XXPGM      EXPORT EXPSET=CMINQFE1                    GENERATED STATEMENT
+          XX*
+       42 XXLKED   EXEC PGM=IEWL,REGION=&REG,
+          XX            PARM='&LNKPARM',COND=(7,LT,COBOL)
+          IEFC653I SUBSTITUTION JCL - PGM=IEWL,REGION=0M,PARM='LIST,XREF,RENT,MAP',COND=(7,LT,COBOL)
+       43 XXSYSLIB   DD DSN=&INDEX..SDFHLOAD,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHLOAD,DISP=SHR
+       44 XX         DD DSN=&LIBPRFX..SCEELKED,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=CEE.SCEELKED,DISP=SHR
+       45 XXSYSLMOD  DD DSN=&PROGLIB,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=TSOECCC.CICSTS12.STUDENT.LOADLIB,DISP=SHR
+       46 XXSYSUT1   DD UNIT=&WORK,DCB=BLKSIZE=1024,
+          XX            SPACE=(1024,(200,20))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,DCB=BLKSIZE=1024,SPACE=(1024,(200,20))
+       47 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+       48 XXSYSLIN   DD DSN=&&COPYLINK,DISP=(OLD,DELETE)
+       49 XX         DD DSN=&&LOADSET,DISP=(OLD,DELETE)
+       50 XX         DD DDNAME=SYSIN
+       51 XXSYSIN    DD *,SYMBOLS=(EXECSYS)
+          XX*
+       52 XXPGM      EXPORT EXPSET=                            GENERATED STATEMENT
+          //* NAME OF PROGRAM AND MEMBER TO TRANSLATE/COMPILE/LKED
+          /*
+ STMT NO. MESSAGE
+        3 IEFC001I PROCEDURE DFHZITCL WAS EXPANDED USING PRIVATE LIBRARY KC03FE1.DCMAFD02.PROCLIB
+ICH70001I KC03FE1  LAST ACCESS AT 16:05:22 ON SATURDAY, NOVEMBER 22, 2025
+IEFA111I CMINQFE1 IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR CMINQFE1 COBOL COMPLI
+IEF237I 196E ALLOCATED TO STEPLIB
+IEF237I 1847 ALLOCATED TO
+IEF237I 1847 ALLOCATED TO SYSLIB
+IGD103I SMS ALLOCATED TO DDNAME
+IGD103I SMS ALLOCATED TO DDNAME
+IGD103I SMS ALLOCATED TO DDNAME
+IEF237I 1847 ALLOCATED TO
+IEF237I 1847 ALLOCATED TO
+IEF237I 1847 ALLOCATED TO
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IGD100I VIO ALLOCATED TO DDNAME SYSLIN   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT1   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT2   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT3   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT4   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT5   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT6   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT7   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT8   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT9   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT10  DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT11  DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT12  DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT13  DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT14  DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT15  DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSMDECK DATACLAS (        )
+IGD103I SMS ALLOCATED TO DDNAME SYSIN
+IEF285I   VENDOR.PARMLIB                               KEPT
+IEF285I   VOL SER NOS= VPMVSD.
+IEF285I   SVTSC.PARMLIB                                KEPT
+IEF285I   VOL SER NOS= VTMVSG.
+IEF285I   LVL0.PARMLIB                                 KEPT
+IEF285I   VOL SER NOS= VTLVL0.
+IEF285I   SYS1.PARMLIB                                 KEPT
+IEF285I   VOL SER NOS= VIMVSB.
+IEF764I CMINQFE1 COMPLI COBOL DFHAPIR DFHEIMOD PARMLIB READ FAILED - MEMBER DFHAPIR NOT FOUND.
+IEF285I   VENDOR.PARMLIB                               KEPT
+IEF285I   VOL SER NOS= VPMVSD.
+IEF285I   SVTSC.PARMLIB                                KEPT
+IEF285I   VOL SER NOS= VTMVSG.
+IEF285I   LVL0.PARMLIB                                 KEPT
+IEF285I   VOL SER NOS= VTLVL0.
+IEF285I   SYS1.PARMLIB                                 KEPT
+IEF285I   VOL SER NOS= VIMVSB.
+IEF764I CMINQFE1 COMPLI COBOL DFHAPIR DFHEIMOD PARMLIB READ FAILED - MEMBER DFHAPIR NOT FOUND.
+IEF142I CMINQFE1 COBOL COMPLI - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   IGY640.SIGYCOMP                              KEPT
+IEF285I   VOL SER NOS= VTIGYM.
+IEF285I   DFH610.CICS.SDFHLOAD                         KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   DFH610.CICS.SDFHCOB                          KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IGD104I KC03FE1.DCMAFD02.A5P1.COBOL                  RETAINED,  DDNAME=
+IGD104I KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL           RETAINED,  DDNAME=
+IGD104I KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL           RETAINED,  DDNAME=
+IEF285I   DFH610.CICS.SDFHCOB                          KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   DFH610.CICS.SDFHMAC                          KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   DFH610.CICS.SDFHSAMP                         KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   KC03FE1.CMINQFE1.JOB04703.D0000102.?         SYSOUT
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.LOADSET.H01  PASSED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157880     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157881     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157882     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157883     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157884     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157885     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157886     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157887     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157888     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157889     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157890     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157891     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157892     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157893     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157894     DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157895     DELETED
+IGD104I KC03FE1.DCMAFD02.A5P1.COBOL                  RETAINED,  DDNAME=SYSIN
+IEF373I STEP/COBOL   /START 2025326.1606
+IEF032I STEP/COBOL   /STOP  2025326.1606
+        CPU:     0 HR  00 MIN  00.08 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:  7884K  SYS:   324K  EXT:   175568K  SYS:    14692K
+        ATB- REAL:                 10472K  SLOTS:                     0K
+             VIRT- ALLOC:     540M SHRD:       0M
+IEF236I ALLOC. FOR CMINQFE1 COPYLINK COMPLI
+IEF237I 1847 ALLOCATED TO SYSUT1
+IGD100I VIO ALLOCATED TO DDNAME SYSUT2   DATACLAS (        )
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I DMY  ALLOCATED TO SYSIN
+IEF142I CMINQFE1 COPYLINK COMPLI - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   DFH610.CICS.SDFHSAMP                         KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.COPYLINK.H01 PASSED
+IEF285I   KC03FE1.CMINQFE1.JOB04703.D0000103.?         SYSOUT
+IEF373I STEP/COPYLINK/START 2025326.1606
+IEF032I STEP/COPYLINK/STOP  2025326.1606
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:   232K  SYS:   264K  EXT:        0K  SYS:    11520K
+        ATB- REAL:                  1308K  SLOTS:                     0K
+             VIRT- ALLOC:      22M SHRD:       0M
+IEF236I ALLOC. FOR CMINQFE1 LKED COMPLI
+IEF237I 1847 ALLOCATED TO SYSLIB
+IEF237I 1001 ALLOCATED TO
+IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+IGD100I VIO ALLOCATED TO DDNAME SYSUT1   DATACLAS (        )
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I VIO  ALLOCATED TO SYSLIN
+IEF237I VIO  ALLOCATED TO
+IEF237I JES2 ALLOCATED TO
+IEF142I CMINQFE1 LKED COMPLI - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   DFH610.CICS.SDFHLOAD                         KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   CEE.SCEELKED                                 KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IGD104I TSOECCC.CICSTS12.STUDENT.LOADLIB             RETAINED,  DDNAME=SYSLMOD
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.R0157896     DELETED
+IEF285I   KC03FE1.CMINQFE1.JOB04703.D0000104.?         SYSOUT
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.COPYLINK.H01 DELETED
+IEF285I   SYS25326.T160628.RA000.CMINQFE1.LOADSET.H01  DELETED
+IEF285I   KC03FE1.CMINQFE1.JOB04703.D0000101.?         SYSIN
+IEF373I STEP/LKED    /START 2025326.1606
+IEF032I STEP/LKED    /STOP  2025326.1606
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:    92K  SYS:   268K  EXT:     1768K  SYS:    11644K
+        ATB- REAL:                  1316K  SLOTS:                     0K
+             VIRT- ALLOC:      25M SHRD:       0M
+IEF375I  JOB/CMINQFE1/START 2025326.1606
+IEF033I  JOB/CMINQFE1/STOP  2025326.1606
+        CPU:     0 HR  00 MIN  00.09 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+   NAME &PGM(R)
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417                 Date 11/22/2025  Time 16:06:30   Page     1
+Invocation parameters:
+ NODYNAM,RENT,CICS('COBOL3,SP')
+Options in effect:
+ NOADATA
+   ADV
+   AFP(NOVOLATILE)
+   QUOTE
+   ARCH(10)
+   ARITH(COMPAT)
+ NOAWO
+ NOBLOCK0
+   BUFSIZE(4096)
+   CICS('COBOL3,SP')
+   CODEPAGE(1140)
+ NOCOMPILE(S)
+   CONDCOMP(NOSKIPSRC)
+ NOCOPYLOC
+ NOCOPYRIGHT
+ NOCURRENCY
+   DATA(31)
+   DBCS
+ NODECK
+ NODEFINE
+ NODIAGTRUNC
+   DISPSIGN(COMPAT)
+ NODLL
+ NODUMP
+ NODYNAM
+ NOEXIT
+ NOEXPORTALL
+ NOFASTSRT
+   FLAG(I,I)
+ NOFLAGSTD
+   HGPR(PRESERVE)
+ NOINITCHECK
+ NOINITIAL
+   INLINE
+   INTDATE(ANSI)
+ NOINVDATA
+ NOJAVAIOP
+   LANGUAGE(EN)
+   LINECOUNT(60)
+ NOLIST
+   LP(32)
+ NOLSACHECK
+ NOMAP
+   MAXPCF(100000)
+ NOMDECK
+ NONAME
+   NSYMBOL(NATIONAL)
+ NONUMBER
+ NONUMCHECK
+   NUMPROC(NOPFD)
+   OBJECT
+ NOOFFSET
+   OPTIMIZE(0)
+   OUTDD(SYSOUT)
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417                 Date 11/22/2025  Time 16:06:30   Page     2
+ NOPARMCHECK
+   PGMNAME(COMPAT)
+   QUALIFY(COMPAT)
+   RENT
+   RMODE(AUTO)
+ NORULES
+ NOSERVICE
+   SEQUENCE
+   SMARTBIN
+   SOURCE(DEC)
+   SPACE(1)
+ NOSQL
+   SQLCCSID
+ NOSQLIMS
+ NOSSRANGE
+ NOSTGOPT
+   SUPPRESS
+ NOTERM
+ NOTEST(NODWARF,NOSOURCE,NOSEPARATE)
+ NOTHREAD
+   TRUNC(STD)
+   TUNE(10)
+ NOVBREF
+   VLR(STANDARD)
+   VSAMOPENFS(COMPAT)
+ NOWORD
+   XMLPARSE(XMLSS)
+   XREF(FULL)
+   ZWB
+CICS Options in effect:
+ CICS
+ DEBUG
+ EDF
+ SP
+ NATLANG(EN)
+ APOST
+ NOSYSEIB
+ NOFEPI
+ NOCPSM
+ LINKAGE
+ COBOL3
+ LENGTH
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     3
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000001                IDENTIFICATION DIVISION.
+  000002                PROGRAM-ID.  CMINQFE1.
+  000003                AUTHOR. Lucas delvoie.
+  000004                DATE-WRITTEN. Nov 22 2025.
+  000005               *PROGRAM DESCRIPTION:
+  000006               * This program provides customer inquiry functionality
+  000007               * for the CICS customer master file system.
+  000008                ENVIRONMENT DIVISION.
+  000009               *
+  000010                DATA DIVISION.
+  000011               *
+  000012                WORKING-STORAGE SECTION.
+  000013               *
+  000014                01 WS-COMMUNICATION-AREA             PIC X VALUE SPACES.                  IMP
+  000015               *
+  000016                01 WS-CNSTS.
+  000017                    05 WS-TRUE-CNST                  PIC X VALUE 'Y'.
+  000018                    05 WS-FALSE-CNST                 PIC X VALUE 'N'.
+  000019                    05 WS-YES-CNST                   PIC X VALUE 'Y'.
+  000020                    05 WS-NO-CNST                    PIC X VALUE 'N'.
+  000021                    05 WS-OPEN-CNST                  PIC X VALUE 'Y'.
+  000022                    05 WS-CLOSED-CNST                PIC X VALUE 'N'.
+  000023               *
+  000024                01 WS-CICS-CNSTS.
+  000025                    05 WS-MEN-PROGRAM-CNST           PIC X(08) VALUE 'UUMENFE1'.
+  000026                    05 WS-INQ-TRANSID-CNST           PIC X(04) VALUE 'IFE1'.
+  000027                    05 WS-INQ-MAPSET-CNST            PIC X(08) VALUE 'INQSFE1 '.
+  000028                    05 WS-INQ-MAP-CNST               PIC X(08) VALUE 'INQMFE1 '.
+  000029               *
+  000030                01 WS-FILE-CNSTS.
+  000031                    05 WS-CMF-FILE-NAME-CNST         PIC X(08) VALUE 'CMFFE1  '.
+  000032               *
+  000033                01 WS-FLAGS.
+  000034                    05 WS-VALID-DATA-FLAG            PIC X VALUE 'Y'.
+  000035                        88 WS-VALID-DATA-88                VALUE 'Y'.
+  000036                    05 WS-SEND-FLAG                  PIC X.
+  000037                        88  WS-SEND-ERASE-88               VALUE '1'.
+  000038                        88  WS-SEND-DATAONLY-88            VALUE '2'.
+  000039                        88  WS-SEND-DATAONLY-ALARM-88      VALUE '3'.
+  000040               *
+  000041                01 WS-RESPONSE-CODES.
+  000042                    05 WS-RESPONSE-CODE              PIC S9(8)  COMP VALUE 0.
+  000043                    05 WS-RESPONSE-CODE2             PIC S9(8)  COMP VALUE 0.
+  000044               *
+  000045                01 WS-END-OF-SESSION-MESSAGE         PIC X(13)
+  000046                    VALUE 'Session ended'.
+  000047               *
+  000048                01 WS-USER-MESSAGES.
+  000049               *                   ----+----1----+----2----+----3----+----4
+  000050                    05 WS-KEY-INVALID.
+  000051                        10 FILLER                    PIC X(40)
+  000052                            VALUE 'Invalid key pressed.                   '.
+  000053                        10 FILLER                    PIC X(39)
+  000054                            VALUE SPACES.                                                 IMP
+  000055               *                   ----+----1----+----2----+----3----+----4
+  000056                    05 WS-ENTER-CUST-NBR.
+  000057                        10 FILLER                    PIC X(40)
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     4
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000058                            VALUE 'You must enter a customer number.      '.
+  000059                        10 FILLER                    PIC X(39)
+  000060                            VALUE SPACES.                                                 IMP
+  000061               *                   ----+----1----+----2----+----3----+----4
+  000062                    05 WS-CUST-DOES-NOT-EXIST.
+  000063                        10 FILLER                    PIC X(40)
+  000064                            VALUE 'That customer does not exist.          '.
+  000065                        10 FILLER                    PIC X(39)
+  000066                            VALUE SPACES.                                                 IMP
+  000067               *
+  000068                COPY ATTR.
+  000069C               01  ATTRIBUTE-DEFINITIONS.
+  000070C              *
+  000071C                   05  ATTR-UNPROT                 PIC X   VALUE ' '.
+  000072C                   05  ATTR-UNPROT-MDT             PIC X   VALUE X'C1'.
+  000073C                   05  ATTR-UNPROT-BRT             PIC X   VALUE X'C8'.
+  000074C                   05  ATTR-UNPROT-BRT-MDT         PIC X   VALUE X'C9'.
+  000075C                   05  ATTR-UNPROT-DARK            PIC X   VALUE X'4C'.
+  000076C                   05  ATTR-UNPROT-DARK-MDT        PIC X   VALUE X'4D'.
+  000077C                   05  ATTR-UNPROT-NUM             PIC X   VALUE X'50'.
+  000078C                   05  ATTR-UNPROT-NUM-MDT         PIC X   VALUE X'D1'.
+  000079C                   05  ATTR-UNPROT-NUM-BRT         PIC X   VALUE X'D8'.
+  000080C                   05  ATTR-UNPROT-NUM-BRT-MDT     PIC X   VALUE X'D9'.
+  000081C                   05  ATTR-UNPROT-NUM-DARK        PIC X   VALUE X'5C'.
+  000082C                   05  ATTR-UNPROT-NUM-DARK-MDT    PIC X   VALUE X'5D'.
+  000083C                   05  ATTR-PROT                   PIC X   VALUE X'60'.
+  000084C                   05  ATTR-PROT-MDT               PIC X   VALUE X'61'.
+  000085C                   05  ATTR-PROT-BRT               PIC X   VALUE X'E8'.
+  000086C                   05  ATTR-PROT-BRT-MDT           PIC X   VALUE X'E9'.
+  000087C                   05  ATTR-PROT-DARK              PIC X   VALUE '%'.
+  000088C                   05  ATTR-PROT-DARK-MDT          PIC X   VALUE X'6D'.
+  000089C                   05  ATTR-PROT-SKIP              PIC X   VALUE X'F0'.
+  000090C                   05  ATTR-PROT-SKIP-MDT          PIC X   VALUE X'F1'.
+  000091C                   05  ATTR-PROT-SKIP-BRT          PIC X   VALUE X'F8'.
+  000092C                   05  ATTR-PROT-SKIP-BRT-MDT      PIC X   VALUE X'F9'.
+  000093C                   05  ATTR-PROT-SKIP-DARK         PIC X   VALUE X'7C'.
+  000094C                   05  ATTR-PROT-SKIP-DARK-MDT     PIC X   VALUE X'7D'.
+  000095C              *
+  000096C                   05  ATTR-NO-HIGHLIGHT           PIC X   VALUE X'00'.
+  000097C                   05  ATTR-BLINK                  PIC X   VALUE '1'.
+  000098C                   05  ATTR-REVERSE                PIC X   VALUE '2'.
+  000099C                   05  ATTR-UNDERSCORE             PIC X   VALUE '4'.
+  000100C              *
+  000101C                   05  ATTR-DEFAULT-COLOR          PIC X   VALUE X'00'.
+  000102C                   05  ATTR-BLUE                   PIC X   VALUE '1'.
+  000103C                   05  ATTR-RED                    PIC X   VALUE '2'.
+  000104C                   05  ATTR-PINK                   PIC X   VALUE '3'.
+  000105C                   05  ATTR-GREEN                  PIC X   VALUE '4'.
+  000106C                   05  ATTR-TURQUOISE              PIC X   VALUE '5'.
+  000107C                   05  ATTR-YELLOW                 PIC X   VALUE '6'.
+  000108C                   05  ATTR-NEUTRAL                PIC X   VALUE '7'.
+  000109C              *
+  000110               *
+  000111                COPY DFHAID.
+  000112C              *****************************************************************
+  000113C              *                                                               *
+  000114C              *                                                               *
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     5
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000115C              *                                                               *
+  000116C              *     Licensed Materials - Property of IBM                      *
+  000117C              *                                                               *
+  000118C              *     "Restricted Materials of IBM"                             *
+  000119C              *                                                               *
+  000120C              *     5655-YA1                                                  *
+  000121C              *                                                               *
+  000122C              *     (C) Copyright IBM Corp. 1988, 2022"                       *
+  000123C              *                                                               *
+  000124C              *                                                               *
+  000125C              *                                                               *
+  000126C              *                                                               *
+  000127C              *   STATUS = 7.4.0                                              *
+  000128C              *                                                               *
+  000129C              * CHANGE ACTIVITY :                                             *
+  000130C              *                                                               *
+  000131C              *   $SEG(DFHAID),COMP(BMS),PROD(CICS TS ):                      *
+  000132C              *                                                               *
+  000133C              *  PN= REASON REL YYMMDD HDXXIII : REMARKS                      *
+  000134C              * $D1= I07991 670 100820 HDIGPG  : Translate unprintable char   *
+  000135C              * $L0= Base   210 88     HD1MA   : Base                         *
+  000136C              *     R169962 740 220304 HDPJEM  : Fix special chars            *
+  000137C              *                                                               *
+  000138C              *****************************************************************
+  000139C              *
+  000140C              *
+  000141C               01    DFHAID.
+  000142C                 02  DFHNULL   PIC  X  VALUE IS X'00'.
+  000143C                 02  DFHENTER  PIC  X  VALUE IS ''''.
+  000144C                 02  DFHCLEAR  PIC  X  VALUE IS '_'.
+  000145C                 02  DFHCLRP   PIC  X  VALUE IS X'6A'.
+  000146C              * UPDATED DFHCLRP TO USE CHAR CODE      @R169962C
+  000147C                 02  DFHPEN    PIC  X  VALUE IS '='.
+  000148C                 02  DFHOPID   PIC  X  VALUE IS 'W'.
+  000149C                 02  DFHMSRE   PIC  X  VALUE IS 'X'.
+  000150C                 02  DFHSTRF   PIC  X  VALUE IS 'h'.
+  000151C                 02  DFHTRIG   PIC  X  VALUE IS '"'.
+  000152C                 02  DFHPA1    PIC  X  VALUE IS '%'.
+  000153C                 02  DFHPA2    PIC  X  VALUE IS '>'.
+  000154C                 02  DFHPA3    PIC  X  VALUE IS ','.
+  000155C                 02  DFHPF1    PIC  X  VALUE IS '1'.
+  000156C                 02  DFHPF2    PIC  X  VALUE IS '2'.
+  000157C                 02  DFHPF3    PIC  X  VALUE IS '3'.
+  000158C                 02  DFHPF4    PIC  X  VALUE IS '4'.
+  000159C                 02  DFHPF5    PIC  X  VALUE IS '5'.
+  000160C                 02  DFHPF6    PIC  X  VALUE IS '6'.
+  000161C                 02  DFHPF7    PIC  X  VALUE IS '7'.
+  000162C                 02  DFHPF8    PIC  X  VALUE IS '8'.
+  000163C                 02  DFHPF9    PIC  X  VALUE IS '9'.
+  000164C                 02  DFHPF10   PIC  X  VALUE IS ':'.
+  000165C                 02  DFHPF11   PIC  X  VALUE IS '#'.
+  000166C                 02  DFHPF12   PIC  X  VALUE IS '@'.
+  000167C                 02  DFHPF13   PIC  X  VALUE IS 'A'.
+  000168C                 02  DFHPF14   PIC  X  VALUE IS 'B'.
+  000169C                 02  DFHPF15   PIC  X  VALUE IS 'C'.
+  000170C                 02  DFHPF16   PIC  X  VALUE IS 'D'.
+  000171C                 02  DFHPF17   PIC  X  VALUE IS 'E'.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     6
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000172C                 02  DFHPF18   PIC  X  VALUE IS 'F'.
+  000173C                 02  DFHPF19   PIC  X  VALUE IS 'G'.
+  000174C                 02  DFHPF20   PIC  X  VALUE IS 'H'.
+  000175C                 02  DFHPF21   PIC  X  VALUE IS 'I'.
+  000176C                 02  DFHPF22   PIC  X  VALUE IS X'4A'.
+  000177C              * UPDATED DFHPF22 TO USE CHAR CODE      @R169962C
+  000178C                 02  DFHPF23   PIC  X  VALUE IS '.'.
+  000179C                 02  DFHPF24   PIC  X  VALUE IS '<'.
+  000180               *
+  000181                COPY ERRORSWS.
+  000182C              *
+  000183C              ******************************************************************
+  000184C              *
+  000185C              * VARIABLES FOR USE WITH GENERAL ERROR MSG HANDLING (SINGLE LINE)
+  000186C              *
+  000187C              ******************************************************************
+  000188C              *
+  000189C               01 WS-GM-GENERAL-ERROR-MSG.
+  000190C                   05  WS-GM-RESP                     PIC S9(8) COMP.
+  000191C                   05  WS-GM-RESP2                    PIC S9(8) COMP.
+  000192C                   05  WS-GM-TRNID                    PIC X(4).
+  000193C                   05  WS-GM-RSRCE                    PIC X(8).
+  000194C                   05  WS-GM-MSG                      PIC X(68).
+  000195C              *
+  000196C              ******************************************************************
+  000197C              *
+  000198C              * VARIABLES FOR USE WITH ERROR MSG HANDLING (EIGHT LINES)
+  000199C              *
+  000200C              ******************************************************************
+  000201C              *
+  000202C               01 WS-EM-ERROR-MESSAGE.
+  000203C                   05 WS-EM-ERROR-LINE-1.
+  000204C              *                   ----+----1----+----2----+----3----+----4
+  000205C                       10 FILLER                      PIC X(40)
+  000206C                           VALUE 'ERROR:Review details and correct problem'.
+  000207C                       10 FILLER                      PIC X(39)
+  000208C                           VALUE ' in program or in the resource used.   '.
+  000209C              *                   ----+----1----+----2----+----3----+----
+  000210C                   05 WS-EM-ERROR-LINE-2              PIC X(79) VALUE SPACE.             IMP
+  000211C                   05 WS-EM-ERROR-LINE-3.
+  000212C                       10 FILLER                      PIC X(11)
+  000213C                           VALUE 'EIBRESP  = '.
+  000214C                       10 WS-EM-RESP                  PIC Z(08)9.
+  000215C                       10 FILLER                      PIC X(59) VALUE SPACE.             IMP
+  000216C                   05 WS-EM-ERROR-LINE-4.
+  000217C                       10 FILLER                      PIC X(11)
+  000218C                           VALUE 'EIBRESP2 = '.
+  000219C                       10 WS-EM-RESP2                 PIC Z(08)9.
+  000220C                       10 FILLER                      PIC X(59) VALUE SPACE.             IMP
+  000221C                   05 WS-EM-ERROR-LINE-5.
+  000222C                       10 FILLER                      PIC X(11)
+  000223C                           VALUE 'EIBTRNID = '.
+  000224C                       10 WS-EM-TRNID                 PIC X(04).
+  000225C                       10 FILLER                      PIC X(64) VALUE SPACE.             IMP
+  000226C                   05 WS-EM-ERROR-LINE-6.
+  000227C                       10 FILLER                      PIC X(11)
+  000228C                           VALUE 'EIBRSRCE = '.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     7
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000229C                       10 WS-EM-RSRCE                 PIC X(08).
+  000230C                       10 FILLER                      PIC X(60) VALUE SPACE.             IMP
+  000231C                   05 WS-EM-ERROR-LINE-7.
+  000232C                       10 FILLER                      PIC X(11)
+  000233C                           VALUE 'MESSAGE  = '.
+  000234C                       10 WS-EM-MSG                   PIC X(68).
+  000235C                   05 WS-EM-ERROR-LINE-8              PIC X(79) VALUE SPACE.             IMP
+  000236C              *
+  000237C              ******************************************************************
+  000238C              *
+  000239C              * VARIABLES FOR USE WITH HANDLE ABEND LOGIC
+  000240C              *
+  000241C              ******************************************************************
+  000242C              *
+  000243C               01 WS-HA-HANDLE-ABEND-MSG.
+  000244C                   05 WS-HA-MSG-T1                    PIC X(79) VALUE SPACES.            IMP
+  000245C                   05 WS-HA-MSG-T2                    PIC X(79) VALUE SPACES.            IMP
+  000246C                   05 WS-HA-MSG-T3                    PIC X(79) VALUE SPACES.            IMP
+  000247C                   05 WS-HA-MSG-T4                    PIC X(79) VALUE SPACES.            IMP
+  000248C                   05 WS-HA-MSG-T5                    PIC X(79) VALUE SPACES.            IMP
+  000249C                   05 WS-HA-MSG-T6                    PIC X(79) VALUE SPACES.            IMP
+  000250C                   05 WS-HA-MSG-T7                    PIC X(79) VALUE SPACES.            IMP
+  000251C                   05 WS-HA-MSG-T8                    PIC X(79) VALUE SPACES.            IMP
+  000252C              *
+  000253C               01 WS-HANDLE-ABEND-MSGS.
+  000254C                   05 WS-HA-UNEXPECTED-ABEND          PIC X(20)
+  000255C                       VALUE 'ABEND UNEXPECTED    '.
+  000256C              *               ----+----0----+----1
+  000257C                   05 WS-HA-UNHANDLED-ABEND           PIC X(20)
+  000258C                       VALUE 'ABEND UNHANDLED     '.
+  000259C              *               ----+----0----+----1
+  000260C               01 WS-HA-EXEC-TEXT.
+  000261C                   05 WS-HA-EXEC-TEXT-T1              PIC X(79) VALUE SPACES.            IMP
+  000262C                   05 WS-HA-EXEC-TEXT-T2              PIC X(79) VALUE SPACES.            IMP
+  000263C                   05 WS-HA-EXEC-TEXT-T3              PIC X(79) VALUE SPACES.            IMP
+  000264C                   05 WS-HA-EXEC-TEXT-T4              PIC X(79) VALUE SPACES.            IMP
+  000265C                   05 WS-HA-EXEC-TEXT-T5              PIC X(79) VALUE SPACES.            IMP
+  000266C                   05 WS-HA-EXEC-TEXT-T6              PIC X(79) VALUE SPACES.            IMP
+  000267C                   05 WS-HA-EXEC-TEXT-T7              PIC X(79) VALUE SPACES.            IMP
+  000268C                   05 WS-HA-EXEC-TEXT-T8              PIC X(79) VALUE SPACES.            IMP
+  000269C              *
+  000270C               01 WS-HA-ERR-MSG-NBRS.
+  000271C                   05 WS-HA-ERR-MSG-FILENOTFOUND      PIC 9(3)  VALUE 12.
+  000272C                   05 WS-HA-ERR-MSG-PGMIDERR          PIC 9(3)  VALUE 27.
+  000273C                   05 WS-HA-ERR-MSG-TRANSIDERR        PIC 9(3)  VALUE 28.
+  000274C                   05 WS-HA-ERR-MSG-MAPFAIL           PIC 9(3)  VALUE 36.
+  000275C              *
+  000276C              ******************************************************************
+  000277C              *
+  000278C              * VARIABLES FOR USE WITH RESPONSE TEXT TABLE LOOKUP LOGIC
+  000279C              * WRITTEN BY - GREGORY OAKES - 2021-APR-15
+  000280C              *
+  000281C              ******************************************************************
+  000282C              * TRANSLATE EXEC CICS COMMANDS FROM NUMERIC VALUES TO X(15) TEXT
+  000283C              * IN CICS PROGRAMS AND DISPLAY ERROR MESSAGE TO DECODE CODE ISSUES
+  000284C              * OR HELP DEBUG ABEND ISSUES.
+  000285C              *
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     8
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000286C              ******************************************************************
+  000287C              *                                               123456789012345
+  000288C               01 WS-RT-MSG-TABLE-DATA.
+  000289C                   05 WS-RT-001-ERROR        PIC X(15) VALUE "ERROR          ".
+  000290C                   05 WS-RT-002-RDATT        PIC X(15) VALUE "RDATT          ".
+  000291C                   05 WS-RT-003-WRBRK        PIC X(15) VALUE "WRBRK          ".
+  000292C                   05 WS-RT-004-EOF          PIC X(15) VALUE "EOF            ".
+  000293C                   05 WS-RT-005-EODS         PIC X(15) VALUE "EODS           ".
+  000294C                   05 WS-RT-006-EOC          PIC X(15) VALUE "EOC            ".
+  000295C                   05 WS-RT-007-INBFMH       PIC X(15) VALUE "INBFMH         ".
+  000296C                   05 WS-RT-008-ENDINPT      PIC X(15) VALUE "ENDINPT        ".
+  000297C                   05 WS-RT-009-NONVAL       PIC X(15) VALUE "NONVAL         ".
+  000298C                   05 WS-RT-010-NOSTART      PIC X(15) VALUE "NOSTART        ".
+  000299C                   05 WS-RT-011-TERMIDERR    PIC X(15) VALUE "TERMIDERR      ".
+  000300C                   05 WS-RT-012-FILENOTFOUND PIC X(15) VALUE "FILENOTFOUND   ".
+  000301C                   05 WS-RT-013-NOTFND       PIC X(15) VALUE "NOTFND         ".
+  000302C                   05 WS-RT-014-DUPREC       PIC X(15) VALUE "DUPREC         ".
+  000303C                   05 WS-RT-015-DUPKEY       PIC X(15) VALUE "DUPKEY         ".
+  000304C                   05 WS-RT-016-INVREQ       PIC X(15) VALUE "INVREQ         ".
+  000305C                   05 WS-RT-017-IOERR        PIC X(15) VALUE "IOERR          ".
+  000306C                   05 WS-RT-018-NOSPACE      PIC X(15) VALUE "NOSPACE        ".
+  000307C                   05 WS-RT-019-NOTOPEN      PIC X(15) VALUE "NOTOPEN        ".
+  000308C                   05 WS-RT-020-ENDFILE      PIC X(15) VALUE "ENDFILE        ".
+  000309C                   05 WS-RT-021-ILLOGIC      PIC X(15) VALUE "ILLOGIC        ".
+  000310C                   05 WS-RT-022-LENGERR      PIC X(15) VALUE "LENGERR        ".
+  000311C                   05 WS-RT-023-QZERO        PIC X(15) VALUE "QZERO          ".
+  000312C                   05 WS-RT-024-SIGNAL       PIC X(15) VALUE "SIGNAL         ".
+  000313C                   05 WS-RT-025-QBUSY        PIC X(15) VALUE "QBUSY          ".
+  000314C                   05 WS-RT-026-ITEMERR      PIC X(15) VALUE "ITEMERR        ".
+  000315C                   05 WS-RT-027-PGMIDERR     PIC X(15) VALUE "PGMIDERR       ".
+  000316C                   05 WS-RT-028-TRANSIDERR   PIC X(15) VALUE "TRANSIDERR     ".
+  000317C                   05 WS-RT-029-ENDDATA      PIC X(15) VALUE "ENDDATA        ".
+  000318C                   05 WS-RT-030-INVTSREQ     PIC X(15) VALUE "INVTSREQ       ".
+  000319C                   05 WS-RT-031-EXPIRED      PIC X(15) VALUE "EXPIRED        ".
+  000320C                   05 WS-RT-032-RETPAGE      PIC X(15) VALUE "RETPAGE        ".
+  000321C                   05 WS-RT-033-RTEFAIL      PIC X(15) VALUE "RTEFAIL        ".
+  000322C                   05 WS-RT-034-RTESOME      PIC X(15) VALUE "RTESOME        ".
+  000323C                   05 WS-RT-035-TSIOERR      PIC X(15) VALUE "TSIOERR        ".
+  000324C                   05 WS-RT-036-MAPFAIL      PIC X(15) VALUE "MAPFAIL        ".
+  000325C                   05 WS-RT-037-INVERRTERM   PIC X(15) VALUE "INVERRTERM     ".
+  000326C                   05 WS-RT-038-INVMPSZ      PIC X(15) VALUE "INVMPSZ        ".
+  000327C                   05 WS-RT-039-IGREQID      PIC X(15) VALUE "IGREQID        ".
+  000328C                   05 WS-RT-040-OVERFLOW     PIC X(15) VALUE "OVERFLOW       ".
+  000329C                   05 WS-RT-041-INVLDC       PIC X(15) VALUE "INVLDC         ".
+  000330C                   05 WS-RT-042-NOSTG        PIC X(15) VALUE "NOSTG          ".
+  000331C                   05 WS-RT-043-JIDERR       PIC X(15) VALUE "JIDERR         ".
+  000332C                   05 WS-RT-044-QIDERR       PIC X(15) VALUE "QIDERR         ".
+  000333C                   05 WS-RT-045-NOJBUFSP     PIC X(15) VALUE "NOJBUFSP       ".
+  000334C                   05 WS-RT-046-DSSTAT       PIC X(15) VALUE "DSSTAT         ".
+  000335C                   05 WS-RT-047-SELNERR      PIC X(15) VALUE "SELNERR        ".
+  000336C                   05 WS-RT-048-FUNCERR      PIC X(15) VALUE "FUNCERR        ".
+  000337C                   05 WS-RT-049-UNEXPIN      PIC X(15) VALUE "UNEXPIN        ".
+  000338C                   05 WS-RT-050-NOPASSBKRD   PIC X(15) VALUE "NOPASSBKRD     ".
+  000339C                   05 WS-RT-051-NOPASSBKWR   PIC X(15) VALUE "NOPASSBKWR     ".
+  000340C                   05 WS-RT-052-SEGIDERR     PIC X(15) VALUE "SEGIDERR       ".
+  000341C                   05 WS-RT-053-SYSIDERR     PIC X(15) VALUE "SYSIDERR       ".
+  000342C                   05 WS-RT-054-ISCINVREQ    PIC X(15) VALUE "ISCINVREQ      ".
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page     9
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000343C                   05 WS-RT-055-ENQBUSY      PIC X(15) VALUE "ENQBUSY        ".
+  000344C                   05 WS-RT-056-ENVDEFERR    PIC X(15) VALUE "ENVDEFERR      ".
+  000345C                   05 WS-RT-057-IGREQCD      PIC X(15) VALUE "IGREQCD        ".
+  000346C                   05 WS-RT-058-SESSIONERR   PIC X(15) VALUE "SESSIONERR     ".
+  000347C                   05 WS-RT-059-SYSBUSY      PIC X(15) VALUE "SYSBUSY        ".
+  000348C                   05 WS-RT-060-SESSBUSY     PIC X(15) VALUE "SESSBUSY       ".
+  000349C                   05 WS-RT-061-NOTALLOC     PIC X(15) VALUE "NOTALLOC       ".
+  000350C                   05 WS-RT-062-CBIDERR      PIC X(15) VALUE "CBIDERR        ".
+  000351C                   05 WS-RT-063-INVEXITREQ   PIC X(15) VALUE "INVEXITREQ     ".
+  000352C                   05 WS-RT-064-INVPARTNSET  PIC X(15) VALUE "INVPARTNSET    ".
+  000353C                   05 WS-RT-065-INVPARTN     PIC X(15) VALUE "INVPARTN       ".
+  000354C                   05 WS-RT-066-PARTNFAIL    PIC X(15) VALUE "PARTNFAIL      ".
+  000355C                   05 WS-RT-067-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000356C                   05 WS-RT-068-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000357C                   05 WS-RT-069-USERIDERR    PIC X(15) VALUE "USERIDERR      ".
+  000358C                   05 WS-RT-070-NOTAUTH      PIC X(15) VALUE "NOTAUTH        ".
+  000359C                   05 WS-RT-071-VOLIDERR     PIC X(15) VALUE "VOLIDERR       ".
+  000360C                   05 WS-RT-072-SUPPRESSED   PIC X(15) VALUE "SUPPRESSED     ".
+  000361C                   05 WS-RT-073-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000362C                   05 WS-RT-074-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000363C                   05 WS-RT-075-RESIDERR     PIC X(15) VALUE "RESIDERR       ".
+  000364C                   05 WS-RT-076-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000365C                   05 WS-RT-077-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000366C                   05 WS-RT-078-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000367C                   05 WS-RT-079-NOTUSED      PIC X(15) VALUE "NOTUSED        ".
+  000368C                   05 WS-RT-080-NOSPOOL      PIC X(15) VALUE "NOSPOOL        ".
+  000369C                   05 WS-RT-081-TERMERR      PIC X(15) VALUE "TERMERR        ".
+  000370C                   05 WS-RT-082-ROLLEDBACK   PIC X(15) VALUE "ROLLEDBACK     ".
+  000371C                   05 WS-RT-083-END          PIC X(15) VALUE "END            ".
+  000372C                   05 WS-RT-084-DISABLED     PIC X(15) VALUE "DISABLED       ".
+  000373C                   05 WS-RT-085-ALLOCERR     PIC X(15) VALUE "ALLOCERR       ".
+  000374C                   05 WS-RT-086-STRELERR     PIC X(15) VALUE "STRELERR       ".
+  000375C                   05 WS-RT-087-OPENERR      PIC X(15) VALUE "OPENERR        ".
+  000376C                   05 WS-RT-088-SPOLBUSY     PIC X(15) VALUE "SPOLBUSY       ".
+  000377C                   05 WS-RT-089-SPOLERR      PIC X(15) VALUE "SPOLERR        ".
+  000378C                   05 WS-RT-090-NODEIDERR    PIC X(15) VALUE "NODEIDERR      ".
+  000379C                   05 WS-RT-091-TASKIDERR    PIC X(15) VALUE "TASKIDERR      ".
+  000380C                   05 WS-RT-092-TCIDERR      PIC X(15) VALUE "TCIDERR        ".
+  000381C                   05 WS-RT-093-DSNNOTFOUND  PIC X(15) VALUE "DSNNOTFOUND    ".
+  000382C                   05 WS-RT-094-LOADING      PIC X(15) VALUE "LOADING        ".
+  000383C                   05 WS-RT-095-MODELIDERR   PIC X(15) VALUE "MODELIDERR     ".
+  000384C                   05 WS-RT-096-OUTDESCRERR  PIC X(15) VALUE "OUTDESCRERR    ".
+  000385C                   05 WS-RT-097-PARTNERIDERR PIC X(15) VALUE "PARTNERIDERR   ".
+  000386C                   05 WS-RT-098-PROFILEIDERR PIC X(15) VALUE "PROFILEIDERR   ".
+  000387C                   05 WS-RT-099-NETNAMEIDERR PIC X(15) VALUE "NETNAMEIDERR   ".
+  000388C                   05 WS-RT-100-LOCKED       PIC X(15) VALUE "LOCKED         ".
+  000389C                   05 WS-RT-101-RECORDBUSY   PIC X(15) VALUE "RECORDBUSY     ".
+  000390C                   05 WS-RT-102-UOWNOTFOUND  PIC X(15) VALUE "UOWNOTFOUND    ".
+  000391C                   05 WS-RT-103-UOWLNOTFOUND PIC X(15) VALUE "UOWLNOTFOUND   ".
+  000392C                   05 WS-RT-104-LINKABEND    PIC X(15) VALUE "LINKABEND      ".
+  000393C                   05 WS-RT-105-CHANGED      PIC X(15) VALUE "CHANGED        ".
+  000394C                   05 WS-RT-106-PROCESSBUSY  PIC X(15) VALUE "PROCESSBUSY    ".
+  000395C                   05 WS-RT-107-ACTIVITYBUSY PIC X(15) VALUE "ACTIVITYBUSY   ".
+  000396C                   05 WS-RT-108-PROCESSERR   PIC X(15) VALUE "PROCESSERR     ".
+  000397C                   05 WS-RT-109-ACTIVITYERR  PIC X(15) VALUE "ACTIVITYERR    ".
+  000398C                   05 WS-RT-110-CONTAINERERR PIC X(15) VALUE "CONTAINERERR   ".
+  000399C                   05 WS-RT-111-EVENTERR     PIC X(15) VALUE "EVENTERR       ".
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    10
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000400C                   05 WS-RT-112-TOKENERR     PIC X(15) VALUE "TOKENERR       ".
+  000401C                   05 WS-RT-113-NOTFINISHED  PIC X(15) VALUE "NOTFINISHED    ".
+  000402C                   05 WS-RT-114-POOLERR      PIC X(15) VALUE "POOLERR        ".
+  000403C                   05 WS-RT-115-TIMERERR     PIC X(15) VALUE "TIMERERR       ".
+  000404C                   05 WS-RT-116-SYMBOLERR    PIC X(15) VALUE "SYMBOLERR      ".
+  000405C                   05 WS-RT-117-TEMPLATERR   PIC X(15) VALUE "TEMPLATERR     ".
+  000406C                   05 WS-RT-118-NOTSUPERUSER PIC X(15) VALUE "NOTSUPERUSER   ".
+  000407C                   05 WS-RT-119-CSDERR       PIC X(15) VALUE "CSDERR         ".
+  000408C                   05 WS-RT-120-DUPRES       PIC X(15) VALUE "DUPRES         ".
+  000409C                   05 WS-RT-121-RESUNAVAIL   PIC X(15) VALUE "RESUNAVAIL     ".
+  000410C                   05 WS-RT-122-CHANNELERR   PIC X(15) VALUE "CHANNELERR     ".
+  000411C                   05 WS-RT-123-CCSIDERR     PIC X(15) VALUE "CCSIDERR       ".
+  000412C                   05 WS-RT-124-TIMEDOUT     PIC X(15) VALUE "TIMEDOUT       ".
+  000413C                   05 WS-RT-125-CODEPAGEERR  PIC X(15) VALUE "CODEPAGEERR    ".
+  000414C                   05 WS-RT-126-INCOMPLETE   PIC X(15) VALUE "INCOMPLETE     ".
+  000415C                   05 WS-RT-127-APPNOTFOUND  PIC X(15) VALUE "APPNOTFOUND    ".
+  000416C              *                                               123456789012345
+  000417C              *
+  000418C               01 WS-RT-MSG-TABLE-DATA-R REDEFINES WS-RT-MSG-TABLE-DATA.                 288
+  000419C                   05 WS-RT-MSG-NBR-TEXT     PIC X(15) OCCURS 127 TIMES.
+  000420C              *
+  000421C               01 WS-RT-RESP-NBR             PIC S9(8) VALUE 0.
+  000422C                   88 WS-RT-RESP-NBR-VALID-88 VALUE 1 THRU 127.
+  000423C              *
+  000424C               01 WS-RT-RESP-NBR-INVALID-MSG PIC X(15) VALUE "INVALIDNBR".
+  000425C              *
+  000426C               01 WS-RT-MSG.
+  000427C                   05 WS-RT-MSG-HDR          PIC X(15) VALUE SPACES.                     IMP
+  000428C                   05 WS-RT-MSG-RESP-NBR     PIC S9(8) VALUE 0.
+  000429C                   05 WS-RT-MSG-T1           PIC X(15) VALUE SPACES.                     IMP
+  000430C                   05 WS-RT-MSG-T2           PIC X(30) VALUE SPACES.                     IMP
+  000431C              *
+  000432C               01 WS-RT-MSG-HEADER           PIC X(30) VALUE SPACES.                     IMP
+  000433C              *
+  000434C               01 WS-RT-MSG-NORMAL           PIC X(30) VALUE SPACES.                     IMP
+  000435C              *
+  000436C               01 WS-RT-MSG-OTHER            PIC X(30) VALUE SPACES.                     IMP
+  000437C              *
+  000438C              ******************************************************************
+  000439C              *
+  000440               *
+  000441                COPY INQSFE1.
+  000442C               01  INQMFE1I.
+  000443C                   02  FILLER PIC X(12).
+  000444C                   02  TRANIDL    COMP  PIC  S9(4).
+  000445C                   02  TRANIDF    PICTURE X.
+  000446C                   02  FILLER REDEFINES TRANIDF.                                         445
+  000447C                     03 TRANIDA    PICTURE X.
+  000448C                   02  FILLER   PICTURE X(2).
+  000449C                   02  TRANIDI  PIC X(4).
+  000450C                   02  CUSTNOL    COMP  PIC  S9(4).
+  000451C                   02  CUSTNOF    PICTURE X.
+  000452C                   02  FILLER REDEFINES CUSTNOF.                                         451
+  000453C                     03 CUSTNOA    PICTURE X.
+  000454C                   02  FILLER   PICTURE X(2).
+  000455C                   02  CUSTNOI  PIC X(6).
+  000456C                   02  LNAMEL    COMP  PIC  S9(4).
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    11
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000457C                   02  LNAMEF    PICTURE X.
+  000458C                   02  FILLER REDEFINES LNAMEF.                                          457
+  000459C                     03 LNAMEA    PICTURE X.
+  000460C                   02  FILLER   PICTURE X(2).
+  000461C                   02  LNAMEI  PIC X(30).
+  000462C                   02  FNAMEL    COMP  PIC  S9(4).
+  000463C                   02  FNAMEF    PICTURE X.
+  000464C                   02  FILLER REDEFINES FNAMEF.                                          463
+  000465C                     03 FNAMEA    PICTURE X.
+  000466C                   02  FILLER   PICTURE X(2).
+  000467C                   02  FNAMEI  PIC X(20).
+  000468C                   02  ADDRL    COMP  PIC  S9(4).
+  000469C                   02  ADDRF    PICTURE X.
+  000470C                   02  FILLER REDEFINES ADDRF.                                           469
+  000471C                     03 ADDRA    PICTURE X.
+  000472C                   02  FILLER   PICTURE X(2).
+  000473C                   02  ADDRI  PIC X(30).
+  000474C                   02  CITYL    COMP  PIC  S9(4).
+  000475C                   02  CITYF    PICTURE X.
+  000476C                   02  FILLER REDEFINES CITYF.                                           475
+  000477C                     03 CITYA    PICTURE X.
+  000478C                   02  FILLER   PICTURE X(2).
+  000479C                   02  CITYI  PIC X(20).
+  000480C                   02  STATEL    COMP  PIC  S9(4).
+  000481C                   02  STATEF    PICTURE X.
+  000482C                   02  FILLER REDEFINES STATEF.                                          481
+  000483C                     03 STATEA    PICTURE X.
+  000484C                   02  FILLER   PICTURE X(2).
+  000485C                   02  STATEI  PIC X(2).
+  000486C                   02  ZIPCODEL    COMP  PIC  S9(4).
+  000487C                   02  ZIPCODEF    PICTURE X.
+  000488C                   02  FILLER REDEFINES ZIPCODEF.                                        487
+  000489C                     03 ZIPCODEA    PICTURE X.
+  000490C                   02  FILLER   PICTURE X(2).
+  000491C                   02  ZIPCODEI  PIC X(10).
+  000492C                   02  MESSAGEL    COMP  PIC  S9(4).
+  000493C                   02  MESSAGEF    PICTURE X.
+  000494C                   02  FILLER REDEFINES MESSAGEF.                                        493
+  000495C                     03 MESSAGEA    PICTURE X.
+  000496C                   02  FILLER   PICTURE X(2).
+  000497C                   02  MESSAGEI  PIC X(79).
+  000498C                   02  DUMMYL    COMP  PIC  S9(4).
+  000499C                   02  DUMMYF    PICTURE X.
+  000500C                   02  FILLER REDEFINES DUMMYF.                                          499
+  000501C                     03 DUMMYA    PICTURE X.
+  000502C                   02  FILLER   PICTURE X(2).
+  000503C                   02  DUMMYI  PIC X(1).
+  000504C               01  INQMFE1O REDEFINES INQMFE1I.                                          442
+  000505C                   02  FILLER PIC X(12).
+  000506C                   02  FILLER PICTURE X(3).
+  000507C                   02  TRANIDC    PICTURE X.
+  000508C                   02  TRANIDH    PICTURE X.
+  000509C                   02  TRANIDO  PIC X(4).
+  000510C                   02  FILLER PICTURE X(3).
+  000511C                   02  CUSTNOC    PICTURE X.
+  000512C                   02  CUSTNOH    PICTURE X.
+  000513C                   02  CUSTNOO  PIC X(6).
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    12
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000514C                   02  FILLER PICTURE X(3).
+  000515C                   02  LNAMEC    PICTURE X.
+  000516C                   02  LNAMEH    PICTURE X.
+  000517C                   02  LNAMEO  PIC X(30).
+  000518C                   02  FILLER PICTURE X(3).
+  000519C                   02  FNAMEC    PICTURE X.
+  000520C                   02  FNAMEH    PICTURE X.
+  000521C                   02  FNAMEO  PIC X(20).
+  000522C                   02  FILLER PICTURE X(3).
+  000523C                   02  ADDRC    PICTURE X.
+  000524C                   02  ADDRH    PICTURE X.
+  000525C                   02  ADDRO  PIC X(30).
+  000526C                   02  FILLER PICTURE X(3).
+  000527C                   02  CITYC    PICTURE X.
+  000528C                   02  CITYH    PICTURE X.
+  000529C                   02  CITYO  PIC X(20).
+  000530C                   02  FILLER PICTURE X(3).
+  000531C                   02  STATEC    PICTURE X.
+  000532C                   02  STATEH    PICTURE X.
+  000533C                   02  STATEO  PIC X(2).
+  000534C                   02  FILLER PICTURE X(3).
+  000535C                   02  ZIPCODEC    PICTURE X.
+  000536C                   02  ZIPCODEH    PICTURE X.
+  000537C                   02  ZIPCODEO  PIC X(10).
+  000538C                   02  FILLER PICTURE X(3).
+  000539C                   02  MESSAGEC    PICTURE X.
+  000540C                   02  MESSAGEH    PICTURE X.
+  000541C                   02  MESSAGEO  PIC X(79).
+  000542C                   02  FILLER PICTURE X(3).
+  000543C                   02  DUMMYC    PICTURE X.
+  000544C                   02  DUMMYH    PICTURE X.
+  000545C                   02  DUMMYO  PIC X(1).
+  000546               *
+  000547               ******************************************************************
+  000548               * ADD WORKING_STORAGE COPY STATEMENTS HERE
+  000549               *
+  000550                COPY CMFWSREC.
+  000551C              *
+  000552C               01 WS-CUSTOMER-MASTER-RECORD.
+  000553C                   05 WS-CM-KEY.
+  000554C                       10 WS-CM-CUSTOMER-NUMBER       PIC X(6).
+  000555C                   05 WS-CM-FIRST-NAME                PIC X(20).
+  000556C                   05 WS-CM-LAST-NAME                 PIC X(30).
+  000557C                   05 WS-CM-ADDRESS                   PIC X(30).
+  000558C                   05 WS-CM-CITY                      PIC X(20).
+  000559C                   05 WS-CM-STATE                     PIC X(2).
+  000560C                   05 WS-CM-ZIP-CODE                  PIC X(10).
+  000561C              *
+  000562               *
+  000563                COPY CMFWSSTS.
+  000564C              *
+  000565C              * CMF VSAM FILE STATUS WORKING_STORAGE VARIABLES
+  000566C              *
+  000567C               01 WS-CMF-FILE-STATUS-INFO.
+  000568C                   05 WS-CMF-OPEN                     PIC X.
+  000569C                       88 WS-CMF-OPEN-88                    VALUE 'Y'.
+  000570C                       88 WS-CMF-CLOSED-88                  VALUE 'Y'.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    13
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000571C                   05 WS-CMF-OPEN-STATUS              PIC S9(8) COMP VALUE 0.
+  000572C                   05 WS-CMF-ENABLE-STATUS            PIC S9(8) COMP VALUE 0.
+  000573C              *
+  000574               *
+  000575               ******************************************************************
+  000576               *
+  000577                LINKAGE SECTION.
+  000578               *
+  000579                01 DFHCOMMAREA                       PIC X.
+  000580               *
+  000581                PROCEDURE DIVISION.                                                       579
+  000582               *
+  000583                0000-PROCESS-CUSTOMER-INQUIRY.
+  000584               *
+  000585                    MOVE SPACES                      TO WS-HA-EXEC-TEXT.                  IMP 260
+  000586                    MOVE ALL '*'                     TO WS-HA-EXEC-TEXT-T1.               261
+  000587                    MOVE WS-HA-UNEXPECTED-ABEND      TO WS-HA-EXEC-TEXT-T2.               254 262
+  000588                    MOVE ALL '*'                     TO WS-HA-EXEC-TEXT-T8.               268
+  000589               *
+  000590                    EXEC CICS
+  000591                        HANDLE ABEND LABEL(9900-HANDLE-ABEND)
+  000592                    END-EXEC.                                                             EXT IMP
+  000593               *
+  000594                    EVALUATE TRUE
+  000595               *
+  000596                        WHEN EIBCALEN = ZERO                                              IMP IMP
+  000597      1                     MOVE LOW-VALUE           TO INQMFE1O                          IMP 504
+  000598      1                     MOVE WS-INQ-TRANSID-CNST TO TRANIDO                           26 509
+  000599      1                     SET WS-SEND-ERASE-88     TO TRUE                              37
+  000600      1                     PERFORM 1400-SEND-CUSTOMER-MAP                                816
+  000601               *
+  000602                        WHEN EIBAID = DFHCLEAR                                            IMP 144
+  000603      1                     MOVE LOW-VALUE           TO INQMFE1O                          IMP 504
+  000604      1                     MOVE WS-INQ-TRANSID-CNST TO TRANIDO                           26 509
+  000605      1                     SET WS-SEND-ERASE-88     TO TRUE                              37
+  000606      1                     PERFORM 1400-SEND-CUSTOMER-MAP                                816
+  000607               *
+  000608                        WHEN EIBAID = DFHPA1 OR DFHPA2 OR DFHPA3                          IMP 152 153 154
+  000609      1                     CONTINUE
+  000610               *
+  000611                        WHEN EIBAID = DFHPF3 OR DFHPF12                                   IMP 157 166
+  000612      1                     PERFORM 8200-CMF-CLOSE                                        968
+  000613               *            PERFORM 9800-SEND-TERMINATION-MESSAGE
+  000614               *
+  000615      1                     MOVE SPACES              TO WS-HA-EXEC-TEXT                   IMP 260
+  000616      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T1                261
+  000617      1                     MOVE 'ABEND'             TO WS-HA-EXEC-TEXT-T2                262
+  000618      1                     MOVE 'EXEC CICS'         TO WS-HA-EXEC-TEXT-T3                263
+  000619      1                     MOVE 'XCTL PROGRAM'      TO WS-HA-EXEC-TEXT-T4                264
+  000620      1                     MOVE WS-MEN-PROGRAM-CNST TO WS-HA-EXEC-TEXT-T5                25 265
+  000621      1                     MOVE SPACES              TO WS-HA-EXEC-TEXT-T6                IMP 266
+  000622      1                     MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-PGMIDERR)               419 272
+  000623      1                       TO WS-HA-EXEC-TEXT-T7                                       267
+  000624      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T8                268
+  000625      1                     EXEC CICS
+  000626      1                         XCTL PROGRAM(WS-MEN-PROGRAM-CNST)
+  000627      1                              RESP   (WS-RESPONSE-CODE)
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    14
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000628      1                              RESP2  (WS-RESPONSE-CODE2)
+  000629      1                     END-EXEC                                                      EXT 43
+  000630      1                     IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                         42
+  000631      2                         EXEC CICS
+  000632      2                             RETURN
+  000633      2                         END-EXEC                                                  EXT
+  000634      1                     ELSE
+  000635      2                         MOVE 'XCTL PROGRAM'  TO WS-RT-MSG-HEADER                  432
+  000636      2                         MOVE 'ERROR       '  TO WS-RT-MSG-NORMAL                  434
+  000637      2                         MOVE WS-MEN-PROGRAM-CNST                                  25
+  000638      2                           TO WS-RT-MSG-OTHER                                      436
+  000639      2                         PERFORM 9700-RESPTEXT                                     1011
+  000640      1                     END-IF
+  000641               *
+  000642                        WHEN EIBAID = DFHENTER                                            IMP 143
+  000643      1                     PERFORM 1000-PROCESS-CUSTOMER-MAP                             707
+  000644               *
+  000645                        WHEN OTHER
+  000646      1                     MOVE LOW-VALUE           TO INQMFE1O                          IMP 504
+  000647      1                     MOVE WS-KEY-INVALID      TO MESSAGEO                          50 541
+  000648      1                     SET WS-SEND-DATAONLY-ALARM-88                                 39
+  000649      1                      TO TRUE
+  000650      1                     PERFORM 1400-SEND-CUSTOMER-MAP                                816
+  000651               *
+  000652                    END-EVALUATE.
+  000653               *
+  000654                    MOVE SPACES                      TO WS-HA-EXEC-TEXT.                  IMP 260
+  000655                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T1.               261
+  000656                    MOVE 'ABEND'                     TO WS-HA-EXEC-TEXT-T2.               262
+  000657                    MOVE 'EXEC CICS'                 TO WS-HA-EXEC-TEXT-T3.               263
+  000658                    MOVE 'INQUIRE TRANSACTION'       TO WS-HA-EXEC-TEXT-T4.               264
+  000659                    MOVE WS-INQ-TRANSID-CNST         TO WS-HA-EXEC-TEXT-T5.               26 265
+  000660                    MOVE SPACES                      TO WS-HA-EXEC-TEXT-T6.               IMP 266
+  000661                    MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-TRANSIDERR)                     419 273
+  000662                      TO WS-HA-EXEC-TEXT-T7.                                              267
+  000663                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T8.               268
+  000664               *
+  000665                    EXEC CICS
+  000666                        INQUIRE TRANSACTION(WS-INQ-TRANSID-CNST)
+  000667                                RESP       (WS-RESPONSE-CODE)
+  000668                                RESP2      (WS-RESPONSE-CODE2)
+  000669                    END-EXEC.                                                             EXT 43
+  000670               *
+  000671                    IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                                 42
+  000672      1                 CONTINUE
+  000673                    ELSE
+  000674      1                 MOVE 'INQUIRE TRANSACTION'   TO WS-RT-MSG-HEADER                  432
+  000675      1                 MOVE 'ERROR              '   TO WS-RT-MSG-NORMAL                  434
+  000676      1                 MOVE WS-INQ-TRANSID-CNST     TO WS-RT-MSG-OTHER                   26 436
+  000677      1                 PERFORM 9700-RESPTEXT                                             1011
+  000678                    END-IF.
+  000679               *
+  000680                    MOVE SPACES                      TO WS-HA-EXEC-TEXT.                  IMP 260
+  000681                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T1.               261
+  000682                    MOVE 'ABEND'                     TO WS-HA-EXEC-TEXT-T2.               262
+  000683                    MOVE 'EXEC CICS'                 TO WS-HA-EXEC-TEXT-T3.               263
+  000684                    MOVE 'RETURN TRANSID'            TO WS-HA-EXEC-TEXT-T4.               264
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    15
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000685                    MOVE WS-INQ-TRANSID-CNST         TO WS-HA-EXEC-TEXT-T5.               26 265
+  000686                    MOVE SPACES                      TO WS-HA-EXEC-TEXT-T6.               IMP 266
+  000687                    MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-TRANSIDERR)                     419 273
+  000688                      TO WS-HA-EXEC-TEXT-T7.                                              267
+  000689                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T8.               268
+  000690               *
+  000691                    EXEC CICS
+  000692                        RETURN TRANSID (WS-INQ-TRANSID-CNST)
+  000693                               COMMAREA(WS-COMMUNICATION-AREA)
+  000694                               RESP    (WS-RESPONSE-CODE)
+  000695                               RESP2   (WS-RESPONSE-CODE2)
+  000696                    END-EXEC.                                                             EXT 43
+  000697               *
+  000698                    IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                                 42
+  000699      1                 CONTINUE
+  000700                    ELSE
+  000701      1                 MOVE 'RETURN TRANSID '       TO WS-RT-MSG-HEADER                  432
+  000702      1                 MOVE 'ERROR          '       TO WS-RT-MSG-NORMAL                  434
+  000703      1                 MOVE WS-INQ-TRANSID-CNST     TO WS-RT-MSG-OTHER                   26 436
+  000704      1                 PERFORM 9700-RESPTEXT                                             1011
+  000705                    END-IF.
+  000706               *
+  000707                1000-PROCESS-CUSTOMER-MAP.
+  000708               *
+  000709                    PERFORM 1100-RECEIVE-CUSTOMER-MAP.                                    723
+  000710                    PERFORM 1200-EDIT-CUSTOMER-DATA.                                      757
+  000711               *
+  000712                    IF WS-VALID-DATA-88                                                   35
+  000713      1                 PERFORM 1300-GET-CUSTOMER-RECORD                                  765
+  000714      1                 SET WS-SEND-DATAONLY-88                                           38
+  000715      1                  TO TRUE
+  000716      1                 PERFORM 1400-SEND-CUSTOMER-MAP                                    816
+  000717                    ELSE
+  000718      1                 SET WS-SEND-DATAONLY-ALARM-88                                     39
+  000719      1                  TO TRUE
+  000720      1                 PERFORM 1400-SEND-CUSTOMER-MAP                                    816
+  000721                    END-IF.
+  000722               *
+  000723                1100-RECEIVE-CUSTOMER-MAP.
+  000724               *
+  000725                    MOVE SPACES                      TO WS-HA-EXEC-TEXT.                  IMP 260
+  000726                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T1.               261
+  000727                    MOVE 'ABEND'                     TO WS-HA-EXEC-TEXT-T2.               262
+  000728                    MOVE 'EXEC CICS'                 TO WS-HA-EXEC-TEXT-T3.               263
+  000729                    MOVE 'RECEIVE MAP - MAPSET/MAP'  TO WS-HA-EXEC-TEXT-T4.               264
+  000730                    MOVE WS-INQ-MAPSET-CNST          TO WS-HA-EXEC-TEXT-T5.               27 265
+  000731                    MOVE WS-INQ-MAP-CNST             TO WS-HA-EXEC-TEXT-T6.               28 266
+  000732                    MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-MAPFAIL)                        419 274
+  000733                      TO WS-HA-EXEC-TEXT-T7.                                              267
+  000734                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T8.               268
+  000735               *
+  000736                    EXEC CICS
+  000737                        RECEIVE MAP   (WS-INQ-MAP-CNST)
+  000738                                MAPSET(WS-INQ-MAPSET-CNST)
+  000739                                INTO  (INQMFE1I)
+  000740                                RESP  (WS-RESPONSE-CODE)
+  000741                                RESP2 (WS-RESPONSE-CODE2)
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    16
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000742                    END-EXEC.                                                             EXT 43
+  000743               *
+  000744                    IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                                 42
+  000745      1                 CONTINUE
+  000746                    ELSE
+  000747      1                 MOVE 'RECEIVE MAP - MAPSET/MAP'
+  000748      1                   TO WS-RT-MSG-HEADER                                             432
+  000749      1                 MOVE WS-INQ-MAPSET-CNST      TO WS-RT-MSG-NORMAL                  27 434
+  000750      1                 MOVE WS-INQ-MAP-CNST         TO WS-RT-MSG-OTHER                   28 436
+  000751      1                 PERFORM 9700-RESPTEXT                                             1011
+  000752                    END-IF.
+  000753               *
+  000754                    INSPECT INQMFE1I                                                      442
+  000755                        REPLACING ALL '_' BY SPACE.                                       IMP
+  000756               *
+  000757                1200-EDIT-CUSTOMER-DATA.
+  000758               *
+  000759                    IF       CUSTNOL = ZERO                                               450 IMP
+  000760                          OR CUSTNOI = SPACE                                              455 IMP
+  000761      1                 MOVE WS-FALSE-CNST           TO WS-VALID-DATA-FLAG                18 34
+  000762      1                 MOVE WS-ENTER-CUST-NBR       TO MESSAGEO                          56 541
+  000763                    END-IF.
+  000764               *
+  000765                1300-GET-CUSTOMER-RECORD.
+  000766               *
+  000767                    MOVE SPACES                      TO WS-HA-EXEC-TEXT.                  IMP 260
+  000768                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T1.               261
+  000769                    MOVE 'ABEND'                     TO WS-HA-EXEC-TEXT-T2.               262
+  000770                    MOVE 'READ FILE'
+  000771                      TO WS-HA-EXEC-TEXT-T3.                                              263
+  000772                    MOVE 'EXEC CICS READ FILE'
+  000773                      TO WS-HA-EXEC-TEXT-T4.                                              264
+  000774                    MOVE WS-CMF-FILE-NAME-CNST       TO WS-HA-EXEC-TEXT-T5.               31 265
+  000775                    MOVE SPACES                      TO WS-HA-EXEC-TEXT-T6.               IMP 266
+  000776                    MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-FILENOTFOUND)                   419 271
+  000777                      TO WS-HA-EXEC-TEXT-T7.                                              267
+  000778                    MOVE ALL '='                     TO WS-HA-EXEC-TEXT-T8.               268
+  000779               *
+  000780               * ADD PERFORM TO OPEN VSAM FILE
+  000781               *
+  000782                    PERFORM 8100-CMF-OPEN.                                                926
+  000783               *
+  000784                    EXEC CICS
+  000785                        READ FILE  (WS-CMF-FILE-NAME-CNST)
+  000786                             INTO  (WS-CUSTOMER-MASTER-RECORD)
+  000787                             RIDFLD(CUSTNOI)
+  000788                             RESP  (WS-RESPONSE-CODE)
+  000789                             RESP2 (WS-RESPONSE-CODE2)
+  000790                    END-EXEC.                                                             EXT 43
+  000791               *
+  000792                    IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                                 42
+  000793      1                 MOVE SPACES                  TO MESSAGEO                          IMP 541
+  000794      1                 MOVE WS-CM-LAST-NAME         TO LNAMEO                            556 517
+  000795      1                 MOVE WS-CM-FIRST-NAME        TO FNAMEO                            555 521
+  000796      1                 MOVE WS-CM-ADDRESS           TO ADDRO                             557 525
+  000797      1                 MOVE WS-CM-CITY              TO CITYO                             558 529
+  000798      1                 MOVE WS-CM-STATE             TO STATEO                            559 533
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    17
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000799      1                 MOVE WS-CM-ZIP-CODE          TO ZIPCODEO                          560 537
+  000800      1             ELSE IF WS-RESPONSE-CODE = DFHRESP(NOTFND)                            42
+  000801      2                 MOVE WS-FALSE-CNST           TO WS-VALID-DATA-FLAG                18 34
+  000802      2                 MOVE WS-CUST-DOES-NOT-EXIST  TO MESSAGEO                          62 541
+  000803      2                 MOVE SPACES                  TO LNAMEO                            IMP 517
+  000804      2                                                 FNAMEO                            521
+  000805      2                                                 ADDRO                             525
+  000806      2                                                 CITYO                             529
+  000807      2                                                 STATEO                            533
+  000808      2                                                 ZIPCODEO                          537
+  000809      1             ELSE
+  000810      2                 MOVE 'READ FILE      '       TO WS-RT-MSG-HEADER                  432
+  000811      2                 MOVE 'ERROR          '       TO WS-RT-MSG-NORMAL                  434
+  000812      2                 MOVE WS-CMF-FILE-NAME-CNST   TO WS-RT-MSG-OTHER                   31 436
+  000813      2                 PERFORM 9700-RESPTEXT                                             1011
+  000814      1             END-IF.
+  000815               *
+  000816                1400-SEND-CUSTOMER-MAP.
+  000817               *
+  000818                    EVALUATE TRUE
+  000819                        WHEN WS-SEND-ERASE-88                                             37
+  000820      1                     MOVE SPACES              TO WS-HA-EXEC-TEXT                   IMP 260
+  000821      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T1                261
+  000822      1                     MOVE 'ABEND'             TO WS-HA-EXEC-TEXT-T2                262
+  000823      1                     MOVE 'EVALUATE WHEN WS-SEND-ERASE-88'
+  000824      1                       TO WS-HA-EXEC-TEXT-T3                                       263
+  000825      1                     MOVE 'EXEC CICS SEND MAP - MAPSET/MAP'
+  000826      1                       TO WS-HA-EXEC-TEXT-T4                                       264
+  000827      1                     MOVE WS-INQ-MAPSET-CNST  TO WS-HA-EXEC-TEXT-T5                27 265
+  000828      1                     MOVE WS-INQ-MAP-CNST     TO WS-HA-EXEC-TEXT-T6                28 266
+  000829      1                     MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-MAPFAIL)                419 274
+  000830      1                       TO WS-HA-EXEC-TEXT-T7                                       267
+  000831      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T8                268
+  000832               *
+  000833      1                     EXEC CICS
+  000834      1                         SEND MAP   (WS-INQ-MAP-CNST)
+  000835      1                              MAPSET(WS-INQ-MAPSET-CNST)
+  000836      1                              FROM  (INQMFE1O)
+  000837      1                              ERASE
+  000838      1                              RESP  (WS-RESPONSE-CODE)
+  000839      1                              RESP2 (WS-RESPONSE-CODE2)
+  000840      1                     END-EXEC                                                      EXT 43
+  000841               *
+  000842      1                     IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                         42
+  000843      2                         CONTINUE
+  000844      1                     ELSE
+  000845      2                         MOVE 'SEND MAP     ' TO WS-RT-MSG-HEADER                  432
+  000846      2                         MOVE 'ERROR        ' TO WS-RT-MSG-NORMAL                  434
+  000847      2                         MOVE 'ERASE        ' TO WS-RT-MSG-OTHER                   436
+  000848      2                         PERFORM 9700-RESPTEXT                                     1011
+  000849      1                     END-IF
+  000850               *
+  000851                        WHEN WS-SEND-DATAONLY-88                                          38
+  000852      1                     MOVE SPACES              TO WS-HA-EXEC-TEXT                   IMP 260
+  000853      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T1                261
+  000854      1                     MOVE 'ABEND'             TO WS-HA-EXEC-TEXT-T2                262
+  000855      1                     MOVE 'EVALUATE WHEN WS-SEND-DATAONLY-88'
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    18
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000856      1                       TO WS-HA-EXEC-TEXT-T3                                       263
+  000857      1                     MOVE 'EXEC CICS SEND MAP - MAPSET/MAP'
+  000858      1                       TO WS-HA-EXEC-TEXT-T4                                       264
+  000859      1                     MOVE WS-INQ-MAPSET-CNST  TO WS-HA-EXEC-TEXT-T5                27 265
+  000860      1                     MOVE WS-INQ-MAP-CNST     TO WS-HA-EXEC-TEXT-T6                28 266
+  000861      1                     MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-MAPFAIL)                419 274
+  000862      1                       TO WS-HA-EXEC-TEXT-T7                                       267
+  000863      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T8                268
+  000864               *
+  000865      1                     EXEC CICS
+  000866      1                         SEND MAP   (WS-INQ-MAP-CNST)
+  000867      1                              MAPSET(WS-INQ-MAPSET-CNST)
+  000868      1                              FROM  (INQMFE1O)
+  000869      1                              DATAONLY
+  000870      1                              RESP  (WS-RESPONSE-CODE)
+  000871      1                              RESP2 (WS-RESPONSE-CODE2)
+  000872      1                     END-EXEC                                                      EXT 43
+  000873               *
+  000874      1                     IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                         42
+  000875      2                         CONTINUE
+  000876      1                     ELSE
+  000877      2                         MOVE 'SEND MAP     ' TO WS-RT-MSG-HEADER                  432
+  000878      2                         MOVE 'ERROR        ' TO WS-RT-MSG-NORMAL                  434
+  000879      2                         MOVE 'DATAONLY     ' TO WS-RT-MSG-OTHER                   436
+  000880      2                         PERFORM 9700-RESPTEXT                                     1011
+  000881      1                     END-IF
+  000882               *
+  000883                        WHEN WS-SEND-DATAONLY-ALARM-88                                    39
+  000884      1                     MOVE SPACES              TO WS-HA-EXEC-TEXT                   IMP 260
+  000885      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T1                261
+  000886      1                     MOVE 'ABEND'             TO WS-HA-EXEC-TEXT-T2                262
+  000887      1                     MOVE 'EVALUATE WHEN WS-SEND-DATAONLY-ALARM-88'
+  000888      1                       TO WS-HA-EXEC-TEXT-T3                                       263
+  000889      1                     MOVE 'EXEC CICS SEND MAP - MAPSET/MAP'
+  000890      1                       TO WS-HA-EXEC-TEXT-T4                                       264
+  000891      1                     MOVE WS-INQ-MAPSET-CNST  TO WS-HA-EXEC-TEXT-T5                27 265
+  000892      1                     MOVE WS-INQ-MAP-CNST     TO WS-HA-EXEC-TEXT-T6                28 266
+  000893      1                     MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-MAPFAIL)                419 274
+  000894      1                       TO WS-HA-EXEC-TEXT-T7                                       267
+  000895      1                     MOVE ALL '='             TO WS-HA-EXEC-TEXT-T8                268
+  000896               *
+  000897      1                     EXEC CICS
+  000898      1                         SEND MAP   (WS-INQ-MAP-CNST)
+  000899      1                              MAPSET(WS-INQ-MAPSET-CNST)
+  000900      1                              FROM  (INQMFE1O)
+  000901      1                              DATAONLY
+  000902      1                              ALARM
+  000903      1                              RESP  (WS-RESPONSE-CODE)
+  000904      1                              RESP2 (WS-RESPONSE-CODE2)
+  000905      1                     END-EXEC                                                      EXT 43
+  000906               *
+  000907      1                     IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                         42
+  000908      2                         CONTINUE
+  000909      1                     ELSE
+  000910      2                         MOVE 'SEND MAP     ' TO WS-RT-MSG-HEADER                  432
+  000911      2                         MOVE 'ERROR        ' TO WS-RT-MSG-NORMAL                  434
+  000912      2                         MOVE 'DATAONLY-ALARM'
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    19
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000913      2                           TO WS-RT-MSG-OTHER                                      436
+  000914      2                         PERFORM 9700-RESPTEXT                                     1011
+  000915      1                     END-IF
+  000916               *
+  000917                    END-EVALUATE.
+  000918               *
+  000919               ******************************************************************
+  000920               * ADD PROCEDURE DIVISION COPY STATEMENTS HERE
+  000921               *
+  000922                COPY CMFOPEN.
+  000923C              *
+  000924C              * CMF OPEN PARAGRAPH
+  000925C              *
+  000926C               8100-CMF-OPEN.
+  000927C              *
+  000928C                   MOVE SPACES                        TO WS-HA-EXEC-TEXT.                IMP 260
+  000929C                   MOVE ALL '='                       TO WS-HA-EXEC-TEXT-T1.             261
+  000930C                   MOVE 'ABEND OPEN'                  TO WS-HA-EXEC-TEXT-T2.             262
+  000931C                   MOVE 'EXEC CICS'                   TO WS-HA-EXEC-TEXT-T3.             263
+  000932C                   MOVE 'INQUIRE FILE'                TO WS-HA-EXEC-TEXT-T4.             264
+  000933C                   MOVE WS-CMF-FILE-NAME-CNST         TO WS-HA-EXEC-TEXT-T5.             31 265
+  000934C                   MOVE SPACES                        TO WS-HA-EXEC-TEXT-T6.             IMP 266
+  000935C                   MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-FILENOTFOUND)                   419 271
+  000936C                     TO WS-HA-EXEC-TEXT-T7.                                              267
+  000937C                   MOVE ALL '='                       TO WS-HA-EXEC-TEXT-T8.             268
+  000938C              *
+  000939C                   EXEC CICS
+  000940C                       INQUIRE FILE    (WS-CMF-FILE-NAME-CNST)
+  000941C                           OPENSTATUS  (WS-CMF-OPEN-STATUS)
+  000942C                           ENABLESTATUS(WS-CMF-ENABLE-STATUS)
+  000943C                           RESP        (WS-RESPONSE-CODE)
+  000944C                           RESP2       (WS-RESPONSE-CODE2)
+  000945C                   END-EXEC.                                                             EXT 43
+  000946C              *
+  000947C                   IF WS-CMF-OPEN-STATUS = DFHVALUE(CLOSED)                              571
+  000948C     1                 MOVE 'SET FILE OPEN'           TO WS-HA-EXEC-TEXT-T4              264
+  000949C     1                 MOVE WS-CMF-FILE-NAME-CNST     TO WS-HA-EXEC-TEXT-T5              31 265
+  000950C     1                 EXEC CICS
+  000951C     1                     SET FILE  (WS-CMF-FILE-NAME-CNST) OPEN
+  000952C     1                         RESP  (WS-RESPONSE-CODE)
+  000953C     1                         RESP2 (WS-RESPONSE-CODE2)
+  000954C     1                 END-EXEC                                                          EXT 43
+  000955C     1                 MOVE WS-OPEN-CNST              TO WS-CMF-OPEN                     21 568
+  000956C     1             ELSE IF WS-CMF-OPEN-STATUS = DFHVALUE(OPEN)                           571
+  000957C     2                      NEXT SENTENCE
+  000958C     1                  ELSE
+  000959C     2                      PERFORM 9700-RESPTEXT                                        1011
+  000960C     1                  END-IF
+  000961C                   END-IF.
+  000962C              *
+  000963               *
+  000964                COPY CMFCLOSE.
+  000965C              *
+  000966C              * CMF CLOSE PARAGRAPH
+  000967C              *
+  000968C               8200-CMF-CLOSE.
+  000969C              *
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    20
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000970C                   MOVE SPACES                        TO WS-HA-EXEC-TEXT.                IMP 260
+  000971C                   MOVE ALL '='                       TO WS-HA-EXEC-TEXT-T1.             261
+  000972C                   MOVE 'ABEND CLOSE'                 TO WS-HA-EXEC-TEXT-T2.             262
+  000973C                   MOVE 'EXEC CICS'                   TO WS-HA-EXEC-TEXT-T3.             263
+  000974C                   MOVE 'INQUIRE FILE'                TO WS-HA-EXEC-TEXT-T4.             264
+  000975C                   MOVE WS-CMF-FILE-NAME-CNST         TO WS-HA-EXEC-TEXT-T5.             31 265
+  000976C                   MOVE SPACES                        TO WS-HA-EXEC-TEXT-T6.             IMP 266
+  000977C                   MOVE WS-RT-MSG-NBR-TEXT(WS-HA-ERR-MSG-FILENOTFOUND)                   419 271
+  000978C                     TO WS-HA-EXEC-TEXT-T7.                                              267
+  000979C                   MOVE ALL '='                       TO WS-HA-EXEC-TEXT-T8.             268
+  000980C              *
+  000981C                   EXEC CICS
+  000982C                       INQUIRE FILE    (WS-CMF-FILE-NAME-CNST)
+  000983C                           OPENSTATUS  (WS-CMF-OPEN-STATUS)
+  000984C                           ENABLESTATUS(WS-CMF-ENABLE-STATUS)
+  000985C                           RESP        (WS-RESPONSE-CODE)
+  000986C                           RESP2       (WS-RESPONSE-CODE2)
+  000987C                   END-EXEC.                                                             EXT 43
+  000988C              *
+  000989C                   IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                                 42
+  000990C     1                 IF WS-CMF-OPEN-STATUS = DFHVALUE(OPEN)                            571
+  000991C     2                     MOVE 'SET FILE CLOSED'     TO WS-HA-EXEC-TEXT-T4              264
+  000992C     2                     MOVE WS-CMF-FILE-NAME-CNST TO WS-HA-EXEC-TEXT-T5              31 265
+  000993C     2                     EXEC CICS
+  000994C     2                         SET FILE  (WS-CMF-FILE-NAME-CNST) CLOSED
+  000995C     2                             RESP  (WS-RESPONSE-CODE)
+  000996C     2                             RESP2 (WS-RESPONSE-CODE2)
+  000997C     2                     END-EXEC                                                      EXT 43
+  000998C     2                     MOVE WS-CLOSED-CNST        TO WS-CMF-OPEN                     22 568
+  000999C     1                 END-IF
+  001000C                   ELSE
+  001001C     1                 PERFORM 9700-RESPTEXT                                             1011
+  001002C                   END-IF.
+  001003C              *
+  001004               *
+  001005               ******************************************************************
+  001006               *
+  001007                COPY RESPTEXT.
+  001008C              *
+  001009C              * ERROR HANDLING RESPONSE TEXT LOOKUP PARAGRAPH
+  001010C              *
+  001011C               9700-RESPTEXT.
+  001012C              *
+  001013C                   MOVE WS-RESPONSE-CODE            TO WS-RT-RESP-NBR.                   42 421
+  001014C                   MOVE SPACES                      TO WS-RT-MSG.                        IMP 426
+  001015C                   MOVE WS-RT-MSG-HEADER            TO WS-RT-MSG-HDR                     432 427
+  001016C              *
+  001017C                   IF WS-RESPONSE-CODE = DFHRESP(NORMAL)                                 42
+  001018C     1                 MOVE WS-RT-MSG-NORMAL        TO WS-RT-MSG-T1                      434 429
+  001019C     1                 MOVE WS-RT-MSG-OTHER         TO WS-RT-MSG-T2                      436 430
+  001020C                   ELSE
+  001021C     1                 IF WS-RT-RESP-NBR-VALID-88                                        422
+  001022C     2                     MOVE WS-RT-MSG-NBR-TEXT(WS-RT-RESP-NBR)                       419 421
+  001023C     2                       TO WS-RT-MSG-T1                                             429
+  001024C     2                     MOVE WS-RT-MSG-OTHER     TO WS-RT-MSG-T2                      436 430
+  001025C     1                 ELSE
+  001026C     2                     MOVE WS-RT-RESP-NBR-INVALID-MSG                               424
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    21
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  001027C     2                       TO WS-RT-MSG-T1                                             429
+  001028C     2                     MOVE WS-RT-MSG-OTHER     TO WS-RT-MSG-T2                      436 430
+  001029C     1                 END-IF
+  001030C              *
+  001031C     1                 MOVE EIBRESP                 TO WS-EM-RESP                        IMP 214
+  001032C     1                 MOVE EIBRESP2                TO WS-EM-RESP2                       IMP 219
+  001033C     1                 MOVE EIBTRNID                TO WS-EM-TRNID                       IMP 224
+  001034C     1                 MOVE EIBRSRCE                TO WS-EM-RSRCE                       IMP 229
+  001035C              *
+  001036C     1                 MOVE WS-RT-MSG               TO WS-EM-MSG                         426 234
+  001037C              *
+  001038C     1                 EXEC CICS
+  001039C     1                     SEND TEXT FROM(WS-EM-ERROR-MESSAGE)
+  001040C     1                         FREEKB
+  001041C     1                         ERASE
+  001042C     1                 END-EXEC                                                          EXT
+  001043C              *
+  001044C     1                 STOP RUN
+  001045C              *
+  001046C                   END-IF.
+  001047C              *
+  001048               *
+  001049                COPY TERMMSG.
+  001050C              *
+  001051C              * SEND TERMINATION MESSAGE PARAGRAPH
+  001052C              *
+  001053C               9800-SEND-TERMINATION-MESSAGE.
+  001054C              *
+  001055C                   EXEC CICS
+  001056C                       SEND TEXT FROM(WS-END-OF-SESSION-MESSAGE)
+  001057C                           ERASE
+  001058C                           FREEKB
+  001059C                   END-EXEC.                                                             EXT
+  001060C              *
+  001061C                   EXEC CICS
+  001062C                       RETURN
+  001063C                   END-EXEC.                                                             EXT
+  001064C              *
+  001065               *
+  001066                COPY HDLABEND.
+  001067C              *
+  001068C              * HANDLE ABEND PARAGRAPH
+  001069C              *
+  001070C               9900-HANDLE-ABEND.
+  001071C              *
+  001072C                   MOVE WS-HA-EXEC-TEXT             TO WS-HA-HANDLE-ABEND-MSG.           260 243
+  001073C              *
+  001074C                   EXEC CICS
+  001075C                       SEND TEXT FROM(WS-HA-HANDLE-ABEND-MSG)
+  001076C                           FREEKB
+  001077C                           ERASE
+  001078C                   END-EXEC.                                                             EXT
+  001079C              *
+  001080C                   EXEC CICS
+  001081C                       RETURN
+  001082C                   END-EXEC.                                                             EXT
+  001083C              *
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    22
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  001084               *
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    23
+An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+ 
+ Defined   Cross-reference of data names   References
+ 
+     471   ADDRA
+     523   ADDRC
+     469   ADDRF. . . . . . . . . . . . .  470
+     524   ADDRH
+     473   ADDRI
+     468   ADDRL
+     525   ADDRO. . . . . . . . . . . . .  M796 M805
+      97   ATTR-BLINK
+     102   ATTR-BLUE
+     101   ATTR-DEFAULT-COLOR
+     105   ATTR-GREEN
+     108   ATTR-NEUTRAL
+      96   ATTR-NO-HIGHLIGHT
+     104   ATTR-PINK
+      83   ATTR-PROT
+      85   ATTR-PROT-BRT
+      86   ATTR-PROT-BRT-MDT
+      87   ATTR-PROT-DARK
+      88   ATTR-PROT-DARK-MDT
+      84   ATTR-PROT-MDT
+      89   ATTR-PROT-SKIP
+      91   ATTR-PROT-SKIP-BRT
+      92   ATTR-PROT-SKIP-BRT-MDT
+      93   ATTR-PROT-SKIP-DARK
+      94   ATTR-PROT-SKIP-DARK-MDT
+      90   ATTR-PROT-SKIP-MDT
+     103   ATTR-RED
+      98   ATTR-REVERSE
+     106   ATTR-TURQUOISE
+      99   ATTR-UNDERSCORE
+      71   ATTR-UNPROT
+      73   ATTR-UNPROT-BRT
+      74   ATTR-UNPROT-BRT-MDT
+      75   ATTR-UNPROT-DARK
+      76   ATTR-UNPROT-DARK-MDT
+      72   ATTR-UNPROT-MDT
+      77   ATTR-UNPROT-NUM
+      79   ATTR-UNPROT-NUM-BRT
+      80   ATTR-UNPROT-NUM-BRT-MDT
+      81   ATTR-UNPROT-NUM-DARK
+      82   ATTR-UNPROT-NUM-DARK-MDT
+      78   ATTR-UNPROT-NUM-MDT
+     107   ATTR-YELLOW
+      69   ATTRIBUTE-DEFINITIONS
+     477   CITYA
+     527   CITYC
+     475   CITYF. . . . . . . . . . . . .  476
+     528   CITYH
+     479   CITYI
+     474   CITYL
+     529   CITYO. . . . . . . . . . . . .  M797 M806
+     453   CUSTNOA
+     511   CUSTNOC
+     451   CUSTNOF. . . . . . . . . . . .  452
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    24
+ Defined   Cross-reference of data names   References
+ 
+     512   CUSTNOH
+     455   CUSTNOI. . . . . . . . . . . .  760
+     450   CUSTNOL. . . . . . . . . . . .  759
+     513   CUSTNOO
+     141   DFHAID
+     144   DFHCLEAR . . . . . . . . . . .  602
+     145   DFHCLRP
+     579   DFHCOMMAREA. . . . . . . . . .  581
+       0   DFHEIGDI . . . . . . . . . . .  592
+     143   DFHENTER . . . . . . . . . . .  642
+     149   DFHMSRE
+     142   DFHNULL
+     148   DFHOPID
+     152   DFHPA1 . . . . . . . . . . . .  608
+     153   DFHPA2 . . . . . . . . . . . .  608
+     154   DFHPA3 . . . . . . . . . . . .  608
+     147   DFHPEN
+     155   DFHPF1
+     164   DFHPF10
+     165   DFHPF11
+     166   DFHPF12. . . . . . . . . . . .  611
+     167   DFHPF13
+     168   DFHPF14
+     169   DFHPF15
+     170   DFHPF16
+     171   DFHPF17
+     172   DFHPF18
+     173   DFHPF19
+     156   DFHPF2
+     174   DFHPF20
+     175   DFHPF21
+     176   DFHPF22
+     178   DFHPF23
+     179   DFHPF24
+     157   DFHPF3 . . . . . . . . . . . .  611
+     158   DFHPF4
+     159   DFHPF5
+     160   DFHPF6
+     161   DFHPF7
+     162   DFHPF8
+     163   DFHPF9
+     150   DFHSTRF
+     151   DFHTRIG
+     501   DUMMYA
+     543   DUMMYC
+     499   DUMMYF . . . . . . . . . . . .  500
+     544   DUMMYH
+     503   DUMMYI
+     498   DUMMYL
+     545   DUMMYO
+       0   EIBAID . . . . . . . . . . . .  602 608 611 642
+       0   EIBCALEN . . . . . . . . . . .  596
+       0   EIBRESP. . . . . . . . . . . .  1031
+       0   EIBRESP2 . . . . . . . . . . .  1032
+       0   EIBRSRCE . . . . . . . . . . .  1034
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    25
+ Defined   Cross-reference of data names   References
+ 
+       0   EIBTRNID . . . . . . . . . . .  1033
+     465   FNAMEA
+     519   FNAMEC
+     463   FNAMEF . . . . . . . . . . . .  464
+     520   FNAMEH
+     467   FNAMEI
+     462   FNAMEL
+     521   FNAMEO . . . . . . . . . . . .  M795 M804
+     442   INQMFE1I . . . . . . . . . . .  504 M754
+     504   INQMFE1O . . . . . . . . . . .  M597 M603 M646
+     459   LNAMEA
+     515   LNAMEC
+     457   LNAMEF . . . . . . . . . . . .  458
+     516   LNAMEH
+     461   LNAMEI
+     456   LNAMEL
+     517   LNAMEO . . . . . . . . . . . .  M794 M803
+     495   MESSAGEA
+     539   MESSAGEC
+     493   MESSAGEF . . . . . . . . . . .  494
+     540   MESSAGEH
+     497   MESSAGEI
+     492   MESSAGEL
+     541   MESSAGEO . . . . . . . . . . .  M647 M762 M793 M802
+     483   STATEA
+     531   STATEC
+     481   STATEF . . . . . . . . . . . .  482
+     532   STATEH
+     485   STATEI
+     480   STATEL
+     533   STATEO . . . . . . . . . . . .  M798 M807
+     447   TRANIDA
+     507   TRANIDC
+     445   TRANIDF. . . . . . . . . . . .  446
+     508   TRANIDH
+     449   TRANIDI
+     444   TRANIDL
+     509   TRANIDO. . . . . . . . . . . .  M598 M604
+      24   WS-CICS-CNSTS
+      22   WS-CLOSED-CNST . . . . . . . .  998
+     557   WS-CM-ADDRESS. . . . . . . . .  796
+     558   WS-CM-CITY . . . . . . . . . .  797
+     554   WS-CM-CUSTOMER-NUMBER
+     555   WS-CM-FIRST-NAME . . . . . . .  795
+     553   WS-CM-KEY
+     556   WS-CM-LAST-NAME. . . . . . . .  794
+     559   WS-CM-STATE. . . . . . . . . .  798
+     560   WS-CM-ZIP-CODE . . . . . . . .  799
+     570   WS-CMF-CLOSED-88
+     572   WS-CMF-ENABLE-STATUS
+      31   WS-CMF-FILE-NAME-CNST. . . . .  774 812 933 949 975 992
+     567   WS-CMF-FILE-STATUS-INFO
+     568   WS-CMF-OPEN. . . . . . . . . .  M955 M998
+     571   WS-CMF-OPEN-STATUS . . . . . .  947 956 990
+     569   WS-CMF-OPEN-88
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    26
+ Defined   Cross-reference of data names   References
+ 
+      16   WS-CNSTS
+      14   WS-COMMUNICATION-AREA
+      62   WS-CUST-DOES-NOT-EXIST . . . .  802
+     552   WS-CUSTOMER-MASTER-RECORD
+     203   WS-EM-ERROR-LINE-1
+     210   WS-EM-ERROR-LINE-2
+     211   WS-EM-ERROR-LINE-3
+     216   WS-EM-ERROR-LINE-4
+     221   WS-EM-ERROR-LINE-5
+     226   WS-EM-ERROR-LINE-6
+     231   WS-EM-ERROR-LINE-7
+     235   WS-EM-ERROR-LINE-8
+     202   WS-EM-ERROR-MESSAGE
+     234   WS-EM-MSG. . . . . . . . . . .  M1036
+     214   WS-EM-RESP . . . . . . . . . .  M1031
+     219   WS-EM-RESP2. . . . . . . . . .  M1032
+     229   WS-EM-RSRCE. . . . . . . . . .  M1034
+     224   WS-EM-TRNID. . . . . . . . . .  M1033
+      45   WS-END-OF-SESSION-MESSAGE
+      56   WS-ENTER-CUST-NBR. . . . . . .  762
+      18   WS-FALSE-CNST. . . . . . . . .  761 801
+      30   WS-FILE-CNSTS
+      33   WS-FLAGS
+     189   WS-GM-GENERAL-ERROR-MSG
+     194   WS-GM-MSG
+     190   WS-GM-RESP
+     191   WS-GM-RESP2
+     193   WS-GM-RSRCE
+     192   WS-GM-TRNID
+     271   WS-HA-ERR-MSG-FILENOTFOUND . .  776 935 977
+     274   WS-HA-ERR-MSG-MAPFAIL. . . . .  732 829 861 893
+     270   WS-HA-ERR-MSG-NBRS
+     272   WS-HA-ERR-MSG-PGMIDERR . . . .  622
+     273   WS-HA-ERR-MSG-TRANSIDERR . . .  661 687
+     260   WS-HA-EXEC-TEXT. . . . . . . .  M585 M615 M654 M680 M725 M767 M820 M852 M884 M928 M970 1072
+     261   WS-HA-EXEC-TEXT-T1 . . . . . .  M586 M616 M655 M681 M726 M768 M821 M853 M885 M929 M971
+     262   WS-HA-EXEC-TEXT-T2 . . . . . .  M587 M617 M656 M682 M727 M769 M822 M854 M886 M930 M972
+     263   WS-HA-EXEC-TEXT-T3 . . . . . .  M618 M657 M683 M728 M771 M824 M856 M888 M931 M973
+     264   WS-HA-EXEC-TEXT-T4 . . . . . .  M619 M658 M684 M729 M773 M826 M858 M890 M932 M948 M974 M991
+     265   WS-HA-EXEC-TEXT-T5 . . . . . .  M620 M659 M685 M730 M774 M827 M859 M891 M933 M949 M975 M992
+     266   WS-HA-EXEC-TEXT-T6 . . . . . .  M621 M660 M686 M731 M775 M828 M860 M892 M934 M976
+     267   WS-HA-EXEC-TEXT-T7 . . . . . .  M623 M662 M688 M733 M777 M830 M862 M894 M936 M978
+     268   WS-HA-EXEC-TEXT-T8 . . . . . .  M588 M624 M663 M689 M734 M778 M831 M863 M895 M937 M979
+     243   WS-HA-HANDLE-ABEND-MSG . . . .  M1072
+     244   WS-HA-MSG-T1
+     245   WS-HA-MSG-T2
+     246   WS-HA-MSG-T3
+     247   WS-HA-MSG-T4
+     248   WS-HA-MSG-T5
+     249   WS-HA-MSG-T6
+     250   WS-HA-MSG-T7
+     251   WS-HA-MSG-T8
+     254   WS-HA-UNEXPECTED-ABEND . . . .  587
+     257   WS-HA-UNHANDLED-ABEND
+     253   WS-HANDLE-ABEND-MSGS
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    27
+ Defined   Cross-reference of data names   References
+ 
+      28   WS-INQ-MAP-CNST. . . . . . . .  731 750 828 860 892
+      27   WS-INQ-MAPSET-CNST . . . . . .  730 749 827 859 891
+      26   WS-INQ-TRANSID-CNST. . . . . .  598 604 659 676 685 703
+      50   WS-KEY-INVALID . . . . . . . .  647
+      25   WS-MEN-PROGRAM-CNST. . . . . .  620 637
+      20   WS-NO-CNST
+      21   WS-OPEN-CNST . . . . . . . . .  955
+      42   WS-RESPONSE-CODE . . . . . . .  630 671 698 744 792 800 842 874 907 989 1013 1017
+      41   WS-RESPONSE-CODES
+      43   WS-RESPONSE-CODE2. . . . . . .  M629 M669 M696 M742 M790 M840 M872 M905 M945 M954 M987 M997
+     426   WS-RT-MSG. . . . . . . . . . .  M1014 1036
+     427   WS-RT-MSG-HDR. . . . . . . . .  M1015
+     432   WS-RT-MSG-HEADER . . . . . . .  M635 M674 M701 M748 M810 M845 M877 M910 1015
+     419   WS-RT-MSG-NBR-TEXT . . . . . .  622 661 687 732 776 829 861 893 935 977 1022
+     434   WS-RT-MSG-NORMAL . . . . . . .  M636 M675 M702 M749 M811 M846 M878 M911 1018
+     436   WS-RT-MSG-OTHER. . . . . . . .  M638 M676 M703 M750 M812 M847 M879 M913 1019 1024 1028
+     428   WS-RT-MSG-RESP-NBR
+     288   WS-RT-MSG-TABLE-DATA . . . . .  418
+     418   WS-RT-MSG-TABLE-DATA-R
+     429   WS-RT-MSG-T1 . . . . . . . . .  M1018 M1023 M1027
+     430   WS-RT-MSG-T2 . . . . . . . . .  M1019 M1024 M1028
+     421   WS-RT-RESP-NBR . . . . . . . .  M1013 1022
+     424   WS-RT-RESP-NBR-INVALID-MSG . .  1026
+     422   WS-RT-RESP-NBR-VALID-88. . . .  1021
+     289   WS-RT-001-ERROR
+     290   WS-RT-002-RDATT
+     291   WS-RT-003-WRBRK
+     292   WS-RT-004-EOF
+     293   WS-RT-005-EODS
+     294   WS-RT-006-EOC
+     295   WS-RT-007-INBFMH
+     296   WS-RT-008-ENDINPT
+     297   WS-RT-009-NONVAL
+     298   WS-RT-010-NOSTART
+     299   WS-RT-011-TERMIDERR
+     300   WS-RT-012-FILENOTFOUND
+     301   WS-RT-013-NOTFND
+     302   WS-RT-014-DUPREC
+     303   WS-RT-015-DUPKEY
+     304   WS-RT-016-INVREQ
+     305   WS-RT-017-IOERR
+     306   WS-RT-018-NOSPACE
+     307   WS-RT-019-NOTOPEN
+     308   WS-RT-020-ENDFILE
+     309   WS-RT-021-ILLOGIC
+     310   WS-RT-022-LENGERR
+     311   WS-RT-023-QZERO
+     312   WS-RT-024-SIGNAL
+     313   WS-RT-025-QBUSY
+     314   WS-RT-026-ITEMERR
+     315   WS-RT-027-PGMIDERR
+     316   WS-RT-028-TRANSIDERR
+     317   WS-RT-029-ENDDATA
+     318   WS-RT-030-INVTSREQ
+     319   WS-RT-031-EXPIRED
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    28
+ Defined   Cross-reference of data names   References
+ 
+     320   WS-RT-032-RETPAGE
+     321   WS-RT-033-RTEFAIL
+     322   WS-RT-034-RTESOME
+     323   WS-RT-035-TSIOERR
+     324   WS-RT-036-MAPFAIL
+     325   WS-RT-037-INVERRTERM
+     326   WS-RT-038-INVMPSZ
+     327   WS-RT-039-IGREQID
+     328   WS-RT-040-OVERFLOW
+     329   WS-RT-041-INVLDC
+     330   WS-RT-042-NOSTG
+     331   WS-RT-043-JIDERR
+     332   WS-RT-044-QIDERR
+     333   WS-RT-045-NOJBUFSP
+     334   WS-RT-046-DSSTAT
+     335   WS-RT-047-SELNERR
+     336   WS-RT-048-FUNCERR
+     337   WS-RT-049-UNEXPIN
+     338   WS-RT-050-NOPASSBKRD
+     339   WS-RT-051-NOPASSBKWR
+     340   WS-RT-052-SEGIDERR
+     341   WS-RT-053-SYSIDERR
+     342   WS-RT-054-ISCINVREQ
+     343   WS-RT-055-ENQBUSY
+     344   WS-RT-056-ENVDEFERR
+     345   WS-RT-057-IGREQCD
+     346   WS-RT-058-SESSIONERR
+     347   WS-RT-059-SYSBUSY
+     348   WS-RT-060-SESSBUSY
+     349   WS-RT-061-NOTALLOC
+     350   WS-RT-062-CBIDERR
+     351   WS-RT-063-INVEXITREQ
+     352   WS-RT-064-INVPARTNSET
+     353   WS-RT-065-INVPARTN
+     354   WS-RT-066-PARTNFAIL
+     355   WS-RT-067-NOTUSED
+     356   WS-RT-068-NOTUSED
+     357   WS-RT-069-USERIDERR
+     358   WS-RT-070-NOTAUTH
+     359   WS-RT-071-VOLIDERR
+     360   WS-RT-072-SUPPRESSED
+     361   WS-RT-073-NOTUSED
+     362   WS-RT-074-NOTUSED
+     363   WS-RT-075-RESIDERR
+     364   WS-RT-076-NOTUSED
+     365   WS-RT-077-NOTUSED
+     366   WS-RT-078-NOTUSED
+     367   WS-RT-079-NOTUSED
+     368   WS-RT-080-NOSPOOL
+     369   WS-RT-081-TERMERR
+     370   WS-RT-082-ROLLEDBACK
+     371   WS-RT-083-END
+     372   WS-RT-084-DISABLED
+     373   WS-RT-085-ALLOCERR
+     374   WS-RT-086-STRELERR
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    29
+ Defined   Cross-reference of data names   References
+ 
+     375   WS-RT-087-OPENERR
+     376   WS-RT-088-SPOLBUSY
+     377   WS-RT-089-SPOLERR
+     378   WS-RT-090-NODEIDERR
+     379   WS-RT-091-TASKIDERR
+     380   WS-RT-092-TCIDERR
+     381   WS-RT-093-DSNNOTFOUND
+     382   WS-RT-094-LOADING
+     383   WS-RT-095-MODELIDERR
+     384   WS-RT-096-OUTDESCRERR
+     385   WS-RT-097-PARTNERIDERR
+     386   WS-RT-098-PROFILEIDERR
+     387   WS-RT-099-NETNAMEIDERR
+     388   WS-RT-100-LOCKED
+     389   WS-RT-101-RECORDBUSY
+     390   WS-RT-102-UOWNOTFOUND
+     391   WS-RT-103-UOWLNOTFOUND
+     392   WS-RT-104-LINKABEND
+     393   WS-RT-105-CHANGED
+     394   WS-RT-106-PROCESSBUSY
+     395   WS-RT-107-ACTIVITYBUSY
+     396   WS-RT-108-PROCESSERR
+     397   WS-RT-109-ACTIVITYERR
+     398   WS-RT-110-CONTAINERERR
+     399   WS-RT-111-EVENTERR
+     400   WS-RT-112-TOKENERR
+     401   WS-RT-113-NOTFINISHED
+     402   WS-RT-114-POOLERR
+     403   WS-RT-115-TIMERERR
+     404   WS-RT-116-SYMBOLERR
+     405   WS-RT-117-TEMPLATERR
+     406   WS-RT-118-NOTSUPERUSER
+     407   WS-RT-119-CSDERR
+     408   WS-RT-120-DUPRES
+     409   WS-RT-121-RESUNAVAIL
+     410   WS-RT-122-CHANNELERR
+     411   WS-RT-123-CCSIDERR
+     412   WS-RT-124-TIMEDOUT
+     413   WS-RT-125-CODEPAGEERR
+     414   WS-RT-126-INCOMPLETE
+     415   WS-RT-127-APPNOTFOUND
+      39   WS-SEND-DATAONLY-ALARM-88. . .  M648 M718 883
+      38   WS-SEND-DATAONLY-88. . . . . .  M714 851
+      37   WS-SEND-ERASE-88 . . . . . . .  M599 M605 819
+      36   WS-SEND-FLAG
+      17   WS-TRUE-CNST
+      48   WS-USER-MESSAGES
+      34   WS-VALID-DATA-FLAG . . . . . .  M761 M801
+      35   WS-VALID-DATA-88 . . . . . . .  712
+      19   WS-YES-CNST
+     489   ZIPCODEA
+     535   ZIPCODEC
+     487   ZIPCODEF . . . . . . . . . . .  488
+     536   ZIPCODEH
+     491   ZIPCODEI
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    30
+ Defined   Cross-reference of data names   References
+ 
+     486   ZIPCODEL
+     537   ZIPCODEO . . . . . . . . . . .  M799 M808
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    31
+Context usage is indicated by the letter preceding a procedure-name reference.
+These letters and their meanings are:
+    A = ALTER (procedure-name)
+    D = GO TO (procedure-name) DEPENDING ON
+    E = End of range of (PERFORM) through (procedure-name)
+    G = GO TO (procedure-name)
+    P = PERFORM (procedure-name)
+    T = (ALTER) TO PROCEED TO (procedure-name)
+    U = USE FOR DEBUGGING (procedure-name)
+ 
+ Defined   Cross-reference of procedures   References
+ 
+     583   0000-PROCESS-CUSTOMER-INQUIRY
+     707   1000-PROCESS-CUSTOMER-MAP. . .  P643
+     723   1100-RECEIVE-CUSTOMER-MAP. . .  P709
+     757   1200-EDIT-CUSTOMER-DATA. . . .  P710
+     765   1300-GET-CUSTOMER-RECORD . . .  P713
+     816   1400-SEND-CUSTOMER-MAP . . . .  P600 P606 P650 P716 P720
+     926   8100-CMF-OPEN. . . . . . . . .  P782
+     968   8200-CMF-CLOSE . . . . . . . .  P612
+    1011   9700-RESPTEXT. . . . . . . . .  P639 P677 P704 P751 P813 P848 P880 P914 P959 P1001
+    1053   9800-SEND-TERMINATION-MESSAGE
+    1070   9900-HANDLE-ABEND
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    32
+ Defined   Cross-reference of programs     References
+ 
+       2   CMINQFE1
+EXTERNAL   DFHEI1 . . . . . . . . . . . .  592 629 633 669 696 742 790 840 872 905 945 954 987 997 1042 1059 1063 1078 1082
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMINQFE1  Date 11/22/2025  Time 16:06:30   Page    33
+ 
+         COPY/BASIS cross-reference of text-names, library names and dataset information
+ 
+ Text-name Library   File name                                    Concat   ISPF statistics
+ (Member)  (DDNAME)  (Dataset name)                               Level    Created         Changed
+ 
+ ATTR      SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL             2     2025/10/30   2025/10/30 15:14:04
+ CMFCLOSE  SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL             3     2025/10/30   2025/10/30 15:13:05
+ CMFOPEN   SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL             3     2025/10/30   2025/10/30 15:13:06
+ CMFWSREC  SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL             2     2025/10/30   2025/10/30 15:14:05
+ CMFWSSTS  SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL             2     2025/10/30   2025/10/30 15:14:06
+ DFHAID    SYSLIB    DFH610.CICS.SDFHCOB                            0
+ ERRORSWS  SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL             2     2025/10/30   2025/10/30 15:14:07
+ HDLABEND  SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL             3     2025/10/30   2025/10/30 15:13:07
+ INQSFE1   SYSLIB    KC03FE1.DCMAFD02.A5P1.COBOL                    1
+ RESPTEXT  SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL             3     2025/10/30   2025/10/30 15:13:08
+ TERMMSG   SYSLIB    KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL             3     2025/10/30   2025/10/30 15:13:09
+ 
+* Statistics for COBOL program CMINQFE1:
+*    Source records = 1270
+*    Data Division statements = 429
+*    Procedure Division statements = 249
+*    Generated COBOL statements = 72
+*    Program complexity factor = 335
+End of compilation 1,  program CMINQFE1,  no statements flagged.
+Return code 0
+DATA SET UTILITY - GENERATE                                                                       PAGE 0001
+ 
+PROCESSING ENDED AT EOD
+z/OS V3 R1 BINDER     16:06:31 SATURDAY NOVEMBER 22, 2025
+BATCH EMULATOR  JOB(CMINQFE1) STEP(COMPLI  ) PGM= IEWL      PROCEDURE(LKED    )
+IEW2278I B352 INVOCATION PARAMETERS - LIST,XREF,RENT,MAP
+IEW2322I 1220  1     INCLUDE SYSLIB(DFHELII)
+IEW2322I 1220  2      NAME CMINQFE1(R)
+ 
+                         *** M O D U L E  M A P ***
+ 
+---------------
+CLASS  C_CODE            LENGTH =     36A0  ATTRIBUTES = CAT,   LOAD, RMODE=ANY
+                         OFFSET =        0 IN SEGMENT 001     ALIGN = DBLWORD
+---------------
+ 
+ SECTION    CLASS                                      ------- SOURCE --------
+  OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ 
+                0  CMINQFE1           CSECT      36A0  SYSLIN    02  **NULL**
+       0        0     CMINQFE1#C         LABEL
+       0        0     CMINQFE1           LABEL
+ 
+---------------
+CLASS  B_TEXT            LENGTH =      C18  ATTRIBUTES = CAT,   LOAD, RMODE=ANY
+                         OFFSET =     36A0 IN SEGMENT 001     ALIGN = DBLWORD
+---------------
+ 
+ SECTION    CLASS                                      ------- SOURCE --------
+  OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ 
+                0  DFHELII            CSECT        28  SYSLIB    01  DFHELII
+       0        0     DFHEPIN            LABEL
+       8        8     DFHEXEC            LABEL
+       8        8     DFHEI1             LABEL
+       8        8     DFHEPI             LABEL
+       8        8     DFHEI2             LABEL
+       8        8     DFHEI3             LABEL
+       8        8     DFHEI4             LABEL
+       8        8     DFHEI5             LABEL
+       8        8     DFHEI6             LABEL
+       8        8     DFHEI7             LABEL
+       8        8     DFHEI8             LABEL
+       8        8     DFHEI9             LABEL
+       8        8     DFHEI10            LABEL
+       8        8     DFHEI11            LABEL
+       8        8     DFHEI12            LABEL
+       8        8     DFHEI13            LABEL
+       8        8     DFHEI14            LABEL
+       8        8     DFHEI15            LABEL
+       8        8     DFHEI16            LABEL
+       8        8     DFHEI17            LABEL
+       8        8     DFHEI18            LABEL
+       8        8     DFHEI01            LABEL
+       8        8     DLZEI01            LABEL
+       8        8     DLZEI02            LABEL
+       8        8     DLZEI03            LABEL
+       8        8     DLZEI04            LABEL
+ 
+               28  IGZXBS61        *  CSECT        10  SYSLIB    02  IGZXBS61
+ 
+               38  CEESG004        *  CSECT        34  SYSLIB    02  CEESG004
+ 
+               70  IGZXRT1         *  CSECT        12  SYSLIB    02  IGZXRT1
+ 
+               88  IGZXTREC        *  CSECT        12  SYSLIB    02  IGZXTREC
+ 
+               A0  IGZXVMO         *  CSECT        12  SYSLIB    02  IGZXVMO
+ 
+                         *** M O D U L E  M A P ***
+ 
+ SECTION    CLASS                                      ------- SOURCE --------
+  OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ 
+               B8  IGZXCMSG        *  CSECT        12  SYSLIB    02  IGZXCMSG
+ 
+               D0  IGZXPRS         *  CSECT        12  SYSLIB    02  IGZXPRS
+ 
+               E8  IGZXBST4        *  CSECT       4E0  SYSLIB    02  IGZXBST4
+ 
+              5C8  CEEBETBL        *  CSECT        28  SYSLIB    02  CEEBETBL
+ 
+              5F0  CEESTART        *  CSECT        B0  SYSLIB    02  CEESTART
+ 
+              6A0  CEEBPUBT        *  CSECT        70  SYSLIB    02  CEEBPUBT
+ 
+              710  CEEBTRM         *  CSECT        74  SYSLIB    02  CEEBTRM
+ 
+              788  CEECPYRT        *  CSECT        CF  SYSLIB    02  CEEBTRM
+ 
+              858  CEEBLLST        *  CSECT        5C  SYSLIB    02  CEEBLLST
+      10      868     CEELLIST           LABEL
+ 
+              8B8  CEEBINT         *  CSECT         8  SYSLIB    02  CEEBINT
+ 
+              8C0  CEEARLU         *  CSECT        B8  SYSLIB    02  CEEARLU
+ 
+              978  CEEBPIRA        *  CSECT       2A0  SYSLIB    02  CEEINT
+       0      978     CEEINT             LABEL
+       0      978     CEEBPIRB           LABEL
+       0      978     CEEBPIRC           LABEL
+                         *** M O D U L E  M A P ***
+ 
+---------------
+CLASS  C_@@PPA2          LENGTH =        8  ATTRIBUTES = MRG,   LOAD, RMODE=ANY
+                         OFFSET =     42B8 IN SEGMENT 001     ALIGN = DBLWORD
+---------------
+ 
+            CLASS
+           OFFSET  NAME                TYPE    LENGTH   SECTION
+                0  $PRIV000010      PART             8  CMINQFE1
+ 
+---------------
+CLASS  C_@@CSINIT        LENGTH =        4  ATTRIBUTES = MRG,   LOAD, RMODE=ANY
+                         OFFSET =     42C0 IN SEGMENT 001     ALIGN = DBLWORD
+---------------
+ 
+            CLASS
+           OFFSET  NAME                TYPE    LENGTH   SECTION
+                0  $PRIV000011      PART             4  CMINQFE1
+ 
+---------------
+CLASS  B_LIT             LENGTH =      100  ATTRIBUTES = CAT,   LOAD, RMODE=ANY
+                         OFFSET =     42C8 IN SEGMENT 001     ALIGN = DBLWORD
+---------------
+ 
+ SECTION    CLASS                                      ------- SOURCE --------
+  OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ 
+                0  IEWBLIT            CSECT       100                **NULL**
+       0        0     IEWBLIT            LABEL
+ 
+---------------
+CLASS  C_WSA             LENGTH =       C8  ATTRIBUTES = MRG, DEFER , RMODE=ANY
+                         OFFSET =        0 IN SEGMENT 002     ALIGN = DBLWORD
+---------------
+ 
+            CLASS
+           OFFSET  NAME                TYPE    LENGTH   SECTION
+                0  $PRIV000012      PART            10
+               10  CMINQFE1#S       PART            B8  CMINQFE1
+ 
+---------------
+CLASS  C_CEESG003        LENGTH =        0  ATTRIBUTES = CAT, NOLOAD
+ 
+---------------
+ 
+ SECTION    CLASS                                      ------- SOURCE --------
+  OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ 
+                0  CMINQFE1           CSECT         0  SYSLIN    02  **NULL**
+                         *** M O D U L E  M A P ***
+ 
+---------------
+CLASS  D_MCODE           LENGTH =     B161  ATTRIBUTES = CAT, NOLOAD
+ 
+---------------
+ 
+ SECTION    CLASS                                      ------- SOURCE --------
+  OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ 
+                0  CMINQFE1           CSECT      B161  SYSLIN    02  **NULL**
+          ***  DATA SET SUMMARY  ***
+ 
+DDNAME    CONCAT   FILE IDENTIFICATION
+ 
+SYSLIB      01     DFH610.CICS.SDFHLOAD
+SYSLIB      02     CEE.SCEELKED
+SYSLIN      02     SYS25326.T160628.RA000.CMINQFE1.LOADSET.H01
+          *** SYMBOL REFERENCES NOT ASSOCIATED WITH ANY ADCON ***
+ 
+TYPE   SCOPE   NAME
+ 
+ 
+          *** E N D  O F  M O D U L E  M A P ***
+ 
+ 
+                                       C R O S S - R E F E R E N C E  T A B L E
+                                       _________________________________________
+ 
+TEXT CLASS = C_CODE
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+      24 CMINQFE1                       24 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      2C CMINQFE1                       2C A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      30 CMINQFE1                       30 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      34 CMINQFE1                       34 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      38 CMINQFE1                       38 V-CON | IGZXBST4         IGZXBST4                        0 B_TEXT           |
+      3C CMINQFE1                       3C A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      44 CMINQFE1                       44 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    255C CMINQFE1                     255C Q-CON | CMINQFE1#S       $NON-RELOCATABLE               10 C_WSA            |
+    2560 CMINQFE1                     2560 V-CON | DFHEI1           DFHELII                         8 B_TEXT           |
+    2564 CMINQFE1                     2564 V-CON | IGZXPRS          IGZXPRS                         0 B_TEXT           |
+    2568 CMINQFE1                     2568 V-CON | IGZXCMSG         IGZXCMSG                        0 B_TEXT           |
+    256C CMINQFE1                     256C A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    2570 CMINQFE1                     2570 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    2574 CMINQFE1                     2574 V-CON | IGZXVMO          IGZXVMO                         0 B_TEXT           |
+    2578 CMINQFE1                     2578 V-CON | IGZXTREC         IGZXTREC                        0 B_TEXT           |
+    257C CMINQFE1                     257C V-CON | IGZXRT1          IGZXRT1                         0 B_TEXT           |
+    269C CMINQFE1                     269C A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    26A8 CMINQFE1                     26A8 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    2800 CMINQFE1                     2800 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    33D4 CMINQFE1                     33D4 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    35EC CMINQFE1                     35EC A-CON | CEESTART         CEESTART                        0 B_TEXT           |
+    35EC CMINQFE1                     35EC A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    3604 CMINQFE1                     3604 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+    3608 CMINQFE1                     3608 V-CON | CEESTART         CEESTART                        0 B_TEXT           |
+    360C CMINQFE1                     360C V-CON | CEEBETBL         CEEBETBL                        0 B_TEXT           |
+    365C CMINQFE1                     365C Q-CON | CMINQFE1#S       $NON-RELOCATABLE               10 C_WSA            |
+ 
+ 
+TEXT CLASS = B_TEXT
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+      4C CEESG004                       14 A-CON | IGZEOPT          $UNRESOLVED(W)                                     |
+      50 CEESG004                       18 A-CON | IGZETUN          $UNRESOLVED(W)                                     |
+      54 CEESG004                       1C A-CON | IGZXRES1         $UNRESOLVED(W)                                     |
+      58 CEESG004                       20 A-CON | IEWBLIT          IEWBLIT                         0 B_LIT            |
+     538 IGZXBST4                      450 V-CON | CEEINT           CEEBPIRA                        0 B_TEXT           |
+     53C IGZXBST4                      454 V-CON | CEEARLU          CEEARLU                         0 B_TEXT           |
+     540 IGZXBST4                      458 A-CON | CEESG004         CEESG004                        0 B_TEXT           |
+     5CC CEEBETBL                        4 V-CON | CEEBXITA         $UNRESOLVED(W)                                     |
+     5D0 CEEBETBL                        8 V-CON | CEEBINT          CEEBINT                         0 B_TEXT           |
+     5D4 CEEBETBL                        C V-CON | CEEBLLST         CEEBLLST                        0 B_TEXT           |
+     5D8 CEEBETBL                       10 V-CON | CEEUOPT          $UNRESOLVED(W)                                     |
+     5DC CEEBETBL                       14 V-CON | CEEBTRM          CEEBTRM                         0 B_TEXT           |
+     5E4 CEEBETBL                       1C V-CON | CEEBPUBT         CEEBPUBT                        0 B_TEXT           |
+ 
+ 
+                                       C R O S S - R E F E R E N C E  T A B L E
+                                       _________________________________________
+ 
+TEXT CLASS = B_TEXT
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+     5E8 CEEBETBL                       20 V-CON | IEWBLIT          IEWBLIT                         0 B_LIT            |
+     64C CEESTART                       5C A-CON | CEEMAIN          $UNRESOLVED(W)                                     |
+     65C CEESTART                       6C C-LEN |                  $NON-RELOCATABLE                  B_PRV            |
+     688 CEESTART                       98 A-CON | CEEFMAIN         $UNRESOLVED(W)                                     |
+     694 CEESTART                       A4 A-CON | CEEBETBL         CEEBETBL                        0 B_TEXT           |
+     698 CEESTART                       A8 A-CON | CEEROOTA         $UNRESOLVED(W)                                     |
+     69C CEESTART                       AC A-CON | CEEROOTD         $UNRESOLVED(W)                                     |
+     77C CEEBTRM                        6C A-CON | CEEBPUBT         CEEBPUBT                        0 B_TEXT           |
+     868 CEEBLLST                       10 A-CON | CEESG000         $UNRESOLVED(W)                                     |
+     86C CEEBLLST                       14 A-CON | CEESG001         $UNRESOLVED(W)                                     |
+     870 CEEBLLST                       18 A-CON | CEESG002         $UNRESOLVED(W)                                     |
+     874 CEEBLLST                       1C A-CON | CEESG003         $UNRESOLVED(W)                                     |
+     878 CEEBLLST                       20 A-CON | CEESG004         CEESG004                        0 B_TEXT           |
+     87C CEEBLLST                       24 A-CON | CEESG005         $UNRESOLVED(W)                                     |
+     880 CEEBLLST                       28 A-CON | CEESG006         $UNRESOLVED(W)                                     |
+     884 CEEBLLST                       2C A-CON | CEESG007         $UNRESOLVED(W)                                     |
+     888 CEEBLLST                       30 A-CON | CEESG008         $UNRESOLVED(W)                                     |
+     88C CEEBLLST                       34 A-CON | CEESG009         $UNRESOLVED(W)                                     |
+     890 CEEBLLST                       38 A-CON | CEESG010         $UNRESOLVED(W)                                     |
+     894 CEEBLLST                       3C A-CON | CEESG011         $UNRESOLVED(W)                                     |
+     898 CEEBLLST                       40 A-CON | CEESG012         $UNRESOLVED(W)                                     |
+     89C CEEBLLST                       44 A-CON | CEESG013         $UNRESOLVED(W)                                     |
+     8A0 CEEBLLST                       48 A-CON | CEESG014         $UNRESOLVED(W)                                     |
+     8A4 CEEBLLST                       4C A-CON | CEESG015         $UNRESOLVED(W)                                     |
+     8A8 CEEBLLST                       50 A-CON | CEESG016         $UNRESOLVED(W)                                     |
+     BA8 CEEBPIRA                      230 A-CON | CEEBPUBT         CEEBPUBT                        0 B_TEXT           |
+ 
+ 
+TEXT CLASS = C_@@PPA2
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+       4 $PRIV000010                     4 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+ 
+ 
+TEXT CLASS = C_@@CSINIT
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+       0 $PRIV000011                     0 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+ 
+ 
+TEXT CLASS = B_LIT
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+      28 IEWBLIT                        28 L TOKE|                                                                     |
+ 
+ 
+                                       C R O S S - R E F E R E N C E  T A B L E
+                                       _________________________________________
+ 
+TEXT CLASS = B_LIT
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+      50 IEWBLIT                        50 C-LEN |                  $NON-RELOCATABLE                  B_TEXT           |
+      54 IEWBLIT                        54 A-CON |                                                    B_TEXT           |
+      70 IEWBLIT                        70 C-LEN |                  $NON-RELOCATABLE                  C_CODE           |
+      74 IEWBLIT                        74 A-CON |                                                    C_CODE           |
+      90 IEWBLIT                        90 C-LEN |                  $NON-RELOCATABLE                  C_WSA            |
+      B0 IEWBLIT                        B0 C-LEN |                  $NON-RELOCATABLE                  C_@@PPA2         |
+      B4 IEWBLIT                        B4 A-CON |                                                    C_@@PPA2         |
+      D0 IEWBLIT                        D0 C-LEN |                  $NON-RELOCATABLE                  C_@@CSINIT       |
+      D4 IEWBLIT                        D4 A-CON |                                                    C_@@CSINIT       |
+      F0 IEWBLIT                        F0 C-LEN |                  $NON-RELOCATABLE                  B_LIT            |
+      F4 IEWBLIT                        F4 A-CON |                                                    B_LIT            |
+ 
+ 
+TEXT CLASS = C_WSA
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+      28 CMINQFE1#S                     28 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      2C CMINQFE1#S                     2C A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      30 CMINQFE1#S                     30 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      34 CMINQFE1#S                     34 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      38 CMINQFE1#S                     38 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      3C CMINQFE1#S                     3C A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      40 CMINQFE1#S                     40 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      44 CMINQFE1#S                     44 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      50 CMINQFE1#S                     50 A-CON | CMINQFE1#S       $PRIV000003                    10 C_WSA            |
+      54 CMINQFE1#S                     54 A-CON | CMINQFE1#C       CMINQFE1                        0 C_CODE           |
+      9C CMINQFE1#S                     9C V-CON | CMINQFE1         CMINQFE1                        0 C_CODE           |
+      B0 CMINQFE1#S                     B0 A-CON | CMINQFE1#S       $PRIV000003                    10 C_WSA            |
+ 
+ 
+TEXT CLASS = D_MCODE
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+                                       *** E N D  O F  C R O S S  R E F E R E N C E ***
+ 
+ 
+ 
+                                *** O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+PROCESSING OPTIONS:
+ 
+   ALIASES             NO
+   ALIGN2              NO
+   AMODE               UNSPECIFIED
+   CALL                YES
+   CASE                UPPER
+   COMPAT              UNSPECIFIED
+   COMPRESS            AUTO
+   DCBS                NO
+   DYNAM               NO
+   EXTATTR             UNSPECIFIED
+   EXITS:              NONE
+   FILL                NONE
+   GID                 UNSPECIFIED
+   HOBSET              NO
+   INFO                NO
+   LET                 04
+   LINECT              060
+   LIST                SUMMARY
+   LISTPRIV            NO
+   LONGPARM            NO
+   MAP                 YES
+   MAXBLK              032760
+   MODMAP              NO
+   MSGLEVEL            00
+   OVLY                NO
+   PRINT               YES
+   RES                 NO
+   REUSABILITY         REENTRANT
+   RMODE               UNSPECIFIED
+   RMODEX              NO
+   SIGN                NO
+   STORENX             NOREPLACE
+   STRIPCL             NO
+   STRIPSEC            NO
+   SYMTRACE
+   TERM                NO
+   TRAP                ON
+   UID                 UNSPECIFIED
+   UPCASE              NO
+   WKSPACE             000000K,000000K
+   XCAL                NO
+   XREF                YES
+   ***END OF OPTIONS***
+ 
+ 
+ 
+ 
+SAVE OPERATION SUMMARY:
+ 
+   MEMBER NAME         CMINQFE1
+   LOAD LIBRARY        TSOECCC.CICSTS12.STUDENT.LOADLIB
+   PROGRAM TYPE        PROGRAM OBJECT(FORMAT 3)
+   VOLUME SERIAL       KCTR05
+   DISPOSITION         REPLACED
+   TIME OF SAVE        16.06.32  NOV 22, 2025
+ 
+ 
+SAVE MODULE ATTRIBUTES:
+ 
+   AC                  000
+   AMODE                31
+   COMPRESSION         NONE
+   DC                  NO
+   EDITABLE            YES
+   EXCEEDS 16MB        NO
+   EXECUTABLE          YES
+   LONGPARM            NO
+   MIGRATABLE          NO
+   OL                  NO
+   OVLY                NO
+   PACK,PRIME          NO,NO
+   PAGE ALIGN          NO
+   REFR                NO
+   RENT                YES
+   REUS                YES
+   RMODE               ANY
+   SCTR                NO
+   SIGN                NO
+   SSI
+   SYM GENERATED       NO
+   TEST                NO
+   XPLINK              NO
+   MODULE SIZE (HEX)   00004490
+   DASD SIZE (HEX)     00019000
+ 
+ 
+ ENTRY POINT AND ALIAS SUMMARY:
+ 
+ NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS
+ 
+ CMINQFE1          MAIN_EP      31 00000000 C_CODE
+ 
+                         *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+ 
+ 
+ 
+z/OS V3 R1 BINDER     16:06:31 SATURDAY NOVEMBER 22, 2025
+BATCH EMULATOR  JOB(CMINQFE1) STEP(COMPLI  ) PGM= IEWL      PROCEDURE(LKED    )
+IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.
+ 
+ 
+ 
+----------------------
+MESSAGE SUMMARY REPORT
+----------------------
+ TERMINAL MESSAGES      (SEVERITY = 16)
+ NONE
+ 
+ SEVERE MESSAGES        (SEVERITY = 12)
+ NONE
+ 
+ ERROR MESSAGES         (SEVERITY = 08)
+ NONE
+ 
+ WARNING MESSAGES       (SEVERITY = 04)
+ NONE
+ 
+ INFORMATIONAL MESSAGES (SEVERITY = 00)
+ 2008  2278  2322
+ 
+ 
+ **** END OF MESSAGE SUMMARY REPORT ****
+ 

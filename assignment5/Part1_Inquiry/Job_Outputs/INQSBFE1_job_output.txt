@@ -1,0 +1,1361 @@
+                   J E S 2  J O B  L O G  --  S Y S T E M  8 5 6 1  --  N O D E  S V S C J E S 2
+ 
+16.05.21 JOB04694 ---- SATURDAY,  22 NOV 2025 ----
+16.05.21 JOB04694  IRR010I  USERID KC03FE1  IS ASSIGNED TO THIS JOB.
+16.05.22 JOB04694  ICH70001I KC03FE1  LAST ACCESS AT 16:03:14 ON SATURDAY, NOVEMBER 22, 2025
+16.05.22 JOB04694  $HASP373 INQSBFE1 STARTED - INIT 1    - CLASS A        - SYS 8561
+16.05.22 JOB04694  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+16.05.22 JOB04694  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+16.05.22 JOB04694  -MAPSET   COPY        00     43      1       .00       .00     .0             3  BATCH        0     0     0     0
+16.05.23 JOB04694  -MAPSET   ASMMAP      00    102      9       .00       .00     .0            12  BATCH        0     0     0     0
+16.05.23 JOB04694  -MAPSET   LINKMAP     00     66      1       .00       .00     .0             3  BATCH        0     0     0     0
+16.05.23 JOB04694  -MAPSET   ASMDSECT    00    117      9       .00       .00     .0            12  BATCH        0     0     0     0
+16.05.23 JOB04694  -INQSBFE1 ENDED.  NAME-                     TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+16.05.23 JOB04694  $HASP395 INQSBFE1 ENDED - RC=0000
+------ JES2 JOB STATISTICS ------
+  22 NOV 2025 JOB EXECUTION DATE
+           33 CARDS READ
+        1,332 SYSOUT PRINT RECORDS
+            0 SYSOUT PUNCH RECORDS
+          124 SYSOUT SPOOL KBYTES
+         0.02 MINUTES EXECUTION TIME
+        1 //INQSBFE1 JOB                                                          JOB04694
+          //*********************************************************************
+          //*   THIS IS THE BMS MAP DEFINITION
+          //*   WHICH IS USED TO ASSEMBLE PHYSICAL AND SYMBOLIC MAPS
+          //*********************************************************************
+          //*
+          //*   TO CUSTOMIZE THIS SCRIPT YOU WILL NEED TO CHANGE THE FOLLOWING:
+          //*
+          //*
+          //*       DSCTLIB - SET THIS TO THE NAME OF THE DATASET WHICH CONTAINS
+          //*                 YOUR CICS/COBOL APPLICATION CODE.
+          //*
+          //*       MAPNAME - SET THIS TO THE MAP SET NAME PROVIDED BY YOUR
+          //*                 INSTRUCTOR
+          //*
+          //*       BMSLIB  - SET THIS TO THE NAME OF THE DATASET WHICH CONTAINS
+          //*                 YOUR BMS CODE TO BE INTERPRETED
+          //*
+          //*********************************************************************
+          //*
+          //*
+        2 //CICSPROC JCLLIB ORDER=(TSOECCC.CICSTS12.PROCLIB)
+        3 //MAPSET EXEC DFHMAPS,OUTC='*',RMODE=24,
+          //*
+          //  BMSLIB='KC03FE1.DCMAFD02.A5P1.BMS',
+          //  MAPNAME='INQSFE1',
+          //  DSCTLIB='KC03FE1.DCMAFD02.A5P1.COBOL',
+          //*
+          //*** DO NOT CHANGE MAPLIB OR INDEX!!!
+          //  MAPLIB='TSOECCC.CICSTS12.STUDENT.LOADLIB',
+          //  INDEX='DFH610.CICS'
+          XX*********************************************************************
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*     Licensed Materials - Property of IBM                          *
+          XX*                                                                   *
+          XX*     5655-YA1                                                      *
+          XX*                                                                   *
+          XX*     (C) Copyright IBM Corp. 2012 All Rights Reserved.             *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*                                                                   *
+          XX*   STATUS = 7.4.0                                                  *
+          XX*                                                                   *
+          XX* CHANGE ACTIVITY :                                                 *
+          XX*                                                                   *
+          XX*   $MOD(DFHMAPS),COMP(SYSGEN),PROD(CICS TS ):                      *
+          XX*                                                                   *
+          XX*  PN= REASON REL YYMMDD HDXXIII : REMARKS                          *
+          XX* $L0= Base   XXX XX     HD????  : Base                             *
+          XX*                                                                   *
+          XX*********************************************************************
+        4 XXDFHMAPS PROC INDEX='CICSTS61.CICS', FOR SDFHMAC
+          XX             MAPLIB='CICSTS61.CICS.SDFHLOAD', TARGET FOR MAP
+          XX             DSCTLIB='CICSTS61.CICS.SDFHMAC', TARGET FOR DSECT
+          XX             MAPNAME=,                     NAME OF MAPSET - REQUIRED
+          XX             A=,                           A=A FOR ALIGNED MAP
+          XX             AMODE=31,                     24/31
+          XX             RMODE=ANY,                    24/ANY
+          XX             ASMBLR=ASMA90,                ASSEMBLER PROGRAM NAME
+          XX             REG=2048K,                    REGION FOR ASSEMBLY
+          XX             OUTC=A,                       PRINT SYSOUT CLASS
+          XX             WORK=SYSDA                    WORK FILE UNIT
+          XX*
+          XX* This procedure creates a physical map (load module) and a
+          XX* symbolic map (copybook) from a BMS mapset source definition.
+          XX* It consists of four steps, as follows.
+          XX*
+          XX* COPY - this step copies the mapset definition (which must be
+          XX*        provided by the user via a SYSUT1 DD statement) to a
+          XX*        temporary dataset.
+          XX*
+          XX* ASMMAP - this step assembles the mapset to produce an object
+          XX*        which constitutes the physical mapset.
+          XX*
+          XX* LINKMAP - this step executes the binder to create a load module
+          XX*        from the object created by the ASMMAP step. By default
+          XX*        options AMODE(31) and RMODE(ANY) are specified.
+          XX*
+          XX* ASMDSECT - this step produces a copybook (symbolic map) from
+          XX*        supplied mapset source definition.
+          XX*
+        5 XXCOPY     EXEC PGM=IEBGENER
+        6 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+        7 XXSYSUT2   DD DSN=&&TEMPM,UNIT=&WORK,DISP=(,PASS),
+          XX            DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),
+          XX            SPACE=(400,(50,50))
+          IEFC653I SUBSTITUTION JCL - DSN=&&TEMPM,UNIT=SYSDA,DISP=(,PASS),DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),
+          SPACE=(400,(50,50))
+        8 XXSYSIN    DD DUMMY
+          XX* SYSUT1 DD * NEEDED FOR THE MAP SOURCE
+        9 //COPY.SYSUT1 DD DSN=&BMSLIB(&MAPNAME),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.A5P1.BMS(INQSFE1),DISP=SHR
+       10 XXASMMAP   EXEC PGM=&ASMBLR,REGION=&REG,
+          XX* NOLOAD CHANGED TO NOOBJECT                                 @BA91512
+          XX  PARM='SYSPARM(&A.MAP),DECK,NOOBJECT'
+          IEFC653I SUBSTITUTION JCL - PGM=ASMA90,REGION=2048K,PARM='SYSPARM(MAP),DECK,NOOBJECT'
+       11 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+       12 XXSYSLIB   DD DSN=&INDEX..SDFHMAC,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHMAC,DISP=SHR
+       13 XX         DD DSN=SYS1.MACLIB,DISP=SHR
+       14 XXSYSUT1   DD UNIT=&WORK,SPACE=(CYL,(5,5))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(5,5))
+       15 XXSYSUT2   DD UNIT=&WORK,SPACE=(CYL,(5,5))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(5,5))
+       16 XXSYSUT3   DD UNIT=&WORK,SPACE=(CYL,(5,5))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(5,5))
+       17 XXSYSPUNCH DD DSN=&&MAP,DISP=(,PASS),UNIT=&WORK,
+          XX            DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),
+          XX            SPACE=(400,(50,50))
+          IEFC653I SUBSTITUTION JCL - DSN=&&MAP,DISP=(,PASS),UNIT=SYSDA,DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),SPACE=(400,
+          (50,50))
+       18 XXSYSIN    DD DSN=&&TEMPM,DISP=(OLD,PASS)
+       19 XXLINKMAP  EXEC PGM=IEWL,PARM=('LIST,LET,XREF,RMODE(&RMODE)',
+          XX            'AMODE(&AMODE)')
+          IEFC653I SUBSTITUTION JCL - PGM=IEWL,PARM=('LIST,LET,XREF,RMODE(24)','AMODE(31)')
+       20 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+       21 XXSYSLMOD  DD DSN=&MAPLIB(&MAPNAME),DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=TSOECCC.CICSTS12.STUDENT.LOADLIB(INQSFE1),DISP=SHR
+       22 XXSYSUT1   DD UNIT=&WORK,SPACE=(1024,(20,20))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(1024,(20,20))
+       23 XXSYSLIN   DD DSN=&&MAP,DISP=(OLD,DELETE)
+          XX* NOLOAD CHANGED TO NOOBJECT                                 @BA91512
+       24 XXASMDSECT EXEC PGM=&ASMBLR,REGION=&REG,
+          XX  PARM='SYSPARM(&A.DSECT),DECK,NOOBJECT'
+          IEFC653I SUBSTITUTION JCL - PGM=ASMA90,REGION=2048K,PARM='SYSPARM(DSECT),DECK,NOOBJECT'
+       25 XXSYSPRINT DD SYSOUT=&OUTC
+          IEFC653I SUBSTITUTION JCL - SYSOUT=*
+       26 XXSYSLIB   DD DSN=&INDEX..SDFHMAC,DISP=SHR
+          IEFC653I SUBSTITUTION JCL - DSN=DFH610.CICS.SDFHMAC,DISP=SHR
+       27 XX         DD DSN=SYS1.MACLIB,DISP=SHR
+       28 XXSYSUT1   DD UNIT=&WORK,SPACE=(CYL,(5,5))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(5,5))
+       29 XXSYSUT2   DD UNIT=&WORK,SPACE=(CYL,(5,5))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(5,5))
+       30 XXSYSUT3   DD UNIT=&WORK,SPACE=(CYL,(5,5))
+          IEFC653I SUBSTITUTION JCL - UNIT=SYSDA,SPACE=(CYL,(5,5))
+       31 //ASMDSECT.SYSPUNCH DD DSN=&DSCTLIB(&MAPNAME)
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.A5P1.COBOL(INQSFE1)
+          X/SYSPUNCH DD DSN=&DSCTLIB(&MAPNAME),DISP=OLD
+          IEFC653I SUBSTITUTION JCL - DSN=KC03FE1.DCMAFD02.A5P1.COBOL(INQSFE1),DISP=OLD
+       32 XXSYSIN    DD DSN=&&TEMPM,DISP=(OLD,DELETE)
+ STMT NO. MESSAGE
+        3 IEFC001I PROCEDURE DFHMAPS WAS EXPANDED USING SYSTEM LIBRARY VENDOR.PROCLIB
+ICH70001I KC03FE1  LAST ACCESS AT 16:03:14 ON SATURDAY, NOVEMBER 22, 2025
+IEFA111I INQSBFE1 IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR INQSBFE1 COPY MAPSET
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IGD100I VIO ALLOCATED TO DDNAME SYSUT2   DATACLAS (        )
+IEF237I DMY  ALLOCATED TO SYSIN
+IGD103I SMS ALLOCATED TO DDNAME SYSUT1
+IEF142I INQSBFE1 COPY MAPSET - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   KC03FE1.INQSBFE1.JOB04694.D0000101.?         SYSOUT
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.TEMPM.H01    PASSED
+IGD104I KC03FE1.DCMAFD02.A5P1.BMS                    RETAINED,  DDNAME=SYSUT1
+IEF373I STEP/COPY    /START 2025326.1605
+IEF032I STEP/COPY    /STOP  2025326.1605
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:   196K  SYS:   268K  EXT:        8K  SYS:    11260K
+        ATB- REAL:                  1268K  SLOTS:                     0K
+             VIRT- ALLOC:      16M SHRD:       0M
+IEF236I ALLOC. FOR INQSBFE1 ASMMAP MAPSET
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I 1847 ALLOCATED TO SYSLIB
+IEF237I 1001 ALLOCATED TO
+IGD100I VIO ALLOCATED TO DDNAME SYSUT1   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT2   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT3   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSPUNCH DATACLAS (        )
+IEF237I VIO  ALLOCATED TO SYSIN
+IEF142I INQSBFE1 ASMMAP MAPSET - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   KC03FE1.INQSBFE1.JOB04694.D0000102.?         SYSOUT
+IEF285I   DFH610.CICS.SDFHMAC                          KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   SYS1.MACLIB                                  KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157859     DELETED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157860     DELETED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157861     DELETED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.MAP.H01      PASSED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.TEMPM.H01    PASSED
+IEF373I STEP/ASMMAP  /START 2025326.1605
+IEF032I STEP/ASMMAP  /STOP  2025326.1605
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:   256K  SYS:   268K  EXT:    32768K  SYS:    11244K
+        ATB- REAL:                  1304K  SLOTS:                     0K
+             VIRT- ALLOC:      23M SHRD:       0M
+IEF236I ALLOC. FOR INQSBFE1 LINKMAP MAPSET
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+IGD100I VIO ALLOCATED TO DDNAME SYSUT1   DATACLAS (        )
+IEF237I VIO  ALLOCATED TO SYSLIN
+IEF142I INQSBFE1 LINKMAP MAPSET - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   KC03FE1.INQSBFE1.JOB04694.D0000103.?         SYSOUT
+IGD104I TSOECCC.CICSTS12.STUDENT.LOADLIB             RETAINED,  DDNAME=SYSLMOD
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157862     DELETED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.MAP.H01      DELETED
+IEF373I STEP/LINKMAP /START 2025326.1605
+IEF032I STEP/LINKMAP /STOP  2025326.1605
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:    92K  SYS:   260K  EXT:     1640K  SYS:    11156K
+        ATB- REAL:                  1304K  SLOTS:                     0K
+             VIRT- ALLOC:      22M SHRD:       0M
+IEF236I ALLOC. FOR INQSBFE1 ASMDSECT MAPSET
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I 1847 ALLOCATED TO SYSLIB
+IEF237I 1001 ALLOCATED TO
+IGD100I VIO ALLOCATED TO DDNAME SYSUT1   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT2   DATACLAS (        )
+IGD100I VIO ALLOCATED TO DDNAME SYSUT3   DATACLAS (        )
+IGD103I SMS ALLOCATED TO DDNAME SYSPUNCH
+IEF237I VIO  ALLOCATED TO SYSIN
+IEF142I INQSBFE1 ASMDSECT MAPSET - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   KC03FE1.INQSBFE1.JOB04694.D0000104.?         SYSOUT
+IEF285I   DFH610.CICS.SDFHMAC                          KEPT
+IEF285I   VOL SER NOS= VTDFHL.
+IEF285I   SYS1.MACLIB                                  KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157863     DELETED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157864     DELETED
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.R0157865     DELETED
+IGD104I KC03FE1.DCMAFD02.A5P1.COBOL                  RETAINED,  DDNAME=SYSPUNCH
+IEF285I   SYS25326.T160521.RA000.INQSBFE1.TEMPM.H01    DELETED
+IEF373I STEP/ASMDSECT/START 2025326.1605
+IEF032I STEP/ASMDSECT/STOP  2025326.1605
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:   256K  SYS:   272K  EXT:    32768K  SYS:    11472K
+        ATB- REAL:                  1316K  SLOTS:                     0K
+             VIRT- ALLOC:      25M SHRD:       0M
+IEF375I  JOB/INQSBFE1/START 2025326.1605
+IEF033I  JOB/INQSBFE1/STOP  2025326.1605
+        CPU:     0 HR  00 MIN  00.02 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+DATA SET UTILITY - GENERATE                                                                       PAGE 0001
+ 
+PROCESSING ENDED AT EOD
+ 
+                                         High Level Assembler Option Summary                   (PTF UO02828)   Page    1
+                                                                                            HLASM R6.0  2025/11/22 16.05
+  No Overriding ASMAOPT Parameters
+  Overriding Parameters-  SYSPARM(MAP),DECK,NOOBJECT
+  No Process Statements
+ 
+ 
+  Options for this Assembly
+                    NOADATA
+                      ALIGN
+                    NOASA
+                      ASCII(00819)
+                      BATCH
+                      CA(LOCAL)
+                      CE(LOCAL)
+                      CODEPAGE(01148)
+                    NOCOMPAT
+                      CU(LOCAL)
+                    NODATAMAP
+                    NODBCS
+3 PARM/OPTION         DECK
+                      DXREF
+                      EBCDIC(00037)
+                      ESD
+                    NOEXIT
+                      FAIL(NOMSG,NOMNOTE,MAXERRS(500))
+                      FLAG(0,ALIGN,CONT,EXLITW,NOIMPLEN,NOLONGER,NOPAGE0,PUSH,RECORD,RENT,NOSIGNED,NOSUBSTR,NOTRUNC,
+                           USING0)
+                    NOFOLD
+                    NOGOFF
+                      ILMA
+                    NOINFO
+                      LANGUAGE(EN)
+                    NOLIBMAC
+                      LINECOUNT(60)
+                      LIST(121)
+                      MACHINE(,NOLIST)
+                      MXREF(SOURCE)
+3 PARM/OPTION       NOOBJECT
+                      OPTABLE(UNI,NOLIST)
+                    NOPCONTROL
+                    NOPESTOP
+                    NOPROFILE
+                    NORA2
+                    NORENT
+                      RLD
+                      RXREF
+                      SECTALGN(8)
+                      SIZE(MAX)
+                    NOSUPRWARN
+3 PARM/OPTION         SYSPARM(MAP)
+                    NOTERM
+                    NOTEST
+                      THREAD
+                    NOTRANSLATE
+                      TYPECHECK(MAGNITUDE,REGISTER,SIGNED)
+ 
+                                         High Level Assembler Option Summary                   (PTF UO02828)   Page    2
+                                                                                            HLASM R6.0  2025/11/22 16.05
+                      UNICODE(01200)
+                      USING(NOLIMIT,MAP,WARN(15))
+                    NOWORKFILE
+                      XREF(SHORT,UNREFS)
+ 
+  No Overriding DD Names
+ 
+                                              External Symbol Dictionary                                       Page    3
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                            HLASM R6.0  2025/11/22 16.05
+INQSFE1M  SD 00000001 00000000 00000365             06
+ 
+                                                                                                               Page    4
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                      1 *        PRINT NOGEN
+                                      2 INQSFE1  DFHMSD TYPE=&SYSPARM,                                         X
+                                                       MODE=INOUT,                                             X
+                                                       LANG=COBOL,                                             X
+                                                       STORAGE=AUTO,                                           X
+                                                       CTRL=FREEKB,                                            X
+                                                       TERM=3270-2,                                            X
+                                                       TIOAPFX=YES,                                            X
+                                                       MAPATTS=(COLOR,HILIGHT),                                X
+                                                       DSATTS=(COLOR,HILIGHT)
+                                    101+***********************************************************************
+000000                00000 00365   102+INQSFE1M CSECT                                                     @PCA 01-DFHMS
+                                    103+INQSFE1M AMODE 31                                                  @PCA 01-DFHMS
+                                    104+INQSFE1M RMODE ANY                                                 @PCA 01-DFHMS
+000000                              105+MSD0001  DS    0D                  MAP SET ORIGIN                  @02A 01-DFHMS
+000000 C9D5D8E2C6C5F1D4             106+         DC    CL8'INQSFE1M'       MAP SET NAME                       @ 01-DFHMS
+000008 00                           107+         DC    AL1(DFHU0)          OVERFLOW TRAILER LENGTH              01-DFHMS
+000009 32                           108+         DC    X'32'               VERSION 3.2  OF CICS            @P5C 01-DFHMS
+00000A 4040                         109+         DC    CL2' '              LDC MNEMONIC                @BB85D1L 01-DFHMS
+                                    110+***********************************************************************
+ 
+                                    112 ***********************************************************************
+                                    113 INQMFE1  DFHMDI SIZE=(24,80),                                          X
+                                                       COLUMN=1,                                               X
+                                                       LINE=1
+                                    206+***********************************************************************
+00000C                              207+INQMFE1  DS    0C .                MAP ORIGIN                         @ 01-DFHMD
+                      0000C         208+DFHL1    EQU   *                   START OF MAP                         01-DFHMD
+00000C 004F                         209+         DC    AL2(DFHK1)          MAP DESCRIPTOR LENGTH                01-DFHMD
+00000E 0000                         210+         DC    XL2'0000'           INPUT PARTITION NAME     @E5E2C @H1C 01-DFHMD
+000010 0000                         211+         DC    XL2'0000'           OUTPUT PARTITION NAME    @E5E2C @H1C 01-DFHMD
+000012 0000                         212+         DC    XL2'0000'           ACTIVE PARTITION NAME    @E5E2C @H1C 01-DFHMD
+000014 C9D5D8D4C6C5F140             213+         DC    CL8'INQMFE1'  .          MAP NAME                      @ 01-DFHMD
+00001C 0355                         214+         DC    AL2(DFHM1)          MAP LENGTH                           01-DFHMD
+00001E 00AA                         215+         DC    AL2(DFHS1)          MAP SPECIFICATION LENGTH             01-DFHMD
+000020 0103                         216+         DC    AL2(DFHN1)          INPUT WORK AREA LENGTH               01-DFHMD
+000022 020F                         217+         DC    AL2(DFHP1)          OUTPUT WORK AREA LENGTH              01-DFHMD
+000024 C0                           218+         DC    AL1(192)  .              MAP DESCRIPTOR FLAG BYTE      @ 01-DFHMD
+000025 C2                           219+         DC    CL1'B'              3270 WRITE CONTROL CHARACTER       @ 01-DFHMD
+000026 015A                         220+         DC    AL2(DFHQ1)          3270 CURSOR POSITION                 01-DFHMD
+000028 00                           221+         DC    AL1(0)              MAP MARGIN                         @ 01-DFHMD
+000029 18                           222+         DC    AL1(24)             MAP LENGTH - NUMBER OF LINES       @ 01-DFHMD
+00002A 50                           223+         DC    AL1(80)             MAP WIDTH - NUMBER OF COLUMNS      @ 01-DFHMD
+00002B 01                           224+         DC    AL1(1)              MAP STARTING LINE NUMBER           @ 01-DFHMD
+00002C 01                           225+         DC    AL1(1)              MAP STARTING COLUMN NUMBER         @ 01-DFHMD
+00002D 10                           226+         DC    AL1(DFHT1)          MAP INDICATOR                        01-DFHMD
+00002E 00                           227+         DC    AL1(0)              TYPE REQUEST BYTE TWO              @ 01-DFHMD
+00002F 00                           228+         DC    AL1(0)              TYPE REQUEST BYTE THREE            @ 01-DFHMD
+000030                00030 0002E   229+         ORG   *-2                 Overlay byte 2 and 3            @0DA 01-DFHMD
+00002E 0000                         230+         DC    AL2(DFHZ1)          Count of useredit fields        @0DA 01-DFHMD
+000030 00                           231+         DC    AL1(0)              TYPE REQUEST BYTE FOUR             @ 01-DFHMD
+000031 00                           232+         DC    AL1(0)              TYPE REQUEST BYTE FIVE             @ 01-DFHMD
+000032 018B                         233+         DC    AL2(DFHX1)          offset of descriptor            @L8C 01-DFHMD
+                                                                                                               Page    5
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+000034 00                           234+         DC    AL1(0)              REQUEST WRITE CONTROL CHARACTER    @ 01-DFHMD
+000035 0C                           235+         DC    AL1(12)             MAX NO OF ATTRS                 @L3A 01-DFHMD
+000036 00000000                     236+         DC    AL4(0)              MAP CHAIN POINTER               @L3A 01-DFHMD
+00003A 0002                         237+         DC    AL2(2)              NO. OF ATTRS IN MAP FIELDS      @L3A 01-DFHMD
+00003C 0002                         238+         DC    AL2(2)              NO. OF ATTRS IN DSECT FIELDS    @L3A 01-DFHMD
+00003E 01000200                     239+         DC    AL1(1,0,2,0)                                        @L3A 01-DFHMD
+000042 00000000                     240+         DC    AL1(0,0,0,0)                                        @L3A 01-DFHMD
+000046 00000000                     241+         DC    AL1(0,0,0,0)                                        @L3A 01-DFHMD
+00004A 01000200                     242+         DC    AL1(1,0,2,0)                                        @L3A 01-DFHMD
+00004E 00000000                     243+         DC    AL1(0,0,0,0)                                        @L3A 01-DFHMD
+000052 00000000                     244+         DC    AL1(0,0,0,0)                                        @L3A 01-DFHMD
+000056 00                           245+         DC    AL1(0)              FIELD SEPARATOR LENGTH          @L3A 01-DFHMD
+000057 40404040                     246+         DC    CL4' '                      FIELD SEPARATOR VALUE   @L3C 01-DFHMD
+                      0004F         247+DFHK1    EQU *-DFHL1               LENGTH OF MAP HEADER                 01-DFHMD
+                                    248+***********************************************************************
+ 
+                                    250 ***********************************************************************
+                                    251  DFHMDF                         POS=(1,1),LENGTH=7,                    X
+                                                       INITIAL='INQMFE1',                                      X
+                                                       ATTRB=(PROT,NORM),                                      X
+                                                       COLOR=BLUE
+                                    347+***********************************************************************
+00005B                              348+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+00005B 0000                         349+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+00005D 0007                         350+         DC    AL2(7)              FIELD LENGTH                       @ 01-DFHMD
+00005F 02                           351+         DC    AL1(2)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000060 60                           352+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000061 0000                         353+         DC    AL2(0)       .           FIELD POSITION                @ 01-DFHMD
+000063 F1                           354+         DC    X'F1'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000064 00                           355+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+000065 C9D5D8D4C6C5F1               356+         DC    CL7'INQMFE1'        DEFAULT MAP DATA                   @ 01-DFHMD
+                                    357+***********************************************************************
+ 
+                                    359          DFHMDF POS=(1,20),                                            X
+                                                       LENGTH=16,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=GREEN,                                            X
+                                                       INITIAL='Customer Inquiry'
+                                    455+***********************************************************************
+00006C                              456+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+00006C 0000                         457+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+00006E 0010                         458+         DC    AL2(16)             FIELD LENGTH                       @ 01-DFHMD
+000070 02                           459+         DC    AL1(2)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000071 60                           460+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000072 0013                         461+         DC    AL2(19)      .           FIELD POSITION                @ 01-DFHMD
+000074 F4                           462+         DC    X'F4'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000075 00                           463+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+000076 C3A4A2A396948599             464+         DC    CL16'Customer Inquiry'                                  X01-DFHMD
+00007E 40C99598A48999A8                +                                   DEFAULT MAP DATA                   @
+                                    465+***********************************************************************
+                                                                                                               Page    6
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                    467 TRANID   DFHMDF POS=(1,76),                                            X
+                                                       LENGTH=4,                                               X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=BLUE,                                             X
+                                                       INITIAL='IYYY'
+                                    563+***********************************************************************
+000086                              564+TRANID   DS    0C                  FIELD NAME                      @08A 01-DFHMD
+000086 0000                         565+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000088 0004                         566+         DC    AL2(4)              FIELD LENGTH                       @ 01-DFHMD
+00008A 03                           567+         DC    AL1(3)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+00008B 60                           568+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+00008C 004B                         569+         DC    AL2(75)      .           FIELD POSITION                @ 01-DFHMD
+00008E F1                           570+         DC    X'F1'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+00008F 00                           571+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+000090 C9E8E8E8                     572+         DC    CL4'IYYY'           DEFAULT MAP DATA                   @ 01-DFHMD
+                                    573+***********************************************************************
+ 
+                                    575 ***********************************************************************
+                                    576          DFHMDF POS=(3,1),                                             X
+                                                       LENGTH=42,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=NEUTRAL,                                          X
+                                                       INITIAL='Type a customer number.  Then press Enter.'
+                                    672+***********************************************************************
+000094                              673+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+000094 0000                         674+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000096 002A                         675+         DC    AL2(42)             FIELD LENGTH                       @ 01-DFHMD
+000098 02                           676+         DC    AL1(2)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000099 60                           677+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+00009A 00A0                         678+         DC    AL2(160)     .           FIELD POSITION                @ 01-DFHMD
+00009C F7                           679+         DC    X'F7'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+00009D 00                           680+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+00009E E3A8978540814083             681+         DC    CL42'Type a customer number.  Then press Enter.'        X01-DFHMD
+0000A6 A4A2A39694859940                +                                   DEFAULT MAP DATA                   @
+                                    682+***********************************************************************
+ 
+                                    684          DFHMDF POS=(5,1),                                             X
+                                                       LENGTH=24,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=GREEN,                                            X
+                                                       INITIAL='Customer number. . . . .'
+                                    780+***********************************************************************
+0000C8                              781+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+0000C8 0000                         782+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+0000CA 0018                         783+         DC    AL2(24)             FIELD LENGTH                       @ 01-DFHMD
+0000CC 02                           784+         DC    AL1(2)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+0000CD 60                           785+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+0000CE 0140                         786+         DC    AL2(320)     .           FIELD POSITION                @ 01-DFHMD
+0000D0 F4                           787+         DC    X'F4'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+0000D1 00                           788+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                                                                                               Page    7
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+0000D2 C3A4A2A396948599             789+         DC    CL24'Customer number. . . . .'                          X01-DFHMD
+0000DA 4095A4948285994B                +                                   DEFAULT MAP DATA                   @
+                                    790+***********************************************************************
+ 
+                                    792 CUSTNO   DFHMDF POS=(5,26),                                            X
+                                                       LENGTH=6,                                               X
+                                                       ATTRB=(NORM,UNPROT,IC),                                 X
+                                                       COLOR=TURQUOISE,                                        X
+                                                       INITIAL='______'
+                                    888+***********************************************************************
+0000EA                              889+CUSTNO   DS    0C                  FIELD NAME                      @08A 01-DFHMD
+0000EA 0000                         890+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+0000EC 0006                         891+         DC    AL2(6)              FIELD LENGTH                       @ 01-DFHMD
+0000EE 03                           892+         DC    AL1(3)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+0000EF 40                           893+         DC    CL1' '              FIELD ATTRIBUTE                    @ 01-DFHMD
+0000F0 0159                         894+         DC    AL2(345)     .           FIELD POSITION                @ 01-DFHMD
+0000F2 F5                           895+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+0000F3 00                           896+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+0000F4 6D6D6D6D6D6D                 897+         DC    CL6'______'         DEFAULT MAP DATA                   @ 01-DFHMD
+                                    898+***********************************************************************
+ 
+                                    900          DFHMDF POS=(5,33),                                            X
+                                                       LENGTH=1,                                               X
+                                                       ATTRB=ASKIP
+                                    995+***********************************************************************
+0000FA                              996+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+0000FA 0000                         997+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+0000FC 0001                         998+         DC    AL2(1)              FIELD LENGTH                       @ 01-DFHMD
+0000FE 00                           999+         DC    AL1(0)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+0000FF F0                          1000+         DC    CL1'0'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000100 0160                        1001+         DC    AL2(352)     .           FIELD POSITION                @ 01-DFHMD
+000102 00                          1002+         DC    X'00'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000103 00                          1003+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1004+***********************************************************************
+ 
+                                   1006 ***********************************************************************
+                                   1007          DFHMDF POS=(7,1),                                             X
+                                                       LENGTH=24,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=GREEN,                                            X
+                                                       INITIAL='Name and address . . . :'
+                                   1103+***********************************************************************
+000104                             1104+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+000104 0000                        1105+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000106 0018                        1106+         DC    AL2(24)             FIELD LENGTH                       @ 01-DFHMD
+000108 02                          1107+         DC    AL1(2)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000109 60                          1108+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+00010A 01E0                        1109+         DC    AL2(480)     .           FIELD POSITION                @ 01-DFHMD
+00010C F4                          1110+         DC    X'F4'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+                                                                                                               Page    8
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+00010D 00                          1111+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+00010E D581948540819584            1112+         DC    CL24'Name and address . . . :'                          X01-DFHMD
+000116 408184849985A2A2                +                                   DEFAULT MAP DATA                   @
+                                   1113+***********************************************************************
+ 
+                                   1115 LNAME    DFHMDF POS=(7,26),                                            X
+                                                       LENGTH=30,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1211+***********************************************************************
+000126                             1212+LNAME    DS    0C                  FIELD NAME                      @08A 01-DFHMD
+000126 0000                        1213+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000128 001E                        1214+         DC    AL2(30)             FIELD LENGTH                       @ 01-DFHMD
+00012A 01                          1215+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+00012B 60                          1216+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+00012C 01F9                        1217+         DC    AL2(505)     .           FIELD POSITION                @ 01-DFHMD
+00012E F5                          1218+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+00012F 00                          1219+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1220+***********************************************************************
+ 
+                                   1222 FNAME    DFHMDF POS=(8,26),                                            X
+                                                       LENGTH=20,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1318+***********************************************************************
+000130                             1319+FNAME    DS    0C                  FIELD NAME                      @08A 01-DFHMD
+000130 0000                        1320+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000132 0014                        1321+         DC    AL2(20)             FIELD LENGTH                       @ 01-DFHMD
+000134 01                          1322+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000135 60                          1323+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000136 0249                        1324+         DC    AL2(585)     .           FIELD POSITION                @ 01-DFHMD
+000138 F5                          1325+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000139 00                          1326+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1327+***********************************************************************
+ 
+                                   1329 ADDR     DFHMDF POS=(9,26),                                            X
+                                                       LENGTH=30,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1425+***********************************************************************
+00013A                             1426+ADDR     DS    0C                  FIELD NAME                      @08A 01-DFHMD
+00013A 0000                        1427+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+00013C 001E                        1428+         DC    AL2(30)             FIELD LENGTH                       @ 01-DFHMD
+00013E 01                          1429+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+00013F 60                          1430+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000140 0299                        1431+         DC    AL2(665)     .           FIELD POSITION                @ 01-DFHMD
+000142 F5                          1432+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000143 00                          1433+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1434+***********************************************************************
+                                                                                                               Page    9
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                   1436 CITY     DFHMDF POS=(10,26),                                           X
+                                                       LENGTH=20,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1532+***********************************************************************
+000144                             1533+CITY     DS    0C                  FIELD NAME                      @08A 01-DFHMD
+000144 0000                        1534+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000146 0014                        1535+         DC    AL2(20)             FIELD LENGTH                       @ 01-DFHMD
+000148 01                          1536+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000149 60                          1537+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+00014A 02E9                        1538+         DC    AL2(745)     .           FIELD POSITION                @ 01-DFHMD
+00014C F5                          1539+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+00014D 00                          1540+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1541+***********************************************************************
+ 
+                                   1543 STATE    DFHMDF POS=(10,47),                                           X
+                                                       LENGTH=2,                                               X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1639+***********************************************************************
+00014E                             1640+STATE    DS    0C                  FIELD NAME                      @08A 01-DFHMD
+00014E 0000                        1641+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000150 0002                        1642+         DC    AL2(2)              FIELD LENGTH                       @ 01-DFHMD
+000152 01                          1643+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000153 60                          1644+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000154 02FE                        1645+         DC    AL2(766)     .           FIELD POSITION                @ 01-DFHMD
+000156 F5                          1646+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000157 00                          1647+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1648+***********************************************************************
+ 
+                                   1650 ZIPCODE  DFHMDF POS=(10,50),                                           X
+                                                       LENGTH=10,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1746+***********************************************************************
+000158                             1747+ZIPCODE  DS    0C                  FIELD NAME                      @08A 01-DFHMD
+000158 0000                        1748+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+00015A 000A                        1749+         DC    AL2(10)             FIELD LENGTH                       @ 01-DFHMD
+00015C 01                          1750+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+00015D 60                          1751+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+00015E 0301                        1752+         DC    AL2(769)     .           FIELD POSITION                @ 01-DFHMD
+000160 F5                          1753+         DC    X'F5'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000161 00                          1754+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1755+***********************************************************************
+ 
+                                   1757 ***********************************************************************
+                                   1758 MESSAGE  DFHMDF POS=(23,1),                                            X
+                                                       LENGTH=79,                                              X
+                                                       ATTRB=(BRT,PROT),                                       X
+                                                                                                               Page   10
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                                       COLOR=YELLOW
+                                   1854+***********************************************************************
+000162                             1855+MESSAGE  DS    0C                  FIELD NAME                      @08A 01-DFHMD
+000162 0000                        1856+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+000164 004F                        1857+         DC    AL2(79)             FIELD LENGTH                       @ 01-DFHMD
+000166 01                          1858+         DC    AL1(1)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000167 E8                          1859+         DC    CL1'Y'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000168 06E0                        1860+         DC    AL2(1760)    .           FIELD POSITION                @ 01-DFHMD
+00016A F6                          1861+         DC    X'F6'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+00016B 00                          1862+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+                                   1863+***********************************************************************
+ 
+                                   1865          DFHMDF POS=(24,1),                                            X
+                                                       LENGTH=20,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=BLUE,                                             X
+                                                       INITIAL='F3=Exit   F12=Cancel'
+                                   1961+***********************************************************************
+00016C                             1962+         DS    0C                  FIELD NAME                         @ 01-DFHMD
+00016C 0000                        1963+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+00016E 0014                        1964+         DC    AL2(20)             FIELD LENGTH                       @ 01-DFHMD
+000170 02                          1965+         DC    AL1(2)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+000171 60                          1966+         DC    CL1'-'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000172 0730                        1967+         DC    AL2(1840)    .           FIELD POSITION                @ 01-DFHMD
+000174 F1                          1968+         DC    X'F1'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000175 00                          1969+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+000176 C6F37EC5A789A340            1970+         DC    CL20'F3=Exit   F12=Cancel'                              X01-DFHMD
+00017E 4040C6F1F27EC381                +                                   DEFAULT MAP DATA                   @
+                                   1971+***********************************************************************
+ 
+                                   1973 DUMMY    DFHMDF POS=(24,79),                                           X
+                                                       LENGTH=1,                                               X
+                                                       ATTRB=(DRK,PROT,FSET),                                  X
+                                                       INITIAL=' '
+                                   2068+***********************************************************************
+00018A                             2069+DUMMY    DS    0C                  FIELD NAME                      @08A 01-DFHMD
+00018A 0000                        2070+         DC    AL2(0)              FIELD PAGE POSITION                @ 01-DFHMD
+00018C 0001                        2071+         DC    AL2(1)              FIELD LENGTH                       @ 01-DFHMD
+00018E 03                          2072+         DC    AL1(3)              FIELD DESCRIPTOR FLAG BYTE         @ 01-DFHMD
+00018F 6D                          2073+         DC    CL1'_'              FIELD ATTRIBUTE                    @ 01-DFHMD
+000190 077E                        2074+         DC    AL2(1918)    .           FIELD POSITION                @ 01-DFHMD
+000192 00                          2075+         DC    X'00'               COLOUR ATTRIBUTE                @L3C 01-DFHMD
+000193 00                          2076+         DC    X'00'               HIGHLIGHTING ATTRIBUTE          @L3C 01-DFHMD
+000194 40                          2077+         DC    CL1' '              DEFAULT MAP DATA                   @ 01-DFHMD
+                                   2078+***********************************************************************
+ 
+                                   2080 ***********************************************************************
+                                   2081 INQSYYY  DFHMSD TYPE=FINAL
+                                   2267+***********************************************************************
+                                                                                                               Page   11
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                      000AA        2268+DFHS1    EQU   170   .                  MAP SPECIFICATION LENGTH        02-DFHMD
+                      00103        2269+DFHN1    EQU   259                 INPUT WORK AREA LENGTH               02-DFHMD
+                      0020F        2270+DFHP1    EQU   527                 OUTPUT WORK AREA LENGTH              02-DFHMD
+                      0015A        2271+DFHQ1    EQU   346                 CURSOR POSITION                      02-DFHMD
+                      00000        2272+DFHZ1    EQU   0                   count of useredit fields        @0DA 02-DFHMD
+                      00010        2273+DFHT1    EQU   16   .              MAP INDICATOR                        02-DFHMD
+000195 FFFF                        2274+         DC    2XL1'FF'            END OF MAP                         @ 02-DFHMD
+                      00197        2275+DFHXX1   EQU   *                                                   @L8A 02-DFHMD
+                      0018B        2276+DFHX1    EQU   DFHXX1-DFHL1        offset of descriptor            @L8A 02-DFHMD
+000197 01CA                        2277+         DC    AL2(DFHY1)                                          @L8A 02-DFHMD
+000199 C1C4E2C4                    2278+         DC    C'ADSD'                                             @L8A 02-DFHMD
+00019D 0001                        2279+         DC    AL2(1)              index of map within mapset      @L8A 02-DFHMD
+00019F 000A                        2280+         DC    AL2(10)             no of fields in ADS             @L8A 02-DFHMD
+0001A1 0108                        2281+         DC    AL2(259+5)          length of ADS                   @L8A 02-DFHMD
+0001A3 0002                        2282+         DC    AL2(2)              no of attributes per field      @L8A 02-DFHMD
+0001A5 C3C840404040                2283+         DC    CL6'CH    '                                         @L8C 02-DFHMD
+0001AB 404040404040                2284+         DC    CL6'      '                                         @L8C 02-DFHMD
+0001B1 D3                          2285+         DC    CL1'L'              JUSTIFY LEFT or RIGHT           @L8A 02-DFHMD
+0001B2 40                          2286+         DC    CL1' '              JUSTIFY FIRST, LAST or BOTTOM   @L8A 02-DFHMD
+0001B3 0001                        2287+         DC    AL2(1)              starting line                   @L8A 02-DFHMD
+0001B5 0001                        2288+         DC    AL2(1)              starting column                 @L8A 02-DFHMD
+0001B7 0018                        2289+         DC    AL2(24)             no of lines                     @L8A 02-DFHMD
+0001B9 0050                        2290+         DC    AL2(80)             no of columns                   @L8A 02-DFHMD
+0001BB C2                          2291+         DC    CL1'B'              Write Control Character         @L8A 02-DFHMD
+0001BC 00                          2292+         DC    BL1'00'             align to half-word boundary     @L8A 02-DFHMD
+0001BD E3D9C1D5C9C44040            2293+         DC    CL32'TRANID'        field name                      @L8A 02-DFHMD
+0001DD 0006                        2294+         DC    AL2(6)              length of field name            @L8A 02-DFHMD
+0001DF 0000                        2295+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+0001E1 000C                        2296+         DC    AL2(12)             offset within dsect             @L8A 02-DFHMD
+0001E3 0004                        2297+         DC    AL2(4)              length of field                 @L8A 02-DFHMD
+0001E5 D3                          2298+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+0001E6 40                          2299+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+0001E7 C3E4E2E3D5D64040            2300+         DC    CL32'CUSTNO'        field name                      @L8A 02-DFHMD
+000207 0006                        2301+         DC    AL2(6)              length of field name            @L8A 02-DFHMD
+000209 0000                        2302+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+00020B 0015                        2303+         DC    AL2(21)             offset within dsect             @L8A 02-DFHMD
+00020D 0006                        2304+         DC    AL2(6)              length of field                 @L8A 02-DFHMD
+00020F D3                          2305+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+000210 40                          2306+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+000211 D3D5C1D4C5404040            2307+         DC    CL32'LNAME'         field name                      @L8A 02-DFHMD
+000231 0005                        2308+         DC    AL2(5)              length of field name            @L8A 02-DFHMD
+000233 0000                        2309+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+000235 0020                        2310+         DC    AL2(32)             offset within dsect             @L8A 02-DFHMD
+000237 001E                        2311+         DC    AL2(30)             length of field                 @L8A 02-DFHMD
+000239 D3                          2312+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+00023A 40                          2313+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+00023B C6D5C1D4C5404040            2314+         DC    CL32'FNAME'         field name                      @L8A 02-DFHMD
+00025B 0005                        2315+         DC    AL2(5)              length of field name            @L8A 02-DFHMD
+00025D 0000                        2316+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+00025F 0043                        2317+         DC    AL2(67)             offset within dsect             @L8A 02-DFHMD
+000261 0014                        2318+         DC    AL2(20)             length of field                 @L8A 02-DFHMD
+000263 D3                          2319+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+000264 40                          2320+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+000265 C1C4C4D940404040            2321+         DC    CL32'ADDR'          field name                      @L8A 02-DFHMD
+000285 0004                        2322+         DC    AL2(4)              length of field name            @L8A 02-DFHMD
+                                                                                                               Page   12
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+000287 0000                        2323+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+000289 005C                        2324+         DC    AL2(92)             offset within dsect             @L8A 02-DFHMD
+00028B 001E                        2325+         DC    AL2(30)             length of field                 @L8A 02-DFHMD
+00028D D3                          2326+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+00028E 40                          2327+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+00028F C3C9E3E840404040            2328+         DC    CL32'CITY'          field name                      @L8A 02-DFHMD
+0002AF 0004                        2329+         DC    AL2(4)              length of field name            @L8A 02-DFHMD
+0002B1 0000                        2330+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+0002B3 007F                        2331+         DC    AL2(127)            offset within dsect             @L8A 02-DFHMD
+0002B5 0014                        2332+         DC    AL2(20)             length of field                 @L8A 02-DFHMD
+0002B7 D3                          2333+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+0002B8 40                          2334+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+0002B9 E2E3C1E3C5404040            2335+         DC    CL32'STATE'         field name                      @L8A 02-DFHMD
+0002D9 0005                        2336+         DC    AL2(5)              length of field name            @L8A 02-DFHMD
+0002DB 0000                        2337+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+0002DD 0098                        2338+         DC    AL2(152)            offset within dsect             @L8A 02-DFHMD
+0002DF 0002                        2339+         DC    AL2(2)              length of field                 @L8A 02-DFHMD
+0002E1 D3                          2340+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+0002E2 40                          2341+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+0002E3 E9C9D7C3D6C4C540            2342+         DC    CL32'ZIPCODE'       field name                      @L8A 02-DFHMD
+000303 0007                        2343+         DC    AL2(7)              length of field name            @L8A 02-DFHMD
+000305 0000                        2344+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+000307 009F                        2345+         DC    AL2(159)            offset within dsect             @L8A 02-DFHMD
+000309 000A                        2346+         DC    AL2(10)             length of field                 @L8A 02-DFHMD
+00030B D3                          2347+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+00030C 40                          2348+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+00030D D4C5E2E2C1C7C540            2349+         DC    CL32'MESSAGE'       field name                      @L8A 02-DFHMD
+00032D 0007                        2350+         DC    AL2(7)              length of field name            @L8A 02-DFHMD
+00032F 0000                        2351+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+000331 00AE                        2352+         DC    AL2(174)            offset within dsect             @L8A 02-DFHMD
+000333 004F                        2353+         DC    AL2(79)             length of field                 @L8A 02-DFHMD
+000335 D3                          2354+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+000336 40                          2355+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+000337 C4E4D4D4E8404040            2356+         DC    CL32'DUMMY'         field name                      @L8A 02-DFHMD
+000357 0005                        2357+         DC    AL2(5)              length of field name            @L8A 02-DFHMD
+000359 0000                        2358+         DC    AL2(0)              index within OCCURS             @L8A 02-DFHMD
+00035B 0102                        2359+         DC    AL2(258)            offset within dsect             @L8A 02-DFHMD
+00035D 0001                        2360+         DC    AL2(1)              length of field                 @L8A 02-DFHMD
+00035F D3                          2361+         DC    C'L'                field justification (L or R)    @L8A 02-DFHMD
+000360 40                          2362+         DC    C' '                field fill char (blank or 0)    @L8A 02-DFHMD
+                      00361        2363+DFHR1    EQU   *                   END OF MAP                           02-DFHMD
+                      001CA        2364+DFHY1    EQU   DFHR1-DFHXX1        length of descriptor            @L8A 02-DFHMD
+                      00355        2365+DFHM1    EQU   DFHR1-DFHL1         MAP LENGTH                           02-DFHMD
+                      00000        2366+DFHU0    EQU   0                   OVERFLOW TRAILER LEN.                02-DFHMD
+000361 FFFFFFFF                    2367+         DC    4X'FF'              END OF MAPSET               @BBAD31J 02-DFHMD
+                                   2368+***********************************************************************
+ 
+                                   2463          END
+ 
+                               Ordinary Symbol and Literal Cross Reference                                     Page   13
+Symbol   Length   Value     Id    R Type Asm  Program   Defn References                     HLASM R6.0  2025/11/22 16.05
+DFHK1         1 0000004F 00000001 A   U                  247  209
+DFHL1         1 0000000C 00000001     U                  208  247  2276  2365
+DFHM1         1 00000355 00000001 A   U                 2365  214
+DFHN1         1 00000103 00000001 A   U                 2269  216
+DFHP1         1 0000020F 00000001 A   U                 2270  217
+DFHQ1         1 0000015A 00000001 A   U                 2271  220
+DFHR1         1 00000361 00000001     U                 2363 2364  2365
+DFHS1         1 000000AA 00000001 A   U                 2268  215
+DFHT1         1 00000010 00000001 A   U                 2273  226
+DFHU0         1 00000000 00000001 A   U                 2366  107
+DFHXX1        1 00000197 00000001     U                 2275 2276  2364
+DFHX1         1 0000018B 00000001 A   U                 2276  233
+DFHY1         1 000001CA 00000001 A   U                 2364 2277
+DFHZ1         1 00000000 00000001 A   U                 2272  230
+INQSFE1M      1 00000000 00000001     J                  102  103   104
+ 
+                                  Unreferenced Symbols Defined in CSECTs                                       Page   14
+  Defn  Symbol                                                                              HLASM R6.0  2025/11/22 16.05
+  1426  ADDR
+  1533  CITY
+   889  CUSTNO
+  2069  DUMMY
+  1319  FNAME
+   207  INQMFE1
+  1212  LNAME
+  1855  MESSAGE
+   105  MSD0001
+  1640  STATE
+   564  TRANID
+  1747  ZIPCODE
+ 
+                                          Macro and Copy Code Source Summary                                   Page   15
+ Con Source                                        Volume    Members                        HLASM R6.0  2025/11/22 16.05
+  L1 DFH610.CICS.SDFHMAC                           VTDFHL    DFHANRAT DFHANRWC DFHCOPYR DFHGDEFS DFHMDF   DFHMDI
+                                                             DFHMSD   DFHPRMCK DFHSYS
+ 
+                                   General Purpose Register Cross Reference                                    Page   16
+ Register  References (M=modified, B=branch, U=USING, D=DROP, N=index)                      HLASM R6.0  2025/11/22 16.05
+    0(0)    (no references identified)
+    1(1)    (no references identified)
+    2(2)    (no references identified)
+    3(3)    (no references identified)
+    4(4)    (no references identified)
+    5(5)    (no references identified)
+    6(6)    (no references identified)
+    7(7)    (no references identified)
+    8(8)    (no references identified)
+    9(9)    (no references identified)
+   10(A)    (no references identified)
+   11(B)    (no references identified)
+   12(C)    (no references identified)
+   13(D)    (no references identified)
+   14(E)    (no references identified)
+   15(F)    (no references identified)
+ 
+                                  Diagnostic Cross Reference and Assembler Summary                             Page   17
+                                                                                            HLASM R6.0  2025/11/22 16.05
+     No Statements Flagged in this Assembly
+HIGH LEVEL ASSEMBLER, 5696-234, RELEASE 6.0, PTF UO02828
+SYSTEM: z/OS 03.01.00              JOBNAME: INQSBFE1    STEPNAME: MAPSET     PROCSTEP: ASMMAP
+Unicode Module:   ASMA047C   From Page     1148   To Page    17584           ECECP: International 1
+Data Sets Allocated for this Assembly
+ Con DDname   Data Set Name                                Volume  Member
+  P1 SYSIN    SYS25326.T160521.RA000.INQSBFE1.TEMPM.H01
+  L1 SYSLIB   DFH610.CICS.SDFHMAC                          VTDFHL
+  L2          SYS1.MACLIB                                  VTMVSC
+     SYSPRINT KC03FE1.INQSBFE1.JOB04694.D0000102.?
+     SYSPUNCH SYS25326.T160521.RA000.INQSBFE1.MAP.H01
+ 
+  26844K allocated to Buffer Pool       Storage required     980K
+     95 Primary Input Records Read         6959 Library Records Read                  0 Work File Reads
+      0 ASMAOPT Records Read                628 Primary Print Records Written         0 Work File Writes
+     18 Object Records Written                0 ADATA Records Written
+Assembly Start Time: 16.05.23 Stop Time: 16.05.23 Processor Time: 00.00.00.0059
+Return Code 000
+z/OS V3 R1 BINDER     16:05:22 SATURDAY NOVEMBER 22, 2025
+BATCH EMULATOR  JOB(INQSBFE1) STEP(MAPSET  ) PGM= IEWL      PROCEDURE(LINKMAP )
+IEW2278I B352 INVOCATION PARAMETERS - LIST,LET,XREF,RMODE(24),AMODE(31)
+IEW2650I 5102 MODULE ENTRY NOT PROVIDED.  ENTRY DEFAULTS TO SECTION INQSFE1M.
+ 
+ 
+                                       C R O S S - R E F E R E N C E  T A B L E
+                                       _________________________________________
+ 
+TEXT CLASS = B_TEXT
+ 
+---------------  R E F E R E N C E  --------------------------  T A R G E T  -------------------------------------------
+  CLASS                            ELEMENT       |                                            ELEMENT                  |
+  OFFSET SECT/PART(ABBREV)          OFFSET  TYPE | SYMBOL(ABBREV)   SECTION (ABBREV)           OFFSET CLASS NAME       |
+                                                 |                                                                     |
+***  NO ADDRESS CONSTANTS FOR THIS CLASS   ***
+                                       *** E N D  O F  C R O S S  R E F E R E N C E ***
+ 
+ 
+ 
+                                *** O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+PROCESSING OPTIONS:
+ 
+   ALIASES             NO
+   ALIGN2              NO
+   AMODE                31
+   CALL                YES
+   CASE                UPPER
+   COMPAT              UNSPECIFIED
+   COMPRESS            AUTO
+   DCBS                NO
+   DYNAM               NO
+   EXTATTR             UNSPECIFIED
+   EXITS:              NONE
+   FILL                NONE
+   GID                 UNSPECIFIED
+   HOBSET              NO
+   INFO                NO
+   LET                 08
+   LINECT              060
+   LIST                SUMMARY
+   LISTPRIV            NO
+   LONGPARM            NO
+   MAP                 NO
+   MAXBLK              032760
+   MODMAP              NO
+   MSGLEVEL            00
+   OVLY                NO
+   PRINT               YES
+   RES                 NO
+   REUSABILITY         UNSPECIFIED
+   RMODE                24,INITIAL
+   RMODEX              NO
+   SIGN                NO
+   STORENX             NOREPLACE
+   STRIPCL             NO
+   STRIPSEC            NO
+   SYMTRACE
+   TERM                NO
+   TRAP                ON
+   UID                 UNSPECIFIED
+   UPCASE              NO
+   WKSPACE             000000K,000000K
+   XCAL                NO
+   XREF                YES
+   ***END OF OPTIONS***
+ 
+ 
+ 
+ 
+SAVE OPERATION SUMMARY:
+ 
+   MEMBER NAME         INQSFE1
+   LOAD LIBRARY        TSOECCC.CICSTS12.STUDENT.LOADLIB
+   PROGRAM TYPE        PROGRAM OBJECT(FORMAT 2)
+   VOLUME SERIAL       KCTR05
+   DISPOSITION         REPLACED
+   TIME OF SAVE        16.05.23  NOV 22, 2025
+ 
+ 
+SAVE MODULE ATTRIBUTES:
+ 
+   AC                  000
+   AMODE                31
+   COMPRESSION         NONE
+   DC                  NO
+   EDITABLE            YES
+   EXCEEDS 16MB        NO
+   EXECUTABLE          YES
+   LONGPARM            NO
+   MIGRATABLE          YES
+   OL                  NO
+   OVLY                NO
+   PACK,PRIME          NO,NO
+   PAGE ALIGN          NO
+   REFR                NO
+   RENT                NO
+   REUS                NO
+   RMODE                24
+   SCTR                NO
+   SIGN                NO
+   SSI
+   SYM GENERATED       NO
+   TEST                NO
+   XPLINK              NO
+   MODULE SIZE (HEX)   00000368
+   DASD SIZE (HEX)     00001000
+ 
+ 
+ ENTRY POINT AND ALIAS SUMMARY:
+ 
+ NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS
+ 
+ INQSFE1M          MAIN_EP      31 00000000 B_TEXT
+ 
+                         *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+ 
+ 
+ 
+z/OS V3 R1 BINDER     16:05:22 SATURDAY NOVEMBER 22, 2025
+BATCH EMULATOR  JOB(INQSBFE1) STEP(MAPSET  ) PGM= IEWL      PROCEDURE(LINKMAP )
+IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.
+ 
+ 
+ 
+----------------------
+MESSAGE SUMMARY REPORT
+----------------------
+ TERMINAL MESSAGES      (SEVERITY = 16)
+ NONE
+ 
+ SEVERE MESSAGES        (SEVERITY = 12)
+ NONE
+ 
+ ERROR MESSAGES         (SEVERITY = 08)
+ NONE
+ 
+ WARNING MESSAGES       (SEVERITY = 04)
+ NONE
+ 
+ INFORMATIONAL MESSAGES (SEVERITY = 00)
+ 2008  2278  2650
+ 
+ 
+ **** END OF MESSAGE SUMMARY REPORT ****
+ 
+ 
+                                         High Level Assembler Option Summary                   (PTF UO02828)   Page    1
+                                                                                            HLASM R6.0  2025/11/22 16.05
+  No Overriding ASMAOPT Parameters
+  Overriding Parameters-  SYSPARM(DSECT),DECK,NOOBJECT
+  No Process Statements
+ 
+ 
+  Options for this Assembly
+                    NOADATA
+                      ALIGN
+                    NOASA
+                      ASCII(00819)
+                      BATCH
+                      CA(LOCAL)
+                      CE(LOCAL)
+                      CODEPAGE(01148)
+                    NOCOMPAT
+                      CU(LOCAL)
+                    NODATAMAP
+                    NODBCS
+3 PARM/OPTION         DECK
+                      DXREF
+                      EBCDIC(00037)
+                      ESD
+                    NOEXIT
+                      FAIL(NOMSG,NOMNOTE,MAXERRS(500))
+                      FLAG(0,ALIGN,CONT,EXLITW,NOIMPLEN,NOLONGER,NOPAGE0,PUSH,RECORD,RENT,NOSIGNED,NOSUBSTR,NOTRUNC,
+                           USING0)
+                    NOFOLD
+                    NOGOFF
+                      ILMA
+                    NOINFO
+                      LANGUAGE(EN)
+                    NOLIBMAC
+                      LINECOUNT(60)
+                      LIST(121)
+                      MACHINE(,NOLIST)
+                      MXREF(SOURCE)
+3 PARM/OPTION       NOOBJECT
+                      OPTABLE(UNI,NOLIST)
+                    NOPCONTROL
+                    NOPESTOP
+                    NOPROFILE
+                    NORA2
+                    NORENT
+                      RLD
+                      RXREF
+                      SECTALGN(8)
+                      SIZE(MAX)
+                    NOSUPRWARN
+3 PARM/OPTION         SYSPARM(DSECT)
+                    NOTERM
+                    NOTEST
+                      THREAD
+                    NOTRANSLATE
+                      TYPECHECK(MAGNITUDE,REGISTER,SIGNED)
+ 
+                                         High Level Assembler Option Summary                   (PTF UO02828)   Page    2
+                                                                                            HLASM R6.0  2025/11/22 16.05
+                      UNICODE(01200)
+                      USING(NOLIMIT,MAP,WARN(15))
+                    NOWORKFILE
+                      XREF(SHORT,UNREFS)
+ 
+  No Overriding DD Names
+ 
+                                                                                                               Page    3
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                      1 *        PRINT NOGEN
+                                      2 INQSFE1  DFHMSD TYPE=&SYSPARM,                                         X
+                                                       MODE=INOUT,                                             X
+                                                       LANG=COBOL,                                             X
+                                                       STORAGE=AUTO,                                           X
+                                                       CTRL=FREEKB,                                            X
+                                                       TERM=3270-2,                                            X
+                                                       TIOAPFX=YES,                                            X
+                                                       MAPATTS=(COLOR,HILIGHT),                                X
+                                                       DSATTS=(COLOR,HILIGHT)
+                                    101 ***********************************************************************
+                                    102 INQMFE1  DFHMDI SIZE=(24,80),                                          X
+                                                       COLUMN=1,                                               X
+                                                       LINE=1
+                                    195+         PUNCH '       01  INQMFE1I.'                                 @ 01-DFHMD
+                                    196+         PUNCH '           02  FILLER PIC X(12).'              @BB6D00T 01-DFHMD
+                                    197 ***********************************************************************
+                                    198  DFHMDF                         POS=(1,1),LENGTH=7,                    X
+                                                       INITIAL='INQMFE1',                                      X
+                                                       ATTRB=(PROT,NORM),                                      X
+                                                       COLOR=BLUE
+                                    294          DFHMDF POS=(1,20),                                            X
+                                                       LENGTH=16,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=GREEN,                                            X
+                                                       INITIAL='Customer Inquiry'
+                                    390 TRANID   DFHMDF POS=(1,76),                                            X
+                                                       LENGTH=4,                                               X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=BLUE,                                             X
+                                                       INITIAL='IYYY'
+                                    486+         PUNCH '           02  TRANIDL    COMP  PIC  S9(4). '  @BBD5E01 01-DFHMD
+                                    487+         PUNCH '           02  TRANIDF    PICTURE X.'          @BBD5E01 01-DFHMD
+                                    488+         PUNCH '           02  FILLER REDEFINES TRANIDF.'      @BM13780 01-DFHMD
+                                    489+         PUNCH '             03 TRANIDA    PICTURE X.'         @BM13780 01-DFHMD
+                                    490+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                    491+         PUNCH '           02  TRANIDI  PIC X(4).'             @BBD5E01 01-DFHMD
+                                    492 ***********************************************************************
+                                    493          DFHMDF POS=(3,1),                                             X
+                                                       LENGTH=42,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=NEUTRAL,                                          X
+                                                       INITIAL='Type a customer number.  Then press Enter.'
+                                    589          DFHMDF POS=(5,1),                                             X
+                                                       LENGTH=24,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=GREEN,                                            X
+                                                       INITIAL='Customer number. . . . .'
+                                    685 CUSTNO   DFHMDF POS=(5,26),                                            X
+                                                       LENGTH=6,                                               X
+                                                       ATTRB=(NORM,UNPROT,IC),                                 X
+                                                       COLOR=TURQUOISE,                                        X
+                                                       INITIAL='______'
+                                    781+         PUNCH '           02  CUSTNOL    COMP  PIC  S9(4). '  @BBD5E01 01-DFHMD
+                                    782+         PUNCH '           02  CUSTNOF    PICTURE X.'          @BBD5E01 01-DFHMD
+                                                                                                               Page    4
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                    783+         PUNCH '           02  FILLER REDEFINES CUSTNOF.'      @BM13780 01-DFHMD
+                                    784+         PUNCH '             03 CUSTNOA    PICTURE X.'         @BM13780 01-DFHMD
+                                    785+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                    786+         PUNCH '           02  CUSTNOI  PIC X(6).'             @BBD5E01 01-DFHMD
+                                    787          DFHMDF POS=(5,33),                                            X
+                                                       LENGTH=1,                                               X
+                                                       ATTRB=ASKIP
+                                    882 ***********************************************************************
+                                    883          DFHMDF POS=(7,1),                                             X
+                                                       LENGTH=24,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=GREEN,                                            X
+                                                       INITIAL='Name and address . . . :'
+                                    979 LNAME    DFHMDF POS=(7,26),                                            X
+                                                       LENGTH=30,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1075+         PUNCH '           02  LNAMEL    COMP  PIC  S9(4). '   @BBD5E01 01-DFHMD
+                                   1076+         PUNCH '           02  LNAMEF    PICTURE X.'           @BBD5E01 01-DFHMD
+                                   1077+         PUNCH '           02  FILLER REDEFINES LNAMEF.'       @BM13780 01-DFHMD
+                                   1078+         PUNCH '             03 LNAMEA    PICTURE X.'          @BM13780 01-DFHMD
+                                   1079+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1080+         PUNCH '           02  LNAMEI  PIC X(30).'             @BBD5E01 01-DFHMD
+                                   1081 FNAME    DFHMDF POS=(8,26),                                            X
+                                                       LENGTH=20,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1177+         PUNCH '           02  FNAMEL    COMP  PIC  S9(4). '   @BBD5E01 01-DFHMD
+                                   1178+         PUNCH '           02  FNAMEF    PICTURE X.'           @BBD5E01 01-DFHMD
+                                   1179+         PUNCH '           02  FILLER REDEFINES FNAMEF.'       @BM13780 01-DFHMD
+                                   1180+         PUNCH '             03 FNAMEA    PICTURE X.'          @BM13780 01-DFHMD
+                                   1181+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1182+         PUNCH '           02  FNAMEI  PIC X(20).'             @BBD5E01 01-DFHMD
+                                   1183 ADDR     DFHMDF POS=(9,26),                                            X
+                                                       LENGTH=30,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1279+         PUNCH '           02  ADDRL    COMP  PIC  S9(4). '    @BBD5E01 01-DFHMD
+                                   1280+         PUNCH '           02  ADDRF    PICTURE X.'            @BBD5E01 01-DFHMD
+                                   1281+         PUNCH '           02  FILLER REDEFINES ADDRF.'        @BM13780 01-DFHMD
+                                   1282+         PUNCH '             03 ADDRA    PICTURE X.'           @BM13780 01-DFHMD
+                                   1283+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1284+         PUNCH '           02  ADDRI  PIC X(30).'              @BBD5E01 01-DFHMD
+                                   1285 CITY     DFHMDF POS=(10,26),                                           X
+                                                       LENGTH=20,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1381+         PUNCH '           02  CITYL    COMP  PIC  S9(4). '    @BBD5E01 01-DFHMD
+                                   1382+         PUNCH '           02  CITYF    PICTURE X.'            @BBD5E01 01-DFHMD
+                                   1383+         PUNCH '           02  FILLER REDEFINES CITYF.'        @BM13780 01-DFHMD
+                                   1384+         PUNCH '             03 CITYA    PICTURE X.'           @BM13780 01-DFHMD
+                                   1385+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1386+         PUNCH '           02  CITYI  PIC X(20).'              @BBD5E01 01-DFHMD
+                                   1387 STATE    DFHMDF POS=(10,47),                                           X
+                                                       LENGTH=2,                                               X
+                                                                                                               Page    5
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1483+         PUNCH '           02  STATEL    COMP  PIC  S9(4). '   @BBD5E01 01-DFHMD
+                                   1484+         PUNCH '           02  STATEF    PICTURE X.'           @BBD5E01 01-DFHMD
+                                   1485+         PUNCH '           02  FILLER REDEFINES STATEF.'       @BM13780 01-DFHMD
+                                   1486+         PUNCH '             03 STATEA    PICTURE X.'          @BM13780 01-DFHMD
+                                   1487+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1488+         PUNCH '           02  STATEI  PIC X(2).'              @BBD5E01 01-DFHMD
+                                   1489 ZIPCODE  DFHMDF POS=(10,50),                                           X
+                                                       LENGTH=10,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=TURQUOISE
+                                   1585+         PUNCH '           02  ZIPCODEL    COMP  PIC  S9(4). ' @BBD5E01 01-DFHMD
+                                   1586+         PUNCH '           02  ZIPCODEF    PICTURE X.'         @BBD5E01 01-DFHMD
+                                   1587+         PUNCH '           02  FILLER REDEFINES ZIPCODEF.'     @BM13780 01-DFHMD
+                                   1588+         PUNCH '             03 ZIPCODEA    PICTURE X.'        @BM13780 01-DFHMD
+                                   1589+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1590+         PUNCH '           02  ZIPCODEI  PIC X(10).'           @BBD5E01 01-DFHMD
+                                   1591 ***********************************************************************
+                                   1592 MESSAGE  DFHMDF POS=(23,1),                                            X
+                                                       LENGTH=79,                                              X
+                                                       ATTRB=(BRT,PROT),                                       X
+                                                       COLOR=YELLOW
+                                   1688+         PUNCH '           02  MESSAGEL    COMP  PIC  S9(4). ' @BBD5E01 01-DFHMD
+                                   1689+         PUNCH '           02  MESSAGEF    PICTURE X.'         @BBD5E01 01-DFHMD
+                                   1690+         PUNCH '           02  FILLER REDEFINES MESSAGEF.'     @BM13780 01-DFHMD
+                                   1691+         PUNCH '             03 MESSAGEA    PICTURE X.'        @BM13780 01-DFHMD
+                                   1692+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1693+         PUNCH '           02  MESSAGEI  PIC X(79).'           @BBD5E01 01-DFHMD
+                                   1694          DFHMDF POS=(24,1),                                            X
+                                                       LENGTH=20,                                              X
+                                                       ATTRB=(NORM,PROT),                                      X
+                                                       COLOR=BLUE,                                             X
+                                                       INITIAL='F3=Exit   F12=Cancel'
+                                   1790 DUMMY    DFHMDF POS=(24,79),                                           X
+                                                       LENGTH=1,                                               X
+                                                       ATTRB=(DRK,PROT,FSET),                                  X
+                                                       INITIAL=' '
+                                   1885+         PUNCH '           02  DUMMYL    COMP  PIC  S9(4). '   @BBD5E01 01-DFHMD
+                                   1886+         PUNCH '           02  DUMMYF    PICTURE X.'           @BBD5E01 01-DFHMD
+                                   1887+         PUNCH '           02  FILLER REDEFINES DUMMYF.'       @BM13780 01-DFHMD
+                                   1888+         PUNCH '             03 DUMMYA    PICTURE X.'          @BM13780 01-DFHMD
+                                   1889+         PUNCH '           02  FILLER   PICTURE X(2).'             @L3C 01-DFHMD
+                                   1890+         PUNCH '           02  DUMMYI  PIC X(1).'              @BBD5E01 01-DFHMD
+                                   1891 ***********************************************************************
+                                   1892 INQSYYY  DFHMSD TYPE=FINAL
+                                   2078+         PUNCH '       01  INQMFE1O REDEFINES INQMFE1I.'              @ 02-DFHMD
+                                   2079+         PUNCH '           02  FILLER PIC X(12).'              @BB6D00T 02-DFHMD
+                                   2080+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2081+         PUNCH '           02  TRANIDC    PICTURE X.'              @L3A 02-DFHMD
+                                   2082+         PUNCH '           02  TRANIDH    PICTURE X.'              @L3A 02-DFHMD
+                                   2083+         PUNCH '           02  TRANIDO  PIC X(4).'             @BBD5E01 02-DFHMD
+                                   2084+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2085+         PUNCH '           02  CUSTNOC    PICTURE X.'              @L3A 02-DFHMD
+                                   2086+         PUNCH '           02  CUSTNOH    PICTURE X.'              @L3A 02-DFHMD
+                                                                                                               Page    6
+  Active Usings: None
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2025/11/22 16.05
+                                   2087+         PUNCH '           02  CUSTNOO  PIC X(6).'             @BBD5E01 02-DFHMD
+                                   2088+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2089+         PUNCH '           02  LNAMEC    PICTURE X.'               @L3A 02-DFHMD
+                                   2090+         PUNCH '           02  LNAMEH    PICTURE X.'               @L3A 02-DFHMD
+                                   2091+         PUNCH '           02  LNAMEO  PIC X(30).'             @BBD5E01 02-DFHMD
+                                   2092+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2093+         PUNCH '           02  FNAMEC    PICTURE X.'               @L3A 02-DFHMD
+                                   2094+         PUNCH '           02  FNAMEH    PICTURE X.'               @L3A 02-DFHMD
+                                   2095+         PUNCH '           02  FNAMEO  PIC X(20).'             @BBD5E01 02-DFHMD
+                                   2096+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2097+         PUNCH '           02  ADDRC    PICTURE X.'                @L3A 02-DFHMD
+                                   2098+         PUNCH '           02  ADDRH    PICTURE X.'                @L3A 02-DFHMD
+                                   2099+         PUNCH '           02  ADDRO  PIC X(30).'              @BBD5E01 02-DFHMD
+                                   2100+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2101+         PUNCH '           02  CITYC    PICTURE X.'                @L3A 02-DFHMD
+                                   2102+         PUNCH '           02  CITYH    PICTURE X.'                @L3A 02-DFHMD
+                                   2103+         PUNCH '           02  CITYO  PIC X(20).'              @BBD5E01 02-DFHMD
+                                   2104+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2105+         PUNCH '           02  STATEC    PICTURE X.'               @L3A 02-DFHMD
+                                   2106+         PUNCH '           02  STATEH    PICTURE X.'               @L3A 02-DFHMD
+                                   2107+         PUNCH '           02  STATEO  PIC X(2).'              @BBD5E01 02-DFHMD
+                                   2108+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2109+         PUNCH '           02  ZIPCODEC    PICTURE X.'             @L3A 02-DFHMD
+                                   2110+         PUNCH '           02  ZIPCODEH    PICTURE X.'             @L3A 02-DFHMD
+                                   2111+         PUNCH '           02  ZIPCODEO  PIC X(10).'           @BBD5E01 02-DFHMD
+                                   2112+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2113+         PUNCH '           02  MESSAGEC    PICTURE X.'             @L3A 02-DFHMD
+                                   2114+         PUNCH '           02  MESSAGEH    PICTURE X.'             @L3A 02-DFHMD
+                                   2115+         PUNCH '           02  MESSAGEO  PIC X(79).'           @BBD5E01 02-DFHMD
+                                   2116+         PUNCH '           02  FILLER PICTURE X(3).'           @BM13780 02-DFHMD
+                                   2117+         PUNCH '           02  DUMMYC    PICTURE X.'               @L3A 02-DFHMD
+                                   2118+         PUNCH '           02  DUMMYH    PICTURE X.'               @L3A 02-DFHMD
+                                   2119+         PUNCH '           02  DUMMYO  PIC X(1).'              @BBD5E01 02-DFHMD
+                                   2213          END
+ 
+                                          Macro and Copy Code Source Summary                                   Page    7
+ Con Source                                        Volume    Members                        HLASM R6.0  2025/11/22 16.05
+  L1 DFH610.CICS.SDFHMAC                           VTDFHL    DFHANRAT DFHANRWC DFHCOPYR DFHGDEFS DFHMDF   DFHMDI
+                                                             DFHMSD   DFHPRMCK DFHSYS
+ 
+                                   General Purpose Register Cross Reference                                    Page    8
+ Register  References (M=modified, B=branch, U=USING, D=DROP, N=index)                      HLASM R6.0  2025/11/22 16.05
+    0(0)    (no references identified)
+    1(1)    (no references identified)
+    2(2)    (no references identified)
+    3(3)    (no references identified)
+    4(4)    (no references identified)
+    5(5)    (no references identified)
+    6(6)    (no references identified)
+    7(7)    (no references identified)
+    8(8)    (no references identified)
+    9(9)    (no references identified)
+   10(A)    (no references identified)
+   11(B)    (no references identified)
+   12(C)    (no references identified)
+   13(D)    (no references identified)
+   14(E)    (no references identified)
+   15(F)    (no references identified)
+ 
+                                  Diagnostic Cross Reference and Assembler Summary                             Page    9
+                                                                                            HLASM R6.0  2025/11/22 16.05
+     No Statements Flagged in this Assembly
+HIGH LEVEL ASSEMBLER, 5696-234, RELEASE 6.0, PTF UO02828
+SYSTEM: z/OS 03.01.00              JOBNAME: INQSBFE1    STEPNAME: MAPSET     PROCSTEP: ASMDSECT
+Unicode Module:   ASMA047C   From Page     1148   To Page    17584           ECECP: International 1
+Data Sets Allocated for this Assembly
+ Con DDname   Data Set Name                                Volume  Member
+  P1 SYSIN    SYS25326.T160521.RA000.INQSBFE1.TEMPM.H01
+  L1 SYSLIB   DFH610.CICS.SDFHMAC                          VTDFHL
+  L2          SYS1.MACLIB                                  VTMVSC
+     SYSPRINT KC03FE1.INQSBFE1.JOB04694.D0000104.?
+     SYSPUNCH KC03FE1.DCMAFD02.A5P1.COBOL                  KCTR32  INQSFE1
+ 
+  26816K allocated to Buffer Pool       Storage required     976K
+     95 Primary Input Records Read         6959 Library Records Read                  0 Work File Reads
+      0 ASMAOPT Records Read                323 Primary Print Records Written         0 Work File Writes
+    104 Object Records Written                0 ADATA Records Written
+Assembly Start Time: 16.05.23 Stop Time: 16.05.23 Processor Time: 00.00.00.0055
+Return Code 000

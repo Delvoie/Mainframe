@@ -1,0 +1,17 @@
+//CMINQFE1 JOB
+//*
+//CICSPROC JCLLIB ORDER=(KC03FE1.DCMAFD02.PROCLIB)
+//*
+//*********************************************************************
+//*           TRANSLATE COMPILE
+//*           AND LINK A CICS COBOL PROGRAM
+//*********************************************************************
+//COMPLI   EXEC DFHZITCL,
+//             PROGLIB=TSOECCC.CICSTS12.STUDENT.LOADLIB,
+//             PROGSRC=KC03FE1.DCMAFD02.A5P1.COBOL,
+//             PROGMBR=CMINQFE1,
+//             CPYLIBWS=KC03FE1.DCMAFD02.COPYBOOK.WS.COBOL,
+//             CPYLIBPR=KC03FE1.DCMAFD02.COPYBOOK.PR.COBOL
+//* NAME OF PROGRAM AND MEMBER TO TRANSLATE/COMPILE/LKED
+//COBOL.SYSIN DD DSN=&PROGSRC(&PROGMBR),DISP=SHR
+/*

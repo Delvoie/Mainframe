@@ -1,0 +1,625 @@
+                   J E S 2  J O B  L O G  --  S Y S T E M  8 5 6 1  --  N O D E  S V S C J E S 2
+ 
+15.15.17 JOB04543 ---- SATURDAY,  22 NOV 2025 ----
+15.15.17 JOB04543  IRR010I  USERID KC03FE1  IS ASSIGNED TO THIS JOB.
+15.15.17 JOB04543  IEF677I WARNING MESSAGE(S) FOR JOB CMFLOFE1 ISSUED
+15.15.19 JOB04543  ICH70001I KC03FE1  LAST ACCESS AT 15:13:54 ON SATURDAY, NOVEMBER 22, 2025
+15.15.19 JOB04543  $HASP373 CMFLOFE1 STARTED - INIT 1    - CLASS A        - SYS 8561
+15.15.23 JOB04543  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+15.15.23 JOB04543  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+15.15.23 JOB04543  -COBOL    COBOL       00  17496    245       .00       .00     .0           180  BATCH        0     0     0     0
+15.15.23 JOB04543  -COBOL    LKED        00    308     33       .00       .00     .0            58  BATCH        0     0     0     0
+        1 //CMFLOFE1         JOB                                                  JOB04543
+          /* COMPILE/LKED VSAM DATA LOAD PROGRAM
+        2 //COBOL            EXEC PROC=IGYWCL,
+          //    PARM.COBOL='TEST,RENT,APOST,OBJECT,NODYNAM,LIB,SIZE(2097152)'
+        3 XXIGYWCL PROC  LNGPRFX='IGY640',                                        00001000
+          XX             LIBPRFX='CEE',                                           00002000
+          XX             PGMLIB='&&GOSET',GOPGM=GO                                00003000
+          XX*                                                                     00004000
+          XX********************************************************************* 00005000
+          XX*                                                                   * 00006000
+          XX*  IBM Enterprise COBOL for z/OS                                    * 00007000
+          XX*               Version 6 Release 3 Modification 0                  * 00008000
+          XX*                                                                   * 00009000
+          XX*  LICENSED MATERIALS - PROPERTY OF IBM.                            * 00010000
+          XX*                                                                   * 00011000
+          XX*  5655-EC6 COPYRIGHT IBM CORP. 1983, 2022                          * 00012000
+          XX*                                                                   * 00013000
+          XX*  US GOVERNMENT USERS RESTRICTED RIGHTS - USE,                     * 00014000
+          XX*  DUPLICATION OR DISCLOSURE RESTRICTED BY GSA                      * 00015000
+          XX*  ADP SCHEDULE CONTRACT WITH IBM CORP.                             * 00016000
+          XX*                                                                   * 00017000
+          XX********************************************************************* 00018000
+          XX*                                                                     00019000
+          XX*  COMPILE AND LINK EDIT A COBOL PROGRAM                              00020000
+          XX*                                                                     00021000
+          XX*  PARAMETER  DEFAULT VALUE    USAGE                                  00022000
+          XX*   LNGPRFX   IGY640           PREFIX FOR LANGUAGE DATA SET NAMES     00023000
+          XX*   LIBPRFX   CEE              PREFIX FOR LIBRARY DATA SET NAMES      00024000
+          XX*   PGMLIB    &&GOSET          DATA SET NAME FOR LOAD MODULE          00025000
+          XX*   GOPGM     GO               MEMBER NAME FOR LOAD MODULE            00026000
+          XX*                                                                     00027000
+          XX*  CALLER MUST SUPPLY //COBOL.SYSIN DD ...                            00028000
+          XX*                                                                     00029000
+          XX*  CALLER MUST ALSO SUPPLY //COBOL.SYSLIB DD ... for COPY statements  00030000
+          XX*                                                                     00031000
+          XX*  NOTE:  SYSUT* datasets must be single-volume datasets              00032000
+          XX*                                                                     00033000
+        4 XXCOBOL  EXEC PGM=IGYCRCTL,REGION=0M                                    00034000
+        5 XXSTEPLIB  DD  DSNAME=&LNGPRFX..SIGYCOMP,DISP=SHR                       00035000
+          IEFC653I SUBSTITUTION JCL - DSNAME=IGY640.SIGYCOMP,DISP=SHR
+        6 XX         DD  DSNAME=&LIBPRFX..SCEERUN,DISP=SHR                        00036000
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEERUN,DISP=SHR
+        7 XX         DD  DSNAME=&LIBPRFX..SCEERUN2,DISP=SHR                       00037000
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEERUN2,DISP=SHR
+        8 XXSYSPRINT DD  SYSOUT=*                                                 00038000
+        9 XXSYSLIN   DD  DSNAME=&&LOADSET,UNIT=SYSALLDA,                          00039000
+          XX             DISP=(MOD,PASS),SPACE=(CYL,(1,1)),VOL=(,,,1)             00040000
+       10 XXSYSUT1   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00041000
+       11 XXSYSUT2   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00042000
+       12 XXSYSUT3   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00043000
+       13 XXSYSUT4   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00044000
+       14 XXSYSUT5   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00045000
+       15 XXSYSUT6   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00046000
+       16 XXSYSUT7   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00047000
+       17 XXSYSUT8   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00048000
+       18 XXSYSUT9   DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00049000
+       19 XXSYSUT10  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00050000
+       20 XXSYSUT11  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00051000
+       21 XXSYSUT12  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00052000
+       22 XXSYSUT13  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00053000
+       23 XXSYSUT14  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00054000
+       24 XXSYSUT15  DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00055000
+       25 XXSYSMDECK DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)               00056000
+       26 //COBOL.SYSLIB  DD DSN=KC03FE1.DCMAFD02.A5P1.COBOL,DISP=SHR
+       27 //COBOL.SYSIN DD DSN=KC03FE1.DCMAFD02.A5P1.COBOL(CMFLOFE1),DISP=SHR
+       28 XXLKED   EXEC PGM=IEWBLINK,COND=(8,LT,COBOL),REGION=0M                  00057000
+       29 XXSYSLIB   DD  DSNAME=&LIBPRFX..SCEELKEX,DISP=SHR                       00058000
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEELKEX,DISP=SHR
+       30 XX         DD  DSNAME=&LIBPRFX..SCEELKED,DISP=SHR                       00059000
+          IEFC653I SUBSTITUTION JCL - DSNAME=CEE.SCEELKED,DISP=SHR
+       31 XXSYSPRINT DD  SYSOUT=*                                                 00060000
+       32 XXSYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                       00061000
+       33 XX         DD  DDNAME=SYSIN                                             00062000
+       34 //LKED.SYSLMOD DD DSN=KC03FE1.DCMAFD02.COBOL.LOADLIB(CMFLOFE1),
+          //    DISP=OLD
+          X/SYSLMOD  DD  DSNAME=&PGMLIB(&GOPGM),                                  00063000
+          X/             SPACE=(CYL,(1,1,1)),                                     00064000
+          X/             UNIT=SYSALLDA,DISP=(MOD,PASS),DSNTYPE=LIBRARY            00065000
+          // DECLARE DATASET THAT CONTAINS SOURCE CODE
+          //
+          // DECLARE PDS MEMBER TO STORE LOAD MODULE
+          /* EXECUTE VSAM DATA LOAD PROGRAM
+          /*
+          IEFC653I SUBSTITUTION JCL - DSNAME=&&GOSET(GO),SPACE=(CYL,(1,1,1)),UNIT=SYSALLDA,DISP=(MOD,PASS),
+          DSNTYPE=LIBRARY
+       35 //CMFLOAD  EXEC PGM=CMFLOFE1
+          /*
+       36 //STEPLIB  DD DSN=KC03FE1.DCMAFD02.COBOL.LOADLIB,DISP=SHR
+       37 //CMFDATA  DD DSN=KC03FE1.DCMAFD02.A5P1.CMF.DATA,DISP=SHR
+       38 //OUTFILE  DD DSN=KC03FE1.DCMAFD02.A5P1.CICS.CMFFE1,DISP=SHR
+          /*
+ STMT NO. MESSAGE
+        2 IEFC001I PROCEDURE IGYWCL WAS EXPANDED USING SYSTEM LIBRARY SVTSC.PROCLIB
+       35 IEF686I DDNAME REFERRED TO ON DDNAME KEYWORD IN PRIOR STEP WAS NOT RESOLVED
+ICH70001I KC03FE1  LAST ACCESS AT 15:13:54 ON SATURDAY, NOVEMBER 22, 2025
+IEFA111I CMFLOFE1 IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR CMFLOFE1 COBOL COBOL
+IEF237I 196E ALLOCATED TO STEPLIB
+IEF237I 1001 ALLOCATED TO
+IEF237I 1001 ALLOCATED TO
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IGD100I 03DE ALLOCATED TO DDNAME SYSLIN   DATACLAS (        )
+IGD100I 0CE8 ALLOCATED TO DDNAME SYSUT1   DATACLAS (        )
+IGD100I 0D2F ALLOCATED TO DDNAME SYSUT2   DATACLAS (        )
+IGD100I 0D2F ALLOCATED TO DDNAME SYSUT3   DATACLAS (        )
+IGD100I 0D2F ALLOCATED TO DDNAME SYSUT4   DATACLAS (        )
+IGD100I 0CE8 ALLOCATED TO DDNAME SYSUT5   DATACLAS (        )
+IGD100I 0CE8 ALLOCATED TO DDNAME SYSUT6   DATACLAS (        )
+IGD100I 03DE ALLOCATED TO DDNAME SYSUT7   DATACLAS (        )
+IGD100I 03DE ALLOCATED TO DDNAME SYSUT8   DATACLAS (        )
+IGD100I 0CE8 ALLOCATED TO DDNAME SYSUT9   DATACLAS (        )
+IGD100I 0D2F ALLOCATED TO DDNAME SYSUT10  DATACLAS (        )
+IGD100I 0CE8 ALLOCATED TO DDNAME SYSUT11  DATACLAS (        )
+IGD100I 0D2F ALLOCATED TO DDNAME SYSUT12  DATACLAS (        )
+IGD100I 0D2F ALLOCATED TO DDNAME SYSUT13  DATACLAS (        )
+IGD100I 03DE ALLOCATED TO DDNAME SYSUT14  DATACLAS (        )
+IGD100I 03DE ALLOCATED TO DDNAME SYSUT15  DATACLAS (        )
+IGD100I 03DE ALLOCATED TO DDNAME SYSMDECK DATACLAS (        )
+IGD103I SMS ALLOCATED TO DDNAME SYSLIB
+IGD103I SMS ALLOCATED TO DDNAME SYSIN
+IEF142I CMFLOFE1 COBOL COBOL - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   IGY640.SIGYCOMP                              KEPT
+IEF285I   VOL SER NOS= VTIGYM.
+IEF285I   CEE.SCEERUN                                  KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IEF285I   CEE.SCEERUN2                                 KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IEF285I   KC03FE1.CMFLOFE1.JOB04543.D0000101.?         SYSOUT
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.LOADSET.H01  PASSED
+IEF285I   VOL SER NOS= VPMVSH.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156203     DELETED
+IEF285I   VOL SER NOS= VPMVSC.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156204     DELETED
+IEF285I   VOL SER NOS= VPMVSE.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156205     DELETED
+IEF285I   VOL SER NOS= VPMVSE.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156206     DELETED
+IEF285I   VOL SER NOS= VPMVSE.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156207     DELETED
+IEF285I   VOL SER NOS= VPMVSC.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156208     DELETED
+IEF285I   VOL SER NOS= VPMVSC.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156209     DELETED
+IEF285I   VOL SER NOS= VPMVSH.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156210     DELETED
+IEF285I   VOL SER NOS= VPMVSH.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156211     DELETED
+IEF285I   VOL SER NOS= VPMVSC.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156212     DELETED
+IEF285I   VOL SER NOS= VPMVSE.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156213     DELETED
+IEF285I   VOL SER NOS= VPMVSC.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156214     DELETED
+IEF285I   VOL SER NOS= VPMVSE.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156215     DELETED
+IEF285I   VOL SER NOS= VPMVSE.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156216     DELETED
+IEF285I   VOL SER NOS= VPMVSH.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156217     DELETED
+IEF285I   VOL SER NOS= VPMVSH.
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.R0156218     DELETED
+IEF285I   VOL SER NOS= VPMVSH.
+IGD104I KC03FE1.DCMAFD02.A5P1.COBOL                  RETAINED,  DDNAME=SYSLIB
+IGD104I KC03FE1.DCMAFD02.A5P1.COBOL                  RETAINED,  DDNAME=SYSIN
+IEF373I STEP/COBOL   /START 2025326.1515
+IEF032I STEP/COBOL   /STOP  2025326.1515
+        CPU:     0 HR  00 MIN  00.05 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:   496K  SYS:   304K  EXT:   218296K  SYS:    15832K
+        ATB- REAL:                  8632K  SLOTS:                     0K
+             VIRT- ALLOC:     536M SHRD:       0M
+IEF236I ALLOC. FOR CMFLOFE1 LKED COBOL
+IEF237I 1001 ALLOCATED TO SYSLIB
+IEF237I 1001 ALLOCATED TO
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I 03DE ALLOCATED TO SYSLIN
+IEF237I DMY  ALLOCATED TO
+IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+IEF142I CMFLOFE1 LKED COBOL - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   CEE.SCEELKEX                                 KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IEF285I   CEE.SCEELKED                                 KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IEF285I   KC03FE1.CMFLOFE1.JOB04543.D0000102.?         SYSOUT
+IEF285I   SYS25326.T151517.RA000.CMFLOFE1.LOADSET.H01  DELETED
+IEF285I   VOL SER NOS= VPMVSH.
+IGD104I KC03FE1.DCMAFD02.COBOL.LOADLIB               RETAINED,  DDNAME=SYSLMOD
+IEF373I STEP/LKED    /START 2025326.1515
+IEF032I STEP/LKED    /STOP  2025326.1515
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:    92K  SYS:   288K  EXT:     1768K  SYS:    11724K
+        ATB- REAL:                  1280K  SLOTS:                     0K
+             VIRT- ALLOC:      18M SHRD:       0M
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417                 Date 11/22/2025  Time 15:15:20   Page     1
+Invocation parameters:
+ TEST,RENT,APOST,OBJECT,NODYNAM,LIB,SIZE(2097152)
+ 
+        IGYOS4090-I   The "LIB" option specification is no longer required.  COBOL library processing is always in effect.
+ 
+ 
+        IGYOS4013-I   The "SIZE" option is no longer supported.
+ 
+Options in effect:
+ NOADATA
+   ADV
+   AFP(NOVOLATILE)
+   APOST
+   ARCH(10)
+   ARITH(COMPAT)
+ NOAWO
+ NOBLOCK0
+   BUFSIZE(4096)
+ NOCICS
+   CODEPAGE(1140)
+ NOCOMPILE(S)
+   CONDCOMP(NOSKIPSRC)
+ NOCOPYLOC
+ NOCOPYRIGHT
+ NOCURRENCY
+   DATA(31)
+   DBCS
+ NODECK
+ NODEFINE
+ NODIAGTRUNC
+   DISPSIGN(COMPAT)
+ NODLL
+ NODUMP
+ NODYNAM
+ NOEXIT
+ NOEXPORTALL
+ NOFASTSRT
+   FLAG(I,I)
+ NOFLAGSTD
+   HGPR(PRESERVE)
+ NOINITCHECK
+ NOINITIAL
+   INLINE
+   INTDATE(ANSI)
+ NOINVDATA
+ NOJAVAIOP
+   LANGUAGE(EN)
+   LINECOUNT(60)
+ NOLIST
+   LP(32)
+ NOLSACHECK
+ NOMAP
+   MAXPCF(100000)
+ NOMDECK
+ NONAME
+   NSYMBOL(NATIONAL)
+ NONUMBER
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417                 Date 11/22/2025  Time 15:15:20   Page     2
+ NONUMCHECK
+   NUMPROC(NOPFD)
+   OBJECT
+ NOOFFSET
+   OPTIMIZE(0)
+   OUTDD(SYSOUT)
+ NOPARMCHECK
+   PGMNAME(COMPAT)
+   QUALIFY(COMPAT)
+   RENT
+   RMODE(AUTO)
+ NORULES
+ NOSERVICE
+   SEQUENCE
+   SMARTBIN
+   SOURCE(DEC)
+   SPACE(1)
+ NOSQL
+   SQLCCSID
+ NOSQLIMS
+ NOSSRANGE
+ NOSTGOPT
+   SUPPRESS
+ NOTERM
+   TEST(NOEJPD,DWARF,SOURCE,NOSEPARATE)
+ NOTHREAD
+   TRUNC(STD)
+   TUNE(10)
+ NOVBREF
+   VLR(STANDARD)
+   VSAMOPENFS(COMPAT)
+ NOWORD
+   XMLPARSE(XMLSS)
+   XREF(FULL)
+   ZWB
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMFLOFE1  Date 11/22/2025  Time 15:15:20   Page     3
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+/* CMFLOFE1
+  000001                IDENTIFICATION DIVISION.
+  000002                PROGRAM-ID. CMFLOFE1.
+  000003                AUTHOR. Lucas delvoie.
+  000004                DATE-WRITTEN. Nov 22 2025.
+  000005               *PROGRAM DESCRIPTION:
+  000006               * This program loads customer master file data from a sequential
+  000007               * file into the VSAM KSDS customer master file (CMFFE1).
+  000008                ENVIRONMENT DIVISION.
+  000009                INPUT-OUTPUT SECTION.
+  000010               *
+  000011                FILE-CONTROL.
+  000012                    SELECT CMF-INPUT ASSIGN TO CMFDATA                                    24
+  000013                        ORGANIZATION IS SEQUENTIAL
+  000014                        FILE STATUS IS WS-INFILE-SW.                                      42
+  000015
+  000016                    SELECT CMF-FILE ASSIGN TO OUTFILE                                     33
+  000017                        RECORD KEY IS CMF-FILE-KEY                                        37
+  000018                        ORGANIZATION IS INDEXED
+  000019                        ACCESS MODE IS SEQUENTIAL
+  000020                        FILE STATUS IS WS-OUTFILE-SW.                                     45
+  000021               *
+  000022                DATA DIVISION.
+  000023                FILE SECTION.
+  000024                FD CMF-INPUT
+  000025                    RECORDING MODE IS F
+  000026                    RECORD CONTAINS 118 CHARACTERS
+  000027                    DATA RECORD IS CMF-INPUT-RECORD.                                      *
+  000028                01 CMF-INPUT-RECORD.
+  000029                    05 CMF-INPUT-KEY.
+  000030                        10 CMF-INPUT-NUMBER          PIC X(6).
+  000031                    05 FILLER                        PIC X(112).
+  000032
+  000033                FD CMF-FILE
+  000034                    RECORD CONTAINS 118 CHARACTERS
+  000035                    DATA RECORD IS CMF-FILE-RECORD.                                       *
+  000036                01 CMF-FILE-RECORD.
+  000037                    05 CMF-FILE-KEY.
+  000038                        10 CMF-FILE-NUMBER           PIC X(6).
+  000039                    05 FILLER                        PIC X(112).
+  000040               *
+  000041                WORKING-STORAGE SECTION.
+  000042                01 WS-INFILE-SW                      PIC X(02)  VALUE SPACES.             IMP
+  000043                    88  WS-INFILE-SUCCESS                VALUE '00'.
+  000044                    88  WS-INFILE-EOF                    VALUE '10'.
+  000045                01 WS-OUTFILE-SW                     PIC X(02)  VALUE SPACES.             IMP
+  000046                    88  WS-OUTFILE-SUCCESS               VALUE '00'.
+  000047                    88  WS-OUTFILE-IOERROR               VALUE '37'.
+  000048                    88  WS-OUTFILE-EOF                   VALUE '10'.
+  000049                01 WS-CMF-REC                        PIC X(118).
+  000050                01 WS-EOF-SW-IN                      PIC X(01)  VALUE 'N'.
+  000051                    88  WS-EOF-IN-NO                     VALUE 'N'.
+  000052                    88  WS-EOF-IN-YES                    VALUE 'Y'.
+  000053                01 WS-EOF-SW-OUT                     PIC X(01)  VALUE 'N'.
+  000054                    88  WS-EOF-OUT-NO                    VALUE 'N'.
+  000055                    88  WS-EOF-OUT-YES                   VALUE 'Y'.
+  000056                01 WS-NBR                            PIC 9      VALUE 0.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMFLOFE1  Date 11/22/2025  Time 15:15:20   Page     4
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000057               *
+  000058                PROCEDURE DIVISION.
+  000059                000-MAIN-PARA.
+  000060                    MOVE SPACE TO WS-INFILE-SW                                            IMP 42
+  000061                                  WS-OUTFILE-SW                                           45
+  000062                                  WS-CMF-REC.                                             49
+  000063               *
+  000064                    OPEN INPUT CMF-INPUT.                                                 24
+  000065                    IF WS-INFILE-SUCCESS                                                  43
+  000066      1                 DISPLAY "CMF-INPUT OPEN SUCCESSFUL"
+  000067                    ELSE
+  000068      1                 DISPLAY "WS-INFILE-SW=" WS-INFILE-SW                              42
+  000069      1                 DISPLAY "CMF-INPUT OPEN ERROR"
+  000070      1                 PERFORM 800-PROGRAM-FAILED                                        120
+  000071                    END-IF.
+  000072               *
+  000073                    OPEN OUTPUT CMF-FILE.                                                 33
+  000074                    IF WS-OUTFILE-SUCCESS                                                 46
+  000075      1                 DISPLAY "CMF-FILE OPEN SUCCESSFUL"
+  000076      1             ELSE IF WS-OUTFILE-IOERROR                                            47
+  000077      2                 DISPLAY "WS-OUTFILE-SW=" WS-OUTFILE-SW                            45
+  000078      2                 DISPLAY "CMF-FILE IOERROR - OPEN OUTPUT SHOULD BE "
+  000079      2                         "OPEN INPUT OR I-O OR EXTEND  "
+  000080      2                 DISPLAY "- DATA MAY ALREADY HAVE BEEN LOADED PREVIOUSLY"
+  000081      2                 DISPLAY "- DELETE AND INITIALIZE FILE TO RELOAD DATA"
+  000082      2                 PERFORM 800-PROGRAM-FAILED                                        120
+  000083      1             ELSE
+  000084      2                 DISPLAY "WS-OUTFILE-SW=" WS-OUTFILE-SW                            45
+  000085      2                 DISPLAY "CMF-FILE OPENING ERROR"
+  000086      2                 PERFORM 800-PROGRAM-FAILED                                        120
+  000087      1             END-IF.
+  000088               *
+  000089                    READ CMF-INPUT                                                        24
+  000090      1                 AT END MOVE 'Y' TO WS-EOF-SW-IN.                                  50
+  000091               *
+  000092                    IF WS-EOF-IN-NO THEN                                                  51
+  000093      1                 DISPLAY "1ST READ CMF-INPUT-RECORD=" CMF-INPUT-RECORD             28
+  000094               *
+  000095      1                 PERFORM 100-LOAD-PARA                                             106
+  000096      1                     UNTIL WS-EOF-IN-YES                                           52
+  000097                    ELSE
+  000098      1                 DISPLAY "NO DATA IN CMF-INPUT"
+  000099      1                 PERFORM 800-PROGRAM-FAILED                                        120
+  000100                    END-IF.
+  000101               *
+  000102                    PERFORM 900-COMPLETED-OK.                                             125
+  000103               *
+  000104                    STOP RUN.
+  000105               *
+  000106                100-LOAD-PARA.
+  000107               *
+  000108                    WRITE CMF-FILE-RECORD FROM CMF-INPUT-RECORD.                          36 28
+  000109                    DISPLAY "WRITE TO CMF-FILE".
+  000110               *
+  000111                    READ CMF-INPUT                                                        24
+  000112      1                 AT END MOVE 'Y' TO WS-EOF-SW-IN.                                  50
+  000113               *
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMFLOFE1  Date 11/22/2025  Time 15:15:20   Page     5
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000114                    IF WS-EOF-IN-NO THEN                                                  51
+  000115      1                 DISPLAY "NTH READ CMF-INPUT-RECORD=" CMF-INPUT-RECORD             28
+  000116                    ELSE
+  000117      1                 DISPLAY "EOF CMF-INPUT"
+  000118                    END-IF.
+  000119               *
+  000120                800-PROGRAM-FAILED.
+  000121                    DISPLAY "PROGRAM TERMINATED WITH DIVIDE BY ZERO!".
+  000122                    DISPLAY "CHECK ERROR MESSAGES IN SYSOUT PART OF JOB SUMMARY".
+  000123                    COMPUTE WS-NBR = WS-NBR / WS-NBR.                                     56 56 56
+  000124               *
+  000125                900-COMPLETED-OK.
+  000126                    DISPLAY "PROGRAM COMPLETED OK".
+  000127               *
+*/ CMFLOFE1
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMFLOFE1  Date 11/22/2025  Time 15:15:20   Page     6
+An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+ 
+ Defined   Cross-reference of data names   References
+ 
+      33   CMF-FILE . . . . . . . . . . .  16 73
+      37   CMF-FILE-KEY . . . . . . . . .  17
+      38   CMF-FILE-NUMBER
+      36   CMF-FILE-RECORD. . . . . . . .  M108
+      24   CMF-INPUT. . . . . . . . . . .  12 64 89 111
+      29   CMF-INPUT-KEY
+      30   CMF-INPUT-NUMBER
+      28   CMF-INPUT-RECORD . . . . . . .  93 108 115
+      49   WS-CMF-REC . . . . . . . . . .  M62
+      51   WS-EOF-IN-NO . . . . . . . . .  92 114
+      52   WS-EOF-IN-YES. . . . . . . . .  96
+      54   WS-EOF-OUT-NO
+      55   WS-EOF-OUT-YES
+      50   WS-EOF-SW-IN . . . . . . . . .  M90 M112
+      53   WS-EOF-SW-OUT
+      44   WS-INFILE-EOF
+      43   WS-INFILE-SUCCESS. . . . . . .  65
+      42   WS-INFILE-SW . . . . . . . . .  14 M60 68
+      56   WS-NBR . . . . . . . . . . . .  M123 123 123
+      48   WS-OUTFILE-EOF
+      47   WS-OUTFILE-IOERROR . . . . . .  76
+      46   WS-OUTFILE-SUCCESS . . . . . .  74
+      45   WS-OUTFILE-SW. . . . . . . . .  20 M61 77 84
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMFLOFE1  Date 11/22/2025  Time 15:15:20   Page     7
+Context usage is indicated by the letter preceding a procedure-name reference.
+These letters and their meanings are:
+    A = ALTER (procedure-name)
+    D = GO TO (procedure-name) DEPENDING ON
+    E = End of range of (PERFORM) through (procedure-name)
+    G = GO TO (procedure-name)
+    P = PERFORM (procedure-name)
+    T = (ALTER) TO PROCEED TO (procedure-name)
+    U = USE FOR DEBUGGING (procedure-name)
+ 
+ Defined   Cross-reference of procedures   References
+ 
+      59   000-MAIN-PARA
+     106   100-LOAD-PARA. . . . . . . . .  P95
+     120   800-PROGRAM-FAILED . . . . . .  P70 P82 P86 P99
+     125   900-COMPLETED-OK . . . . . . .  P102
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.4.0 P250417       CMFLOFE1  Date 11/22/2025  Time 15:15:20   Page     8
+ Defined   Cross-reference of programs     References
+ 
+       2   CMFLOFE1
+Messages    Total    Informational    Warning    Error    Severe    Terminating
+Printed:       2           2
+* Statistics for COBOL program CMFLOFE1:
+*    Source records = 127
+*    Data Division statements = 21
+*    Procedure Division statements = 39
+*    Generated COBOL statements = 0
+*    Program complexity factor = 40
+End of compilation 1,  program CMFLOFE1,  highest severity 0.
+Return code 0
+z/OS V3 R1 BINDER     15:15:22 SATURDAY NOVEMBER 22, 2025
+BATCH EMULATOR  JOB(CMFLOFE1) STEP(COBOL   ) PGM= IEWBLINK  PROCEDURE(LKED    )
+ 
+ 
+ 
+                                *** O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+PROCESSING OPTIONS:
+ 
+   ALIASES             NO
+   ALIGN2              NO
+   AMODE               UNSPECIFIED
+   CALL                YES
+   CASE                UPPER
+   COMPAT              UNSPECIFIED
+   COMPRESS            AUTO
+   DCBS                NO
+   DYNAM               NO
+   EXTATTR             UNSPECIFIED
+   EXITS:              NONE
+   FILL                NONE
+   GID                 UNSPECIFIED
+   HOBSET              NO
+   INFO                NO
+   LET                 04
+   LINECT              060
+   LIST                SUMMARY
+   LISTPRIV            NO
+   LONGPARM            NO
+   MAP                 NO
+   MAXBLK              032760
+   MODMAP              NO
+   MSGLEVEL            00
+   OVLY                NO
+   PRINT               YES
+   RES                 NO
+   REUSABILITY         UNSPECIFIED
+   RMODE               UNSPECIFIED
+   RMODEX              NO
+   SIGN                NO
+   STORENX             NOREPLACE
+   STRIPCL             NO
+   STRIPSEC            NO
+   SYMTRACE
+   TERM                NO
+   TRAP                ON
+   UID                 UNSPECIFIED
+   UPCASE              NO
+   WKSPACE             000000K,000000K
+   XCAL                NO
+   XREF                NO
+   ***END OF OPTIONS***
+ 
+ 
+ 
+ 
+SAVE OPERATION SUMMARY:
+ 
+   MEMBER NAME         CMFLOFE1
+   LOAD LIBRARY        KC03FE1.DCMAFD02.COBOL.LOADLIB
+   PROGRAM TYPE        PROGRAM OBJECT(FORMAT 3)
+   VOLUME SERIAL       KCTR57
+   DISPOSITION         REPLACED
+   TIME OF SAVE        15.15.23  NOV 22, 2025
+ 
+ 
+SAVE MODULE ATTRIBUTES:
+ 
+   AC                  000
+   AMODE                31
+   COMPRESSION         NONE
+   DC                  NO
+   EDITABLE            YES
+   EXCEEDS 16MB        NO
+   EXECUTABLE          YES
+   LONGPARM            NO
+   MIGRATABLE          NO
+   OL                  NO
+   OVLY                NO
+   PACK,PRIME          NO,NO
+   PAGE ALIGN          NO
+   REFR                NO
+   RENT                NO
+   REUS                NO
+   RMODE               ANY
+   SCTR                NO
+   SIGN                NO
+   SSI
+   SYM GENERATED       NO
+   TEST                NO
+   XPLINK              NO
+   MODULE SIZE (HEX)   00002720
+   DASD SIZE (HEX)     00012000
+ 
+ 
+ ENTRY POINT AND ALIAS SUMMARY:
+ 
+ NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS
+ 
+ CMFLOFE1          MAIN_EP      31 00000000 C_CODE
+ 
+                         *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+ 
+ 
+ 
+z/OS V3 R1 BINDER     15:15:22 SATURDAY NOVEMBER 22, 2025
+BATCH EMULATOR  JOB(CMFLOFE1) STEP(COBOL   ) PGM= IEWBLINK  PROCEDURE(LKED    )
+IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.
+ 
+ 
+ 
+----------------------
+MESSAGE SUMMARY REPORT
+----------------------
+ TERMINAL MESSAGES      (SEVERITY = 16)
+ NONE
+ 
+ SEVERE MESSAGES        (SEVERITY = 12)
+ NONE
+ 
+ ERROR MESSAGES         (SEVERITY = 08)
+ NONE
+ 
+ WARNING MESSAGES       (SEVERITY = 04)
+ NONE
+ 
+ INFORMATIONAL MESSAGES (SEVERITY = 00)
+ 2008
+ 
+ 
+ **** END OF MESSAGE SUMMARY REPORT ****
+ 
